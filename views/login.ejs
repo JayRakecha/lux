@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeCasa – Login & Register</title>
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/<%= pageCss %>">
+
+</head>
+
+<body>
+
+    <!-- ========== LEFT PANEL ========== -->
+    <div class="left-panel">
+        <div class="brand-logo">
+            <i class="fas fa-couch logo-icon"></i>
+            <h1>LUXE<span>CASA</span></h1>
+            <p>Furniture</p>
+            <div class="divider-gold"></div>
+        </div>
+
+        <ul class="features-list">
+            <li><i class="fas fa-star"></i> 40+ Premium Furniture Collections</li>
+            <li><i class="fas fa-shield-alt"></i> Secure Payments & Easy Returns</li>
+            <li><i class="fas fa-truck"></i> Free Delivery on Orders Above ₹10,000</li>
+            <li><i class="fas fa-tools"></i> Professional Assembly Service</li>
+            <li><i class="fas fa-award"></i> 5-Year Warranty on All Products</li>
+        </ul>
+    </div>
+
+    <!-- ========== RIGHT PANEL ========== -->
+    <div class="right-panel">
+        <div class="auth-container">
+
+            <!-- Tabs -->
+            <div class="auth-tabs">
+                <button class="auth-tab active" onclick="switchTab('login')">Sign In</button>
+                <button class="auth-tab" onclick="switchTab('register')">Create Account</button>
+            </div>
+
+            <div class="alert alert-error" id="alertError" style="display: none;">
+                <i class="fas fa-exclamation-circle"></i>
+                <span id="errorMsg">Something went wrong.</span>
+            </div>
+            <div class="alert alert-success" id="alertSuccess" style="display: none;">
+                <i class="fas fa-check-circle"></i>
+                <span id="successMsg">Success!</span>
+            </div>
+
+            <!-- ===== LOGIN PANEL ===== -->
+            <div class="auth-panel active" id="loginPanel">
+                <h2 class="auth-title">Welcome Back</h2>
+                <p class="auth-subtitle">Sign in to continue your journey</p>
+
+                <form id="loginForm" onsubmit="handleLogin(event)">
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="loginEmail" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="loginPassword" placeholder="Enter your password" required>
+                            <button type="button" class="eye-toggle" onclick="togglePassword('loginPassword', this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-auth" id="loginBtn">
+                        <span class="btn-text">Sign In</span>
+                    </button>
+                </form>
+
+                <p class="terms-note" style="margin-top:20px;">
+                    Don't have an account? <a href="#" onclick="switchTab('register')">Create one free</a>
+                </p>
+            </div>
+
+            <!-- ===== REGISTER PANEL ===== -->
+            <div class="auth-panel" id="registerPanel">
+                <h2 class="auth-title">Join LuxeCasa</h2>
+                <p class="auth-subtitle">Create your account and start exploring</p>
+
+                <form id="registerForm" onsubmit="handleRegister(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>First Name</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="firstName" placeholder="Rahul" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Last Name</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="lastName" placeholder="Sharma" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Email Address</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-envelope"></i>
+                            <input type="email" id="regEmail" placeholder="your@email.com" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="regPassword" placeholder="Create strong password" required
+                                oninput="checkStrength(this.value)">
+                            <button type="button" class="eye-toggle" onclick="togglePassword('regPassword', this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                        <div class="strength-bar">
+                            <div class="strength-fill" id="strengthFill"></div>
+                        </div>
+                        <p class="strength-text" id="strengthText">Password strength</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <div class="input-wrapper">
+                            <i class="fas fa-lock"></i>
+                            <input type="password" id="confirmPassword" placeholder="Repeat your password" required>
+                            <button type="button" class="eye-toggle" onclick="togglePassword('confirmPassword', this)">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-auth" id="registerBtn">
+                        <span class="btn-text">Create My Account</span>
+                    </button>
+                </form>
+
+                <p class="terms-note" style="margin-top:20px;">
+                    Already have an account? <a href="#" onclick="switchTab('login')">Sign in here</a>
+                </p>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        localStorage.removeItem('luxecasa_user');
+        // ============================================================
+        // TAB SWITCHING
+        // ============================================================
+        function switchTab(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-panel').forEach(p => p.classList.remove('active'));
+
+            const tabIndex = tab === 'login' ? 0 : 1;
+            document.querySelectorAll('.auth-tab')[tabIndex].classList.add('active');
+            document.getElementById(tab === 'login' ? 'loginPanel' : 'registerPanel').classList.add('active');
+
+            document.querySelector('.right-panel').scrollTo({ top: 0, behavior: 'smooth' });
+            hideAlerts();
+        }
+
+        // ============================================================
+        // PASSWORD TOGGLE
+        // ============================================================
+        function togglePassword(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        }
+
+        // ============================================================
+        // PASSWORD STRENGTH CHECKER
+        // ============================================================
+        function checkStrength(password) {
+            const fill = document.getElementById('strengthFill');
+            const text = document.getElementById('strengthText');
+
+            let score = 0;
+            if (password.length >= 8) score++;
+            if (/[A-Z]/.test(password)) score++;
+            if (/[0-9]/.test(password)) score++;
+            if (/[^A-Za-z0-9]/.test(password)) score++;
+            if (password.length >= 12) score++;
+
+            const strengths = [
+                { pct: '0%', color: '#E0DDD5', label: 'Password strength' },
+                { pct: '25%', color: '#E05252', label: '⚠ Very Weak' },
+                { pct: '50%', color: '#F5A623', label: '◐ Moderate' },
+                { pct: '75%', color: '#52C07A', label: '● Strong' },
+                { pct: '100%', color: '#2E9E5A', label: '✓ Very Strong' }
+            ];
+
+            const s = strengths[score] || strengths[0];
+            fill.style.width = s.pct;
+            fill.style.background = s.color;
+            text.style.color = s.color;
+            text.textContent = s.label;
+        }
+
+        // ============================================================
+        // LOGIN HANDLER
+        // ============================================================
+        async function handleLogin(e) {
+            e.preventDefault();
+            hideAlerts();
+
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+            const btn = document.getElementById('loginBtn');
+
+            if (!email || !password) return showError('Please fill in all fields.');
+
+            btn.classList.add('loading');
+
+            try {
+                const response = await fetch('/api/auth/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+                const data = await response.json();
+                if (data.success) {
+                    if (data.success) {
+                        showSuccess('Login successful! Redirecting...');
+
+                        if (data.isAdmin) {
+                            // Redirect Admin to Admin Panel
+                            setTimeout(() => window.location.href = '/admin', 1000);
+                        } else {
+                            // Redirect Normal User to Home Page
+                            localStorage.setItem('luxecasa_user', JSON.stringify(data.user));
+                            setTimeout(() => window.location.href = '/', 1000);
+                        }
+
+                    } else {
+                        showError(data.message);
+                    }
+                }
+            } catch (err) {
+                showError('Connection error. Please try again.');
+            } finally {
+                btn.classList.remove('loading');
+            }
+
+        }
+        // ============================================================
+        // REGISTER HANDLER
+        // ============================================================
+        async function handleRegister(e) {
+            e.preventDefault();
+            hideAlerts();
+
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('regEmail').value.trim();
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('confirmPassword').value;
+            //const agree = document.getElementById('agreeTerms').checked;
+
+            if (!firstName || !lastName || !email || !password) {
+                return showError('Please fill in all required fields.');
+            }
+
+            if (password !== confirm) {
+                return showError('Passwords do not match. Please try again.');
+            }
+
+            if (password.length < 8) {
+                showError('Password must be at least 8 characters long.');
+                return;
+            }
+
+            const btn = document.getElementById('registerBtn');
+            btn.classList.add('loading');
+
+            try {
+                const response = await fetch('/api/auth/register', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        full_name: `${firstName} ${lastName}`,
+                        email, password
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Update LocalStorage just for UI state
+                    localStorage.setItem('luxecasa_user', JSON.stringify(data.user));
+                    showSuccess('Account created! Redirecting...');
+                    setTimeout(() => { window.location.href = '/'; }, 1000);
+                } else {
+                    showError(data.message);
+                }
+            } catch (err) {
+                showError('Connection error. Please try again.');
+            } finally {
+                btn.classList.remove('loading');
+            }
+        }
+
+        // ============================================================
+        // HELPER FUNCTIONS
+        // ============================================================
+        function showError(msg) {
+            document.getElementById('errorMsg').textContent = msg;
+            document.getElementById('alertError').style.display = 'flex';
+            document.getElementById('alertSuccess').style.display = 'none';
+        }
+
+        function showSuccess(msg) {
+            document.getElementById('successMsg').textContent = msg;
+            document.getElementById('alertSuccess').style.display = 'flex';
+            document.getElementById('alertError').style.display = 'none';
+        }
+
+        function hideAlerts() {
+            document.getElementById('alertError').style.display = 'none';
+            document.getElementById('alertSuccess').style.display = 'none';
+        }
+
+        // Auto-redirect if already logged in (Checks UI State)
+        window.addEventListener('load', () => {
+            hideAlerts(); // Double-check alerts are hidden
+            const user = localStorage.getItem('luxecasa_user');
+            if (user) {
+                // If they manually navigate to /login while logged in, the server
+                // will technically redirect them first via `redirectIfLoggedIn`.
+                // But this covers the frontend state just in case.
+                window.location.href = '/';
+            }
+        });
+    </script>
+
+</body>
+
+</html>

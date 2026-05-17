@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeCasa – Secure Checkout | Premium Furniture</title>
+    <meta name="description"
+        content="Complete your LuxeCasa order securely. Premium furniture delivered to your doorstep.">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/<%= pageCss %>">
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="top-bar-scroll">
+            🔒 <span class="gold">100% Secure Checkout</span> &nbsp;|&nbsp; Free Delivery above ₹10,000 &nbsp;|&nbsp; 🌟
+            Premium Quality Guaranteed &nbsp;|&nbsp; Easy Returns within 30 Days &nbsp;|&nbsp; 🏠 White Glove
+            Installation Available &nbsp;|&nbsp; EMI Available on All Major Credit Cards
+        </div>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav id="mainNav">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon">🛋</div>
+            <h1>Luxe<span>Casa</span></h1>
+        </a>
+        <div class="nav-right">
+            <a href="products" class="nav-back-link"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
+            <div class="nav-secure">
+                <i class="fas fa-shield-halved"></i>
+                <span>SSL Secured</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="checkout-hero">
+        <div class="hero-inner">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <i class="fas fa-chevron-right"></i>
+                <a href="products">Products</a>
+                <i class="fas fa-chevron-right"></i>
+                <span class="bc-current">Secure Checkout</span>
+            </div>
+            <h1>Secure <em>Checkout</em></h1>
+            <p>Complete your order — premium furniture delivered to your doorstep</p>
+        </div>
+    </div>
+
+    <!-- STEP BAR -->
+    <div class="steps-bar">
+        <div class="steps-inner">
+            <div class="step-item active" id="si-1">
+                <div class="step-num" id="sn-1">1</div>
+                <div class="step-label">Delivery</div>
+            </div>
+            <div class="step-item" id="si-2">
+                <div class="step-num" id="sn-2">2</div>
+                <div class="step-label">Payment</div>
+            </div>
+            <div class="step-item" id="si-3">
+                <div class="step-num" id="sn-3">3</div>
+                <div class="step-label">Review</div>
+            </div>
+            <div class="step-item" id="si-4">
+                <div class="step-num" id="sn-4">4</div>
+                <div class="step-label">Confirm</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN -->
+    <div class="checkout-main">
+
+        <!-- ======================================================
+         LEFT COLUMN
+    ====================================================== -->
+        <div>
+
+            <!-- ========== STEP 1: DELIVERY ========== -->
+            <div class="checkout-panel checkout-step active" id="step-1">
+                <div class="panel-header">
+                    <div class="panel-icon"><i class="fas fa-location-dot"></i></div>
+                    <div>
+                        <h2>Delivery Address</h2>
+                        <p>Where should we deliver your luxury furniture?</p>
+                    </div>
+                    <div class="panel-badge">Step 1 of 3</div>
+                </div>
+                <div class="panel-body">
+                    <div class="section-label">Enter Delivery Address</div>
+
+                    <div id="newAddrForm">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>First Name<span class="req">*</span></label>
+                                <input type="text" class="form-control" id="fName" placeholder="Rahul">
+                                <div class="form-error" id="fNameErr">Please enter your first name</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Last Name<span class="req">*</span></label>
+                                <input type="text" class="form-control" id="lName" placeholder="Sharma">
+                                <div class="form-error" id="lNameErr">Please enter your last name</div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Mobile Number<span class="req">*</span></label>
+                                <input type="tel" class="form-control" id="phone" placeholder="+91 98765 43210"
+                                    maxlength="13">
+                                <div class="form-error" id="phoneErr">Enter a valid 10-digit number</div>
+                            </div>
+                            <div class="form-group">
+                                <label>Email Address<span class="req">*</span></label>
+                                <input type="email" class="form-control" id="email" placeholder="rahul@example.com">
+                                <div class="form-error" id="emailErr">Enter a valid email address</div>
+                            </div>
+                        </div>
+                        <div class="form-row full">
+                            <div class="form-group">
+                                <label>Address Line 1<span class="req">*</span></label>
+                                <input type="text" class="form-control" id="addr1"
+                                    placeholder="House No., Building Name, Street">
+                                <div class="form-error" id="addr1Err">Please enter your address</div>
+                            </div>
+                        </div>
+                        <div class="form-row full">
+                            <div class="form-group">
+                                <label>Address Line 2 <span
+                                        style="color:var(--text-muted);font-weight:400;">(Optional)</span></label>
+                                <input type="text" class="form-control" id="addr2" placeholder="Area, Colony, Landmark">
+                            </div>
+                        </div>
+                        <div class="form-row triple">
+                            <div class="form-group">
+                                <label>City<span class="req">*</span></label>
+                                <input type="text" class="form-control" id="city" placeholder="New Delhi">
+                                <div class="form-error" id="cityErr">Please enter your city</div>
+                            </div>
+                            <div class="form-group">
+                                <label>State<span class="req">*</span></label>
+                                <select class="form-control" id="state">
+                                    <option value="">Select State</option>
+                                    <option>Andhra Pradesh</option>
+                                    <option>Assam</option>
+                                    <option>Bihar</option>
+                                    <option>Delhi</option>
+                                    <option>Goa</option>
+                                    <option>Gujarat</option>
+                                    <option>Haryana</option>
+                                    <option>Himachal Pradesh</option>
+                                    <option>Jharkhand</option>
+                                    <option>Karnataka</option>
+                                    <option>Kerala</option>
+                                    <option>Madhya Pradesh</option>
+                                    <option>Maharashtra</option>
+                                    <option>Odisha</option>
+                                    <option>Punjab</option>
+                                    <option>Rajasthan</option>
+                                    <option>Tamil Nadu</option>
+                                    <option>Telangana</option>
+                                    <option>Uttar Pradesh</option>
+                                    <option>Uttarakhand</option>
+                                    <option>West Bengal</option>
+                                </select>
+                                <div class="form-error" id="stateErr">Please select your state</div>
+                            </div>
+                            <div class="form-group">
+                                <label>PIN Code<span class="req">*</span></label>
+                                <input type="text" class="form-control" id="pincode" placeholder="110016" maxlength="6">
+                                <div class="form-error" id="pincodeErr">Enter a valid 6-digit PIN</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Delivery type -->
+                    <div style="margin-top:28px;">
+                        <div class="section-label">Delivery Type</div>
+                        <div class="delivery-options">
+                            <div class="delivery-opt selected" onclick="pickDelivery(this,'standard',0)">
+                                <div class="d-radio"></div>
+                                <div class="d-info">
+                                    <div class="d-name">Standard Delivery <span class="chip chip-green">Free</span>
+                                    </div>
+                                    <div class="d-desc">5–7 Business Days · Free Assembly Included</div>
+                                </div>
+                                <div class="d-price free">FREE</div>
+                            </div>
+                            <div class="delivery-opt" onclick="pickDelivery(this,'express',499)">
+                                <div class="d-radio"></div>
+                                <div class="d-info">
+                                    <div class="d-name">Express Delivery <span class="chip chip-gold">Premium</span>
+                                    </div>
+                                    <div class="d-desc">2–3 Business Days · Priority Scheduling</div>
+                                </div>
+                                <div class="d-price">₹499</div>
+                            </div>
+                            <div class="delivery-opt" onclick="pickDelivery(this,'white',999)">
+                                <div class="d-radio"></div>
+                                <div class="d-info">
+                                    <div class="d-name">White Glove Service <span class="chip chip-gold">Luxury</span>
+                                    </div>
+                                    <div class="d-desc">Next Day · Premium Install + Room Placement + Packaging Disposal
+                                    </div>
+                                </div>
+                                <div class="d-price">₹999</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="panel-nav">
+                    <a href="products" class="btn-back"><i class="fas fa-arrow-left"></i> Back to Cart</a>
+                    <button class="btn-next" onclick="toStep(2)">Continue to Payment <i
+                            class="fas fa-arrow-right"></i></button>
+                </div>
+            </div><!-- end step-1 -->
+
+            <!-- ========== STEP 2: PAYMENT ========== -->
+            <div class="checkout-panel checkout-step" id="step-2">
+                <div class="panel-header">
+                    <div class="panel-icon"><i class="fas fa-credit-card"></i></div>
+                    <div>
+                        <h2>Payment Method</h2>
+                        <p>All transactions are 256-bit SSL encrypted</p>
+                    </div>
+                    <div class="panel-badge">Step 2 of 3</div>
+                </div>
+                <div class="panel-body">
+                    <div class="pay-form show" id="pf-cod">
+                        <div class="cod-block">
+                            <div class="cod-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+                            <h3>Cash on Delivery</h3>
+                            <p>Pay with cash or UPI at the time of delivery.<br>Our executive will assist you during
+                                handover.</p>
+                            <div class="cod-charge-note">
+                                <i class="fas fa-triangle-exclamation"></i>
+                                A COD handling charge of <strong style="margin-left:4px;">₹99</strong> will be added to
+                                your order total.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="security-strip">
+                        <i class="fas fa-lock"></i>
+                        <div>
+                            <strong>🔒 100% Secure Transaction</strong>
+                            Your order details are protected by 256-bit SSL encryption.
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="panel-body">
+
+                    <div class="pay-tabs">
+                        <div class="pay-tab active" onclick="pickPay(this,'card')">
+                            <i class="fas fa-credit-card"></i><span>Card</span>
+                        </div>
+                        <div class="pay-tab" onclick="pickPay(this,'upi')">
+                            <i class="fas fa-mobile-screen-button"></i><span>UPI</span>
+                        </div>
+                        <div class="pay-tab" onclick="pickPay(this,'emi')">
+                            <i class="fas fa-calendar-days"></i><span>EMI</span>
+                        </div>
+                        <div class="pay-tab" onclick="pickPay(this,'cod')">
+                            <i class="fas fa-sack-dollar"></i><span>Cash</span>
+                        </div>
+                    </div>
+
+                    <div class="pay-form show" id="pf-card">
+                        <div class="card-brands">
+                            <div class="card-brand-pill">VISA</div>
+                            <div class="card-brand-pill">MASTERCARD</div>
+                            <div class="card-brand-pill">RUPAY</div>
+                            <div class="card-brand-pill">AMEX</div>
+                            <div class="card-brand-pill">MAESTRO</div>
+                        </div>
+                        <div class="form-row full" style="margin-bottom:16px;">
+                            <div class="form-group">
+                                <label>Name on Card<span class="req">*</span></label>
+                                <input type="text" class="form-control" id="cName" placeholder="RAHUL SHARMA"
+                                    style="text-transform:uppercase;">
+                            </div>
+                        </div>
+                        <div class="form-row full" style="margin-bottom:16px;">
+                            <div class="form-group">
+                                <label>Card Number<span class="req">*</span></label>
+                                <div class="card-input-wrap">
+                                    <input type="text" class="form-control" id="cNumber"
+                                        placeholder="4242  4242  4242  4242" maxlength="19" oninput="fmtCard(this)"
+                                        style="padding-right:48px;">
+                                    <span class="card-brand-icon" id="cIcon">💳</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>Expiry<span class="req">*</span></label>
+                                <input type="text" class="form-control" id="cExpiry" placeholder="MM / YY" maxlength="7"
+                                    oninput="fmtExpiry(this)">
+                            </div>
+                            <div class="form-group">
+                                <label>CVV<span class="req">*</span></label>
+                                <input type="password" class="form-control" id="cCvv" placeholder="● ● ●" maxlength="4">
+                            </div>
+                        </div>
+                        <div style="display:flex;align-items:center;gap:8px;margin-top:6px;">
+                            <input type="checkbox" id="saveCard"
+                                style="accent-color:var(--gold);width:15px;height:15px;">
+                            <label for="saveCard" style="font-size:0.8rem;color:var(--text-muted);cursor:pointer;">Save
+                                card securely for future purchases</label>
+                        </div>
+                    </div>
+
+                    <div class="pay-form" id="pf-upi">
+                        <div class="section-label" style="margin-bottom:14px;">Select UPI App</div>
+                        <div class="upi-apps">
+                            <div class="upi-app selected" onclick="pickUpi(this)">
+                                <div class="upi-icon">📱</div><span>PhonePe</span>
+                            </div>
+                            <div class="upi-app" onclick="pickUpi(this)">
+                                <div class="upi-icon">💛</div><span>GPay</span>
+                            </div>
+                            <div class="upi-app" onclick="pickUpi(this)">
+                                <div class="upi-icon">💜</div><span>Paytm</span>
+                            </div>
+                            <div class="upi-app" onclick="pickUpi(this)">
+                                <div class="upi-icon">🔵</div><span>BHIM</span>
+                            </div>
+                        </div>
+                        <div class="divider">OR ENTER UPI ID</div>
+                        <div class="form-row full">
+                            <div class="form-group">
+                                <label>UPI ID / VPA<span class="req">*</span></label>
+                                <input type="text" class="form-control" id="upiId" placeholder="yourname@upi">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pay-form" id="pf-emi">
+                        <div class="section-label" style="margin-bottom:14px;">Choose EMI Plan</div>
+                        <div class="emi-list" id="emiList"></div>
+                        <div
+                            style="margin-top:14px;padding:11px 14px;background:var(--cream);border-radius:9px;font-size:0.76rem;color:var(--text-muted);line-height:1.5;">
+                            <i class="fas fa-info-circle" style="color:var(--gold);margin-right:6px;"></i>
+                            EMI available on Credit Cards. 0% EMI on select HDFC, ICICI & SBI cards above ₹3,000.
+                        </div>
+                    </div>
+
+                    <div class="pay-form" id="pf-cod">
+                        <div class="cod-block">
+                            <div class="cod-icon"><i class="fas fa-hand-holding-dollar"></i></div>
+                            <h3>Pay on Delivery</h3>
+                            <p>Pay with cash or card at the time of delivery. Our executive will carry a POS machine for
+                                card payments.</p>
+                            <div class="cod-charge-note">
+                                <i class="fas fa-triangle-exclamation"></i>
+                                A COD handling charge of <strong style="margin-left:4px;">₹99</strong> will be added to
+                                your order total.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="security-strip">
+                        <i class="fas fa-lock"></i>
+                        <div>
+                            <strong>🔒 Your payment is 100% secure</strong>
+                            Protected by 256-bit SSL encryption. We never store your card details on our servers.
+                        </div>
+                    </div>
+                </div>-->
+                <div class="panel-nav">
+                    <button class="btn-back" onclick="toStep(1)"><i class="fas fa-arrow-left"></i> Delivery</button>
+                    <button class="btn-next" onclick="toStep(3)">Review Order <i
+                            class="fas fa-arrow-right"></i></button>
+                </div>
+            </div><!-- end step-2 -->
+
+            <!-- ========== STEP 3: REVIEW ========== -->
+            <div class="checkout-panel checkout-step" id="step-3">
+                <div class="panel-header">
+                    <div class="panel-icon"><i class="fas fa-magnifying-glass-check"></i></div>
+                    <div>
+                        <h2>Review Your Order</h2>
+                        <p>Check everything before placing your order</p>
+                    </div>
+                    <div class="panel-badge">Step 3 of 3</div>
+                </div>
+                <div class="panel-body">
+
+                    <!-- Delivery info -->
+                    <div class="section-label">Delivering To</div>
+                    <div class="review-info-block" style="margin-bottom:20px;">
+                        <div class="rib-icon"><i class="fas fa-location-dot"></i></div>
+                        <div>
+                            <div class="rib-title" id="rv-name">Rahul Sharma</div>
+                            <div class="rib-sub" id="rv-addr">42, Green Park Extension, New Delhi — 110016</div>
+                            <div class="rib-sub" id="rv-phone">+91 98765 43210</div>
+                        </div>
+                        <button class="rib-edit" onclick="toStep(1)"><i class="fas fa-pen"
+                                style="margin-right:4px;"></i>Edit</button>
+                    </div>
+
+                    <!-- Payment info -->
+                    <div class="section-label">Payment Method</div>
+                    <div class="review-info-block" style="margin-bottom:24px;">
+                        <div class="rib-icon" id="rv-pay-icon"><i class="fas fa-credit-card"></i></div>
+                        <div>
+                            <div class="rib-title" id="rv-pay-method">Credit / Debit Card</div>
+                            <div class="rib-sub" id="rv-pay-detail">•••• •••• •••• ————</div>
+                        </div>
+                        <button class="rib-edit" onclick="toStep(2)"><i class="fas fa-pen"
+                                style="margin-right:4px;"></i>Edit</button>
+                    </div>
+
+                    <!-- Items -->
+                    <div class="section-label">Items in Order (<span id="rv-count">0</span>)</div>
+                    <div id="reviewItems"><!-- JS injects items WITH images --></div>
+
+                    <!-- Terms -->
+                    <div class="terms-box">
+                        <label>
+                            <input type="checkbox" id="termsChk">
+                            <span class="terms-text">
+                                I agree to LuxeCasa's <a href="#">Terms &amp; Conditions</a> and <a href="#">Privacy
+                                    Policy</a>.
+                                I confirm that the delivery address and payment details are correct and authorize this
+                                transaction.
+                            </span>
+                        </label>
+                    </div>
+
+                </div>
+                <div class="panel-nav">
+                    <button class="btn-back" onclick="toStep(2)"><i class="fas fa-arrow-left"></i> Payment</button>
+                    <button class="btn-place" onclick="placeOrder()">
+                        <i class="fas fa-bag-shopping"></i> Place Order Securely
+                    </button>
+                </div>
+            </div><!-- end step-3 -->
+
+            <!-- ========== STEP 4: SUCCESS ========== -->
+            <div class="checkout-panel checkout-step" id="step-4">
+                <div class="success-wrap" id="successWrap">
+                    <div class="success-ring">✓</div>
+                    <div class="success-title">Order Placed! 🎉</div>
+                    <div class="success-sub">Your luxury furniture is on its way</div>
+                    <div class="order-id-box">
+                        Order ID
+                        <strong id="successId">#LC-2026-00001</strong>
+                    </div>
+                    <p style="font-size:0.83rem;color:var(--text-muted);">Confirmation sent to <strong
+                            id="successEmail">your email</strong></p>
+                    <div class="success-track">
+                        <div class="track-step"><i class="fas fa-check-circle"></i>
+                            <p>Order<br>Confirmed</p>
+                        </div>
+                        <div class="track-step"><i class="fas fa-box-open"></i>
+                            <p>Being<br>Packed</p>
+                        </div>
+                        <div class="track-step"><i class="fas fa-truck"></i>
+                            <p>Dispatched<br>in 24–48 hrs</p>
+                        </div>
+                    </div>
+                    <div class="success-btns">
+                        <a href="index.html" class="btn-home"><i class="fas fa-home"></i> Back to Home</a>
+                        <a href="products" class="btn-shop"><i class="fas fa-shopping-bag"></i> Shop More</a>
+                    </div>
+                </div>
+            </div><!-- end step-4 -->
+
+        </div><!-- end left col -->
+
+        <!-- ======================================================
+         RIGHT COLUMN — ORDER SUMMARY
+    ====================================================== -->
+        <div class="order-summary">
+            <div class="summary-card" id="summaryCard">
+
+                <div class="summary-header">
+                    <i class="fas fa-receipt"></i>
+                    <h3>Order Summary</h3>
+                    <div class="item-count-badge" id="itemCountBadge">0 Items</div>
+                </div>
+
+                <!-- Items with images -->
+                <div class="summary-items" id="summaryItems">
+                    <!-- JS renders items here WITH proper images -->
+                </div>
+
+                <!-- Coupon -->
+                <div class="coupon-wrap">
+                    <div
+                        style="font-size:0.72rem;font-weight:800;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:9px;">
+                        <i class="fas fa-tag" style="color:var(--gold);margin-right:6px;"></i>Apply Coupon
+                    </div>
+                    <div class="coupon-row-inner">
+                        <input type="text" class="coupon-input" id="couponInput" placeholder="Try: LUXE10 · FIRST20">
+                        <button class="btn-apply" onclick="applyCoupon()">Apply</button>
+                    </div>
+                    <div class="coupon-feedback" id="couponFeedback"></div>
+                </div>
+
+                <!-- Price breakdown -->
+                <div class="price-breakdown">
+                    <div class="p-row">
+                        <span>Subtotal (<span id="pItemCount">0</span> items)</span>
+                        <span id="pSubtotal">₹0</span>
+                    </div>
+                    <div class="p-row green">
+                        <span>Product Discount</span>
+                        <span id="pDiscount">−₹0</span>
+                    </div>
+                    <div class="p-row green" id="pCouponRow" style="display:none;">
+                        <span>Coupon (<span id="pCouponCode"></span>)</span>
+                        <span id="pCouponAmt">−₹0</span>
+                    </div>
+                    <div class="p-row green" id="pShippingRow">
+                        <span>Delivery</span>
+                        <span id="pShipping">FREE</span>
+                    </div>
+                    <div class="p-row">
+                        <span>GST (18%)</span>
+                        <span id="pGst">₹0</span>
+                    </div>
+                    <div class="p-divider"></div>
+                    <div class="p-total">
+                        <div class="p-total-label">Total Payable</div>
+                        <div class="p-total-val" id="pTotal">₹0</div>
+                    </div>
+                    <div class="savings-banner" id="savingsBanner" style="display:none;">
+                        <i class="fas fa-piggy-bank"></i>
+                        <p>You're saving <strong id="savingsAmt">₹0</strong> on this order! 🎉</p>
+                    </div>
+                </div>
+
+                <!-- Trust badges -->
+                <div class="trust-grid">
+                    <div class="t-badge"><i class="fas fa-shield-halved"></i> Secure Payment</div>
+                    <div class="t-badge"><i class="fas fa-rotate-left"></i> 30-Day Returns</div>
+                    <div class="t-badge"><i class="fas fa-truck"></i> Free Delivery</div>
+                    <div class="t-badge"><i class="fas fa-star"></i> Premium Quality</div>
+                    <div class="t-badge"><i class="fas fa-headset"></i> 24/7 Support</div>
+                    <div class="t-badge"><i class="fas fa-certificate"></i> Genuine Products</div>
+                </div>
+
+            </div><!-- end summary-card -->
+
+            <!-- Need Help -->
+            <div class="help-card">
+                <div class="help-title">Need Help?</div>
+                <a href="tel:+918800000000" class="help-row">
+                    <div class="help-icon"><i class="fas fa-phone"></i></div>
+                    <div>
+                        <div class="help-label">+91 88000 00000</div>
+                        <div class="help-sub">Mon–Sat · 9 AM – 7 PM</div>
+                    </div>
+                </a>
+                <a href="contact.html" class="help-row">
+                    <div class="help-icon"><i class="fas fa-comment-dots"></i></div>
+                    <div>
+                        <div class="help-label">Live Chat</div>
+                        <div class="help-sub">Replies in ~2 minutes</div>
+                    </div>
+                </a>
+            </div>
+
+        </div><!-- end right col -->
+
+    </div><!-- end checkout-main -->
+
+    <!-- FOOTER -->
+    <div class="checkout-footer">
+        <p>© 2026 <span class="gold">LuxeCasa</span> · Premium Furniture Store · All Rights Reserved</p>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Refund Policy</a>
+            <a href="faq.html">FAQ</a>
+            <a href="contact.html">Contact Us</a>
+        </div>
+    </div>
+
+    <div id="toast"></div>
+
+    <!-- ============================================================
+     JAVASCRIPT
+============================================================ -->
+    <script>
+        // ============================================================
+        // PRODUCT IMAGE CATALOG
+        // Maps product id OR keywords in name → Unsplash image URL
+        // This ensures images ALWAYS show even if item.image is missing
+        // ============================================================
+        const IMG_CATALOG = {
+            // By product ID (matches products from other pages)
+            1: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&q=70',
+            2: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=200&q=70',
+            3: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=200&q=70',
+            4: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=200&q=70',
+            5: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=200&q=70',
+            6: 'https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?w=200&q=70',
+            7: 'https://images.unsplash.com/photo-1596162954151-cdcb4c0f70a8?w=200&q=70',
+            8: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&q=70',
+            9: 'https://images.unsplash.com/photo-1567538096621-38d2284b23ff?w=200&q=70',
+            10: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=200&q=70',
+            // keyword fallbacks
+            sofa: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&q=70',
+            couch: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&q=70',
+            loveseat: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&q=70',
+            sectional: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&q=70',
+            bed: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=200&q=70',
+            bedroom: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=200&q=70',
+            mattress: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=200&q=70',
+            dining: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=200&q=70',
+            table: 'https://images.unsplash.com/photo-1617806118233-18e1de247200?w=200&q=70',
+            chair: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=200&q=70',
+            accent: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=200&q=70',
+            armchair: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=200&q=70',
+            wardrobe: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=200&q=70',
+            almirah: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=200&q=70',
+            cupboard: 'https://images.unsplash.com/photo-1540574163026-643ea20ade25?w=200&q=70',
+            coffee: 'https://images.unsplash.com/photo-1567538096621-38d2284b23ff?w=200&q=70',
+            cabinet: 'https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?w=200&q=70',
+            shelf: 'https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?w=200&q=70',
+            bookcase: 'https://images.unsplash.com/photo-1550581190-9c1c48d21d6c?w=200&q=70',
+            lamp: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=200&q=70',
+            light: 'https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=200&q=70',
+            desk: 'https://images.unsplash.com/photo-1596162954151-cdcb4c0f70a8?w=200&q=70',
+            study: 'https://images.unsplash.com/photo-1596162954151-cdcb4c0f70a8?w=200&q=70',
+            ottoman: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&q=70',
+            stool: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=200&q=70',
+            mirror: 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=200&q=70',
+        };
+        // ============================================================
+        // SESSION CHECK (Require Login)
+        // ============================================================
+        function checkSession() {
+            const user = JSON.parse(localStorage.getItem('luxecasa_user') || 'null');
+            if (!user) {
+                alert("Please log in to proceed to secure checkout.");
+                window.location.href = '/login';
+            }
+        }
+        // Default fallback image (generic furniture)
+        const DEFAULT_IMG = 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=200&q=70';
+
+        /**
+         * Get the best image URL for a cart item.
+         * Priority: item.image → item.img → catalog by ID → catalog by name keyword → default
+         */
+        function getProductImage(item) {
+            // 1. Item already has a valid image URL
+            if (item.image && item.image.startsWith('http')) return item.image;
+            if (item.img && item.img.startsWith('http')) return item.img;
+
+            // 2. Match by product ID
+            const byId = IMG_CATALOG[item.id] || IMG_CATALOG[parseInt(item.id)];
+            if (byId) return byId;
+
+            // 3. Match by keyword in product name
+            if (item.name) {
+                const lowerName = item.name.toLowerCase();
+                for (const keyword of Object.keys(IMG_CATALOG)) {
+                    if (typeof IMG_CATALOG[keyword] === 'string' && isNaN(keyword)) {
+                        if (lowerName.includes(keyword)) return IMG_CATALOG[keyword];
+                    }
+                }
+            }
+
+            // 4. Category fallback
+            if (item.category) {
+                const c = item.category.toLowerCase();
+                for (const keyword of Object.keys(IMG_CATALOG)) {
+                    if (isNaN(keyword) && c.includes(keyword)) return IMG_CATALOG[keyword];
+                }
+            }
+
+            return DEFAULT_IMG;
+        }
+
+        // ============================================================
+        // EMOJI fallback per category (for broken images)
+        // ============================================================
+        function getEmoji(item) {
+            const n = (item.name || '').toLowerCase();
+            if (n.includes('sofa') || n.includes('couch') || n.includes('sectional')) return '🛋';
+            if (n.includes('bed') || n.includes('mattress')) return '🛏';
+            if (n.includes('chair') || n.includes('armchair') || n.includes('accent')) return '🪑';
+            if (n.includes('dining') || n.includes('table')) return '🪵';
+            if (n.includes('wardrobe') || n.includes('almirah') || n.includes('cupboard')) return '🚪';
+            if (n.includes('lamp') || n.includes('light')) return '💡';
+            if (n.includes('mirror')) return '🪞';
+            if (n.includes('plant') || n.includes('pot')) return '🪴';
+            return '🛋';
+        }
+
+        // ============================================================
+        // STATE
+        // ============================================================
+        let cart = JSON.parse(localStorage.getItem('luxecasa_cart') || '[]');
+        let deliveryCharge = 0;
+        let payMethod = 'cod'; // FORCE COD
+        let couponSaving = 0;
+        let couponCode = '';
+        // ============================================================
+        // DEMO CART if localStorage is empty
+        // ============================================================
+        if (!cart.length) {
+            cart = [
+                { id: 1, name: 'Tuscany Velvet Sofa', price: 78999, originalPrice: 99999, qty: 1, category: 'sofa' },
+                { id: 2, name: 'Milano Oak Dining Table', price: 54999, originalPrice: 69999, qty: 1, category: 'dining' },
+                { id: 3, name: 'Vienna Accent Chair', price: 22999, originalPrice: 28999, qty: 2, category: 'chair' },
+            ];
+        }
+
+        // ============================================================
+        // RENDER SUMMARY ITEMS (RIGHT COLUMN) — with images
+        // ============================================================
+        function renderSummary() {
+            const container = document.getElementById('summaryItems');
+            const totalQty = cart.reduce((s, i) => s + i.qty, 0);
+
+            document.getElementById('itemCountBadge').textContent = `${totalQty} Item${totalQty !== 1 ? 's' : ''}`;
+            document.getElementById('pItemCount').textContent = totalQty;
+            document.getElementById('rv-count').textContent = totalQty;
+
+            container.innerHTML = cart.map(item => {
+                const imgUrl = getProductImage(item);
+                const emoji = getEmoji(item);
+                const lineTotal = (item.price * item.qty).toLocaleString('en-IN');
+                const origTotal = item.originalPrice ? (item.originalPrice * item.qty).toLocaleString('en-IN') : null;
+
+                return `
+        <div class="s-item">
+            <div class="s-img">
+                <img
+                    src="${imgUrl}"
+                    alt="${item.name}"
+                    loading="lazy"
+                    onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+                >
+                <div class="s-img-fallback" style="display:none;">${emoji}</div>
+                <div class="s-qty-badge">${item.qty}</div>
+            </div>
+            <div class="s-info">
+                <div class="s-name">${item.name}</div>
+                <div class="s-meta">Qty: ${item.qty}</div>
+                <div class="s-stock"><i class="fas fa-circle-check" style="font-size:0.65rem;"></i> In Stock</div>
+            </div>
+            <div class="s-prices">
+                <div class="s-price">₹${lineTotal}</div>
+                ${origTotal ? `<div class="s-orig">₹${origTotal}</div>` : ''}
+            </div>
+        </div>`;
+            }).join('');
+
+            renderReviewItems();
+            calcTotal();
+            buildEmiOptions();
+        }
+
+        // ============================================================
+        // RENDER REVIEW ITEMS (STEP 3) — with images
+        // ============================================================
+        function renderReviewItems() {
+            const container = document.getElementById('reviewItems');
+            if (!container) return;
+
+            container.innerHTML = cart.map(item => {
+                const imgUrl = getProductImage(item);
+                const emoji = getEmoji(item);
+                const lineTotal = (item.price * item.qty).toLocaleString('en-IN');
+
+                return `
+        <div class="review-item">
+            <div class="r-img">
+                <img
+                    src="${imgUrl}"
+                    alt="${item.name}"
+                    loading="lazy"
+                    onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\\'r-img-fallback\\'>${emoji}</div>';"
+                >
+            </div>
+            <div style="flex:1;min-width:0;">
+                <div class="r-name">${item.name}</div>
+                <div class="r-meta">Qty: ${item.qty} · In Stock</div>
+            </div>
+            <div class="r-price">₹${lineTotal}</div>
+        </div>`;
+            }).join('');
+        }
+
+        // ============================================================
+        // CALC TOTAL
+        // ============================================================
+        function calcTotal() {
+            const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+            const origTotal = cart.reduce((s, i) => s + (i.originalPrice || i.price) * i.qty, 0);
+            const prodDisc = origTotal - subtotal;
+            const codExtra = (payMethod === 'cod') ? 99 : 0;
+            const totalDel = deliveryCharge + codExtra;
+            const afterCoupon = subtotal - couponSaving;
+            const gst = Math.round(afterCoupon * 0.18);
+            const grandTotal = afterCoupon + gst + totalDel;
+            const totalSaving = prodDisc + couponSaving;
+
+            document.getElementById('pSubtotal').textContent = `₹${origTotal.toLocaleString('en-IN')}`;
+            document.getElementById('pDiscount').textContent = `−₹${prodDisc.toLocaleString('en-IN')}`;
+            document.getElementById('pGst').textContent = `₹${gst.toLocaleString('en-IN')}`;
+            document.getElementById('pTotal').textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
+
+            const shipEl = document.getElementById('pShipping');
+            const shipRow = document.getElementById('pShippingRow');
+            if (totalDel === 0) {
+                shipEl.textContent = 'FREE';
+                shipEl.style.color = 'var(--success)';
+                shipRow.classList.add('green');
+            } else {
+                const label = codExtra > 0
+                    ? `₹${totalDel.toLocaleString('en-IN')} (incl. COD)`
+                    : `₹${totalDel.toLocaleString('en-IN')}`;
+                shipEl.textContent = label;
+                shipEl.style.color = codExtra ? 'var(--warning)' : 'var(--text)';
+                shipRow.classList.remove('green');
+            }
+
+            if (totalSaving > 0) {
+                document.getElementById('savingsBanner').style.display = 'flex';
+                document.getElementById('savingsAmt').textContent = `₹${totalSaving.toLocaleString('en-IN')}`;
+            } else {
+                document.getElementById('savingsBanner').style.display = 'none';
+            }
+        }
+
+        // ============================================================
+        // BUILD EMI OPTIONS
+        // ============================================================
+        function buildEmiOptions() {
+            const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+            const plans = [
+                { m: 3, r: 0, label: '0% Interest — No Cost EMI', bank: 'HDFC / ICICI / SBI' },
+                { m: 6, r: 12, label: '12% p.a.', bank: 'All Major Banks' },
+                { m: 12, r: 14, label: '14% p.a.', bank: 'All Major Banks' },
+                { m: 24, r: 16, label: '16% p.a.', bank: 'All Major Banks' },
+            ];
+            const el = document.getElementById('emiList');
+            if (!el) return;
+            el.innerHTML = plans.map((p, i) => {
+                let emi;
+                if (p.r === 0) {
+                    emi = subtotal / p.m;
+                } else {
+                    const mr = p.r / 1200;
+                    emi = subtotal * mr * Math.pow(1 + mr, p.m) / (Math.pow(1 + mr, p.m) - 1);
+                }
+                const freeTag = p.r === 0 ? '<span class="chip chip-green" style="font-size:0.6rem;">0% EMI</span>' : '';
+                return `
+        <div class="emi-opt ${i === 0 ? 'selected' : ''}" onclick="pickEmi(this,${p.m})">
+            <div>
+                <div class="emi-label">${p.m} Months ${freeTag}</div>
+                <div class="emi-sub">${p.label} · ${p.bank}</div>
+            </div>
+            <div class="emi-amount">₹${Math.ceil(emi).toLocaleString('en-IN')}/mo</div>
+        </div>`;
+            }).join('');
+        }
+
+        // ============================================================
+        // STEP NAVIGATION
+        // ============================================================
+        function toStep(n) {
+            if (n === 2 && !validateDelivery()) return;
+            if (n === 3) fillReview();
+
+            document.querySelectorAll('.checkout-step').forEach(s => s.classList.remove('active'));
+            document.getElementById(`step-${n}`).classList.add('active');
+
+            // Update step indicators
+            for (let i = 1; i <= 4; i++) {
+                const si = document.getElementById(`si-${i}`);
+                const sn = document.getElementById(`sn-${i}`);
+                si.classList.remove('active', 'done');
+                if (i < n) { si.classList.add('done'); sn.innerHTML = '<i class="fas fa-check" style="font-size:0.7rem;"></i>'; }
+                if (i === n) { si.classList.add('active'); sn.innerHTML = i; }
+                if (i > n) { sn.innerHTML = i; }
+            }
+
+            // Hide summary card on success
+            if (n === 4) document.getElementById('summaryCard').style.display = 'none';
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================================
+        // VALIDATE DELIVERY STEP
+        // ============================================================
+        /*function validateDelivery() {
+            // Using a saved address card → skip field validation
+            if (document.querySelector('.addr-card.selected')) return true;
+
+            const fields = [
+                { id: 'fName', err: 'fNameErr', ok: v => v.trim().length > 0 },
+                { id: 'lName', err: 'lNameErr', ok: v => v.trim().length > 0 },
+                { id: 'phone', err: 'phoneErr', ok: v => /^[+\d\s]{10,}$/.test(v.trim()) },
+                { id: 'email', err: 'emailErr', ok: v => /\S+@\S+\.\S+/.test(v) },
+                { id: 'addr1', err: 'addr1Err', ok: v => v.trim().length > 5 },
+                { id: 'city', err: 'cityErr', ok: v => v.trim().length > 0 },
+                { id: 'state', err: 'stateErr', ok: v => v !== '' },
+                { id: 'pincode', err: 'pincodeErr', ok: v => /^\d{6}$/.test(v) },
+            ];
+            let ok = true;
+            fields.forEach(f => {
+                const el = document.getElementById(f.id);
+                const err = document.getElementById(f.err);
+                if (!el || !err) return;
+                if (!f.ok(el.value)) {
+                    el.classList.add('error'); err.classList.add('show'); ok = false;
+                } else {
+                    el.classList.remove('error'); err.classList.remove('show');
+                }
+                el.oninput = () => { el.classList.remove('error'); err.classList.remove('show'); };
+            });
+            if (!ok) showToast('⚠ Please fill all required fields');
+            return ok;
+        }*/
+        function validateDelivery() {
+            const fields = [
+                { id: 'fName', err: 'fNameErr', ok: v => v.trim().length > 0 },
+                { id: 'lName', err: 'lNameErr', ok: v => v.trim().length > 0 },
+                { id: 'phone', err: 'phoneErr', ok: v => /^[+\d\s]{10,}$/.test(v.trim()) },
+                { id: 'email', err: 'emailErr', ok: v => /\S+@\S+\.\S+/.test(v) },
+                { id: 'addr1', err: 'addr1Err', ok: v => v.trim().length > 5 },
+                { id: 'city', err: 'cityErr', ok: v => v.trim().length > 0 },
+                { id: 'state', err: 'stateErr', ok: v => v !== '' },
+                { id: 'pincode', err: 'pincodeErr', ok: v => /^\d{6}$/.test(v) },
+            ];
+            let ok = true;
+            fields.forEach(f => {
+                const el = document.getElementById(f.id);
+                const err = document.getElementById(f.err);
+                if (!el || !err) return;
+                if (!f.ok(el.value)) {
+                    el.classList.add('error'); err.classList.add('show'); ok = false;
+                } else {
+                    el.classList.remove('error'); err.classList.remove('show');
+                }
+                el.oninput = () => { el.classList.remove('error'); err.classList.remove('show'); };
+            });
+            if (!ok) showToast('⚠ Please fill all required fields');
+            return ok;
+        }
+        // ============================================================
+        // FILL REVIEW STEP
+        // ============================================================
+        function fillReview() {
+            const fn = document.getElementById('fName').value.trim();
+            const ln = document.getElementById('lName').value.trim();
+            const a1 = document.getElementById('addr1').value.trim();
+            const a2 = document.getElementById('addr2').value.trim();
+            const ct = document.getElementById('city').value.trim();
+            const st = document.getElementById('state').value;
+            const pi = document.getElementById('pincode').value.trim();
+            const ph = document.getElementById('phone').value.trim();
+
+            document.getElementById('rv-name').textContent = `${fn} ${ln}`;
+            document.getElementById('rv-addr').textContent = `${a1}, ${a2 ? a2 + ', ' : ''}${ct}, ${st} — ${pi}`;
+            document.getElementById('rv-phone').textContent = ph;
+
+            const em = document.getElementById('email').value;
+            if (em) document.getElementById('successEmail').textContent = em;
+
+            // Hardcode COD display
+            document.getElementById('rv-pay-method').textContent = 'Cash on Delivery';
+            document.getElementById('rv-pay-icon').innerHTML = '<i class="fas fa-sack-dollar"></i>';
+            document.getElementById('rv-pay-detail').textContent = 'Pay at the time of delivery';
+
+            renderReviewItems();
+        }
+
+        // ============================================================
+        // PLACE ORDER (Database Connected)
+        // ============================================================
+        async function placeOrder() {
+            if (!document.getElementById('termsChk').checked) {
+                showToast('⚠ Please accept the Terms & Conditions');
+                return;
+            }
+
+            // 1. Force strict Number calculations to prevent MySQL 500 errors
+            const subtotal = Number(cart.reduce((s, i) => s + i.price * i.qty, 0)) || 0;
+            const origTotal = Number(cart.reduce((s, i) => s + (i.originalPrice || i.price) * i.qty, 0)) || 0;
+            const prodDisc = origTotal - subtotal;
+            const totalDel = Number(deliveryCharge) + 99; // 99 COD fee
+            const afterCoupon = subtotal - (Number(couponSaving) || 0);
+            const gst = Math.round(afterCoupon * 0.18);
+            const grandTotal = afterCoupon + gst + totalDel;
+            const totalDiscount = prodDisc + (Number(couponSaving) || 0);
+
+            // 2. Format Address
+            const name = document.getElementById('rv-name').textContent;
+            const addr = document.getElementById('rv-addr').textContent;
+            const phone = document.getElementById('rv-phone').textContent;
+            const fullAddress = `${name}, ${addr}, Phone: ${phone}`;
+
+            const btn = document.querySelector('.btn-place');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Processing…';
+            btn.disabled = true;
+
+            try {
+                const response = await fetch('/api/checkout', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        cart: cart,
+                        address: fullAddress,
+                        subtotal: origTotal, 
+                        discount: totalDiscount,
+                        totalAmount: grandTotal,
+                        promoCode: couponCode || null
+                    })
+                });
+
+                const data = await response.json();
+
+                // Check if backend session died (Server restart)
+                if (data.expired || response.status === 401) {
+                    localStorage.removeItem('luxecasa_user'); // Kill the stale frontend session
+                    showToast('⚠ Session expired. Redirecting to login...');
+                    setTimeout(() => window.location.href = '/login', 1500);
+                    return;
+                }
+
+                if (data.success) {
+                    localStorage.removeItem('luxecasa_cart');
+                    
+                    const orderId = '#LC-' + new Date().getFullYear() + '-' + String(Math.floor(Math.random() * 99999)).padStart(5, '0');
+                    document.getElementById('successId').textContent = orderId;
+                    
+                    toStep(4);
+                    document.getElementById('successWrap').classList.add('show');
+                } else {
+                    showToast('⚠ ' + data.message);
+                    btn.innerHTML = '<i class="fas fa-bag-shopping"></i> Place Order Securely';
+                    btn.disabled = false;
+                }
+            } catch (err) {
+                console.error(err);
+                showToast('⚠ Server error. Please try again.');
+                btn.innerHTML = '<i class="fas fa-bag-shopping"></i> Place Order Securely';
+                btn.disabled = false;
+            }
+        }
+
+        // ============================================================
+        // COUPON
+        // ============================================================
+        // ============================================================
+        // COUPON (Database Connected)
+        // ============================================================
+        async function applyCoupon() {
+            const code = document.getElementById('couponInput').value.trim().toUpperCase();
+            const fb = document.getElementById('couponFeedback');
+            const sub = cart.reduce((s, i) => s + i.price * i.qty, 0);
+
+            if (!code) { showToast('⚠ Enter a coupon code'); return; }
+
+            try {
+                const response = await fetch('/api/validate-promo', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ code: code })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    const disc = Math.round(sub * (data.discount_percent / 100));
+                    couponSaving = disc;
+                    couponCode = data.code;
+
+                    fb.className = 'coupon-feedback ok';
+                    fb.textContent = `✓ "${data.code}" applied! You save ₹${disc.toLocaleString('en-IN')}`;
+
+                    document.getElementById('pCouponRow').style.display = 'flex';
+                    document.getElementById('pCouponCode').textContent = data.code;
+                    document.getElementById('pCouponAmt').textContent = `−₹${disc.toLocaleString('en-IN')}`;
+
+                    calcTotal();
+                    showToast('🎉 ' + data.message);
+                } else {
+                    couponSaving = 0;
+                    couponCode = '';
+
+                    fb.className = 'coupon-feedback fail';
+                    fb.textContent = '✗ ' + data.message;
+                    document.getElementById('pCouponRow').style.display = 'none';
+
+                    calcTotal();
+                }
+            } catch (err) {
+                showToast('⚠ Error connecting to server.');
+            }
+        }
+
+        // ============================================================
+        // UI INTERACTION HELPERS
+        // ============================================================
+        function selectAddr(card) {
+            document.querySelectorAll('.addr-card').forEach(c => c.classList.remove('selected'));
+            card.classList.add('selected');
+        }
+        function showNewForm() {
+            document.querySelectorAll('.addr-card').forEach(c => c.classList.remove('selected'));
+            document.getElementById('newAddrForm').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        function pickDelivery(el, type, charge) {
+            document.querySelectorAll('.delivery-opt').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+            deliveryCharge = charge;
+            calcTotal();
+        }
+        function pickPay(el, method) {
+            document.querySelectorAll('.pay-tab').forEach(t => t.classList.remove('active'));
+            el.classList.add('active');
+            document.querySelectorAll('.pay-form').forEach(f => f.classList.remove('show'));
+            document.getElementById(`pf-${method}`).classList.add('show');
+            payMethod = method;
+            calcTotal();
+        }
+        function pickUpi(el) {
+            document.querySelectorAll('.upi-app').forEach(a => a.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+        function pickEmi(el) {
+            document.querySelectorAll('.emi-opt').forEach(o => o.classList.remove('selected'));
+            el.classList.add('selected');
+        }
+        function fmtCard(inp) {
+            let v = inp.value.replace(/\D/g, '').substring(0, 16);
+            inp.value = v.replace(/(.{4})/g, '$1  ').trim();
+            const ic = document.getElementById('cIcon');
+            if (v.startsWith('4')) ic.textContent = '💙';
+            else if (v.startsWith('5')) ic.textContent = '🔴';
+            else if (v.startsWith('6')) ic.textContent = '🟠';
+            else if (v.startsWith('3')) ic.textContent = '🟢';
+            else ic.textContent = '💳';
+        }
+        function fmtExpiry(inp) {
+            let v = inp.value.replace(/\D/g, '');
+            if (v.length >= 2) v = v.substring(0, 2) + ' / ' + v.substring(2, 4);
+            inp.value = v;
+        }
+
+        // ============================================================
+        // TOAST
+        // ============================================================
+        let _toast;
+        function showToast(msg) {
+            const t = document.getElementById('toast');
+            t.innerHTML = msg; t.classList.add('show');
+            clearTimeout(_toast);
+            _toast = setTimeout(() => t.classList.remove('show'), 3200);
+        }
+
+        // ============================================================
+        // NAVBAR SCROLL
+        // ============================================================
+        window.addEventListener('scroll', () => {
+            document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 80);
+        });
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        checkSession();
+        renderSummary();
+    </script>
+</body>
+
+</html>

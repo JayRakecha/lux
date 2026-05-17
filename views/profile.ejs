@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeCasa – My Profile</title>
+    <meta name="description"
+        content="Learn about LuxeCasa – India's most trusted premium furniture brand. 15+ years of craftsmanship, 10,000+ happy homes, and a passion for luxury living.">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/<%= pageCss %>">
+
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">
+            <div class="ico">🏠</div>
+            <h1>Luxe<span>Casa</span></h1>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#">Collections</a></li>
+            <li><a href="#">Living</a></li>
+            <li><a href="#">Bedroom</a></li>
+            <li><a href="#">Outdoor</a></li>
+        </ul>
+        <div class="nav-right">
+            <a href="#" class="nav-btn"><i class="fas fa-search"></i></a>
+            <a href="#" class="nav-btn"><i class="fas fa-heart"></i></a>
+            <a href="#" class="nav-btn">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="badge">3</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="profile-hero">
+        <div class="hero-grain"></div>
+        <div class="hero-glow"></div>
+        <div class="hero-inner">
+            <div class="avatar-wrap">
+                <div class="avatar-ring">
+                    <div class="avatar-inner" id="heroAvatar">
+                        <%= user.name.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase() %></div>
+                </div>
+            </div>
+            <div class="hero-text">
+                <div class="hero-tag">Welcome Back</div>
+                <h2 class="hero-name" id="heroName"><%= user.name %></h2>
+                <div class="hero-meta">
+                    <span class="hero-chip"><i class="fas fa-envelope"></i> <%= user.email %></span>
+                </div>
+            </div>
+            <div class="hero-divider"></div>
+            <div class="hero-stats">
+                <div class="hstat"><span class="hstat-n" id="hstat-orders">0</span>
+                    <div class="hstat-l">Orders</div>
+                </div>
+                <div class="hstat"><span class="hstat-n" id="hstat-wish">0</span>
+                    <div class="hstat-l">Wishlist</div>
+                </div>
+                <div class="hstat"><span class="hstat-n" id="hstat-spent">₹0</span>
+                    <div class="hstat-l">Spent</div>
+                </div>
+            </div>
+        </div>
+        <div class="hero-wave"></div>
+    </section>
+
+
+    <!-- PAGE BODY -->
+    <div class="page-body">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+                <div class="scard">
+                    <div class="smini">
+                        <div class="smini-ava" id="sidebarAva">
+                            <%= user.name.split(' ').map(n => n[0]).join('').substring(0,2).toUpperCase() %></div>
+                            <div>
+                        <div class="smini-name"><%= user.name %></div>
+                        <div class="smini-email"><%= user.email %></div>
+                    </div>
+                </div>
+
+                <div class="smini-divider"></div>
+               <div style="padding:0 0 8px">
+                    <button class="snav-item active" onclick="showPanel(' overview',this)"><i
+                                class="fas fa-th-large"></i> Overview</button>
+                            <button class="snav-item" onclick="showPanel('profile',this)"><i class="fas fa-user"></i> My
+                                Profile</button>
+                            <button class="snav-item" onclick="showPanel('orders',this)"><i class="fas fa-box"></i> My
+                                Orders <span class="snav-badge" id="badge-orders">0</span></button>
+                            <button class="snav-item" onclick="showPanel('wishlist',this)"><i class="fas fa-heart"></i>
+                                Wishlist <span class="snav-badge" id="badge-wish">0</span></button>
+                            <div class="snav-divider"></div>
+                            <button class="snav-item danger" onclick="handleLogout()"><i
+                                    class="fas fa-sign-out-alt"></i> Sign Out</button>
+                    </div>
+                </div>
+                </aside>
+
+                <!-- PANELS -->
+                <main>
+
+                    <!-- OVERVIEW PANEL -->
+                    <div class="panel active" id="panel-overview">
+
+                        <div class="stats-grid">
+                            <div class="scard2">
+                                <div class="scard2-ico"><i class="fas fa-box-open"></i></div>
+                                <div class="scard2-num" id="card-orders">0</div>
+                                <div class="scard2-lbl">Total Orders</div>
+                            </div>
+                            <div class="scard2">
+                                <div class="scard2-ico"><i class="fas fa-truck"></i></div>
+                                <div class="scard2-num" id="card-transit">0</div>
+                                <div class="scard2-lbl">In Transit</div>
+                            </div>
+                            <div class="scard2">
+                                <div class="scard2-ico"><i class="fas fa-heart"></i></div>
+                                <div class="scard2-num" id="card-wish">0</div>
+                                <div class="scard2-lbl">In Wishlist</div>
+                            </div>
+                            <div class="scard2">
+                                <div class="scard2-ico"><i class="fas fa-rupee-sign"></i></div>
+                                <div class="scard2-num" id="card-spent">₹0</div>
+                                <div class="scard2-lbl">Total Spent</div>
+                            </div>
+                        </div>
+
+                        <div class="pcard">
+                            <div class="phead">
+                                <div class="phead-left">
+                                    <div class="ptitle">Recent Orders</div>
+                                    <div class="psub">Your last 3 purchases</div>
+                                </div>
+                                <button class="btn btn-outline btn-sm"
+                                    onclick="showPanel('orders',document.querySelectorAll('.snav-item')[2])">View
+                                    All</button>
+                            </div>
+                            <div class="pbody" style="padding:16px 22px" id="recentOrdersList"></div>
+                        </div>
+
+                        <div class="pcard">
+                            <div class="phead">
+                                <div class="phead-left">
+                                    <div class="ptitle">Quick Links</div>
+                                    <div class="psub">Shortcuts to what matters</div>
+                                </div>
+                            </div>
+                            <div class="pbody">
+                                <div class="qlinks">
+                                    <button class="qlink" onclick="window.location.href='products'"><i
+                                            class="fas fa-shopping-bag"></i>
+                                        Shop Now</button>
+                                    <button class="qlink" onclick="window.location.href='offers.html'"><i
+                                            class="fas fa-tag"></i> View
+                                        Offers</button>
+                                    <button class="qlink"
+                                        onclick="showPanel('wishlist',document.querySelectorAll('.snav-item')[3])"><i
+                                            class="fas fa-heart"></i> Wishlist</button>
+                                    <button class="qlink" onclick="window.location.href='contact.html'"><i
+                                            class="fas fa-headset"></i>
+                                        Support</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROFILE PANEL -->
+                    <% const nameParts=user.name.split(' ');
+                const fName = nameParts[0] || '';
+                const lName = nameParts.slice(1).join(' ') || '';
+            %>
+            <div class="panel" id="panel-profile">
+                <div class="pcard">
+                    <div class="phead">
+                        <div class="phead-left">
+                            <div class="ptitle">Personal Information</div>
+                            <div class="psub">Manage your name and contact details</div>
+                        </div>
+                    </div>
+                    <div class="pbody">
+                        <div class="frow">
+                            <div class="fg">
+                                <label class="flabel">First Name</label>
+                                <input type="text" class="finput" id="firstName" value="<%= fName %>">
+                            </div>
+                            <div class="fg">
+                                <label class="flabel">Last Name</label>
+                                <input type="text" class="finput" id="lastName" value="<%= lName %>">
+                            </div>
+                        </div>
+                        <div >
+                            <div class="fg">
+                                <label class="flabel">Email Address</label>
+                                <input type="email" class="finput" id="emailField" value="<%= user.email %>" readonly style="background:var(--cream2); cursor:not-allowed;" title="Email cannot be changed">
+                                <p class="fhint ok"><i class="fas fa-check-circle"></i> Verified Account</p>
+                            </div>
+                        </div>
+                        <div class="btn-acts">
+                            <button class="btn btn-primary" onclick="saveProfile()"><i class="fas fa-save"></i> Save Changes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                    <!-- ORDERS PANEL -->
+                    <div class="panel" id="panel-orders">
+                        <div class="pcard">
+                            <div class="phead">
+                                <div class="phead-left">
+                                    <div class="ptitle">My Orders</div>
+                                    <div class="psub">All your purchases at a glance</div>
+                                </div>
+                                <select class="finput" style="width:auto;padding:7px 13px;font-size:0.8rem"
+                                    onchange="filterOrders(this.value)">
+                                    <option value="all">All Orders</option>
+                                    <option value="delivered">Delivered</option>
+                                    <option value="shipped">Shipped</option>
+                                    <option value="processing">Processing</option>
+                                    <option value="cancelled">Cancelled</option>
+                                </select>
+                            </div>
+                            <div class="pbody" style="padding:16px 20px" id="allOrdersList"></div>
+                        </div>
+                    </div>
+
+                    <!-- WISHLIST PANEL -->
+                    <div class="panel" id="panel-wishlist">
+                        <div class="pcard">
+                            <div class="phead">
+                                <div class="phead-left">
+                                    <div class="ptitle">My Wishlist</div>
+                                    <div class="psub">5 items saved</div>
+                                </div>
+                                <a href="wishlist.html" class="btn btn-outline btn-sm"><i
+                                        class="fas fa-external-link-alt"></i>
+                                    Full
+                                    Wishlist</a>
+                            </div>
+                            <div class="pbody" id="wishlistGrid">
+                                <div class="wish-grid" id="wishlistItems"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECURITY PANEL -->
+                    <div class="panel" id="panel-security">
+                        <div class="pcard">
+                            <div class="phead">
+                                <div class="phead-left">
+                                    <div class="ptitle">Security Settings</div>
+                                    <div class="psub">Keep your account safe</div>
+                                </div>
+                            </div>
+                            <div class="pbody">
+                                <div class="sec-item">
+                                    <div class="sec-left">
+                                        <div class="sec-ico"><i class="fas fa-lock"></i></div>
+                                        <div>
+                                            <div class="sec-title">Password</div>
+                                            <div class="sec-desc">Last changed 3 months ago</div>
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-outline btn-sm" onclick="openPwdModal()">Change</button>
+                                </div>
+                                <div class="sec-item">
+                                    <div class="sec-left">
+                                        <div class="sec-ico"><i class="fas fa-mobile-alt"></i></div>
+                                        <div>
+                                            <div class="sec-title">Two-Factor Authentication</div>
+                                            <div class="sec-desc">Add extra layer of security via OTP</div>
+                                        </div>
+                                    </div>
+                                    <label class="toggle">
+                                        <input type="checkbox"
+                                            onchange="toast(this.checked ? ' ✓ 2FA enabled' : '2FA disabled' )">
+                        <div class="toggle-track"></div>
+                        <div class="toggle-knob"></div>
+                        </label>
+            </div>
+            <div class="sec-item">
+                <div class="sec-left">
+                    <div class="sec-ico"><i class="fas fa-envelope-open-text"></i></div>
+                    <div>
+                        <div class="sec-title">Login Alerts</div>
+                        <div class="sec-desc">Get notified on new sign-ins</div>
+                    </div>
+                </div>
+                <label class="toggle">
+                    <input type="checkbox" checked
+                        onchange="toast(this.checked ? '✓ Login alerts enabled' : 'Login alerts disabled')">
+                    <div class="toggle-track"></div>
+                    <div class="toggle-knob"></div>
+                </label>
+            </div>
+            <div class="sec-item">
+                <div class="sec-left">
+                    <div class="sec-ico"><i class="fas fa-trash-alt"></i></div>
+                    <div>
+                        <div class="sec-title">Delete Account</div>
+                        <div class="sec-desc">Permanently remove your account and all data</div>
+                    </div>
+                </div>
+                <button class="btn btn-danger btn-sm" onclick="confirmDelete()">Delete</button>
+            </div>
+        </div>
+        </div>
+        </div>
+
+        <!-- NOTIFICATIONS PANEL -->
+        <div class="panel" id="panel-notifications">
+            <div class="pcard">
+                <div class="phead">
+                    <div class="phead-left">
+                        <div class="ptitle">Notification Preferences</div>
+                        <div class="psub">Choose what updates you receive</div>
+                    </div>
+                </div>
+                <div class="pbody">
+                    <div class="notif-item">
+                        <div class="notif-left">
+                            <div class="notif-ico"><i class="fas fa-box"></i></div>
+                            <div>
+                                <div class="notif-title">Order Updates</div>
+                                <div class="notif-desc">Confirmation, dispatch and delivery alerts</div>
+                            </div>
+                        </div>
+                        <label class="toggle"><input type="checkbox" checked
+                                onchange="toast('Order notification preference updated')">
+                            <div class="toggle-track"></div>
+                            <div class="toggle-knob"></div>
+                        </label>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-left">
+                            <div class="notif-ico"><i class="fas fa-tag"></i></div>
+                            <div>
+                                <div class="notif-title">Offers & Promotions</div>
+                                <div class="notif-desc">Exclusive deals and seasonal sales</div>
+                            </div>
+                        </div>
+                        <label class="toggle"><input type="checkbox" checked
+                                onchange="toast('Promo notification preference updated')">
+                            <div class="toggle-track"></div>
+                            <div class="toggle-knob"></div>
+                        </label>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-left">
+                            <div class="notif-ico"><i class="fas fa-heart"></i></div>
+                            <div>
+                                <div class="notif-title">Wishlist Alerts</div>
+                                <div class="notif-desc">Price drops and stock updates on saved items</div>
+                            </div>
+                        </div>
+                        <label class="toggle"><input type="checkbox"
+                                onchange="toast('Wishlist notification preference updated')">
+                            <div class="toggle-track"></div>
+                            <div class="toggle-knob"></div>
+                        </label>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-left">
+                            <div class="notif-ico"><i class="fas fa-star"></i></div>
+                            <div>
+                                <div class="notif-title">Loyalty & Rewards</div>
+                                <div class="notif-desc">Points earned, tier updates and rewards</div>
+                            </div>
+                        </div>
+                        <label class="toggle"><input type="checkbox" checked
+                                onchange="toast('Rewards notification preference updated')">
+                            <div class="toggle-track"></div>
+                            <div class="toggle-knob"></div>
+                        </label>
+                    </div>
+                    <div class="notif-item">
+                        <div class="notif-left">
+                            <div class="notif-ico"><i class="fas fa-envelope"></i></div>
+                            <div>
+                                <div class="notif-title">Email Newsletter</div>
+                                <div class="notif-desc">Monthly decor tips and new arrivals</div>
+                            </div>
+                        </div>
+                        <label class="toggle"><input type="checkbox" onchange="toast('Newsletter preference updated')">
+                            <div class="toggle-track"></div>
+                            <div class="toggle-knob"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </main>
+        </div>
+
+        <!-- TOAST -->
+        <div class="toast" id="toastEl"></div>
+
+        <script>
+            // ── DATA (Database Connected) ──────────────────────────────────
+            const DB_ORDERS = JSON.parse('<%- JSON.stringify(orders || []) %>');
+            const DB_PRODUCTS = JSON.parse('<%- JSON.stringify(products || []) %>');
+            let WISHLIST = JSON.parse(localStorage.getItem('luxecasa_wishlist') || '[]');
+            const ORDERS = DB_ORDERS.map(o => {
+                const firstItem = o.items && o.items.length > 0 ? o.items[0] : null;
+                const itemName = firstItem ? firstItem.product_name : 'Order #' + o.id;
+                const extraItems = o.items && o.items.length > 1 ? ` + ${o.items.length - 1} other item(s)` : '';
+                const totalItems = o.items ? o.items.reduce((sum, i) => sum + i.quantity, 0) : 0;
+
+                return {
+                    id: '#LC-' + new Date(o.created_at).getFullYear() + '-' + String(o.id).padStart(4, '0'),
+                    date: new Date(o.created_at).toLocaleDateString('en-IN', { year: 'numeric', month: 'long', day: 'numeric' }),
+                    status: 'shipped', // Forced to "In Transit" as requested
+                    statusLabel: 'In Transit',
+                    img: '/image/photo-1555041469-a586c61ea9bc.2.jpeg',
+                    name: itemName,
+                    meta: extraItems || 'Single Item',
+                    total: '₹' + Number(o.final_amount).toLocaleString('en-IN'),
+                    qty: totalItems
+                };
+            });
+
+            // ── DYNAMIC UI UPDATES ────────────────────────────────────
+            function updateDynamicStats() {
+                const totalSpent = DB_ORDERS.reduce((sum, o) => sum + Number(o.final_amount), 0);
+
+                // Hero Stats
+                document.getElementById('hstat-orders').textContent = ORDERS.length;
+                document.getElementById('hstat-wish').textContent = WISHLIST.length;
+                document.getElementById('hstat-spent').textContent = '₹' + totalSpent.toLocaleString('en-IN');
+
+                // Sidebar Badges
+                document.getElementById('badge-orders').textContent = ORDERS.length;
+                document.getElementById('badge-wish').textContent = WISHLIST.length;
+
+                // Overview Cards
+                document.getElementById('card-orders').textContent = ORDERS.length;
+                document.getElementById('card-transit').textContent = ORDERS.length;
+                document.getElementById('card-wish').textContent = WISHLIST.length;
+                document.getElementById('card-spent').textContent = '₹' + totalSpent.toLocaleString('en-IN');
+            }
+
+            // ── PANEL SWITCHING ───────────────────────
+            function showPanel(id, btn) {
+                document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+                document.querySelectorAll('.snav-item').forEach(b => b.classList.remove('active'));
+                document.getElementById('panel-' + id).classList.add('active');
+                if (btn) btn.classList.add('active');
+            }
+
+            // ── RENDER ORDERS ─────────────────────────
+            function renderOrders(list, containerId) {
+                const el = document.getElementById(containerId);
+                if (!list.length) {
+                    el.innerHTML = `<div style="text-align:center;padding:50px 20px;color:var(--muted)"><i class="fas fa-box" style="font-size:2.5rem;opacity:.3;display:block;margin-bottom:14px"></i><p style="font-size:.9rem">No orders found</p></div>`;
+                    return;
+                }
+                el.innerHTML = list.map(o => `
+            <div class="ocard" data-status="${o.status}">
+                <div class="ocard-head">
+                <div><div class="oid">${o.id}</div><div class="odate">${o.date}</div></div>
+                <span class="ostatus s-${o.status}">${o.statusLabel}</span>
+                </div>
+                <div class="ocard-body">
+                <div class="ocard-imgs"><div class="oimg"><img src="${o.img}" alt=""></div></div>
+                <div class="ocard-info">
+                    <div class="ocard-name">${o.name}</div>
+                    <div class="ocard-meta">${o.meta} · Qty: ${o.qty}</div>
+                </div>
+                </div>
+                <div class="ocard-foot">
+                <div class="ototal">${o.total}<span class="ototal-lbl">Total</span></div>
+                <div class="ocard-btns">
+                    <button class="btn btn-outline btn-sm" onclick="toast('Invoice downloaded')"><i class="fas fa-download"></i> Invoice</button>
+                </div>
+                </div>
+            </div>`).join('');
+            }
+
+            function filterOrders(val) {
+                const list = val === 'all' ? ORDERS : ORDERS.filter(o => o.status === val);
+                renderOrders(list, 'allOrdersList');
+            }
+
+            // ── RENDER WISHLIST ───────────────────────
+            // ── RENDER WISHLIST (Live DB Sync) ───────────────────────
+            function renderWishlist() {
+                const el = document.getElementById('wishlistItems');
+                if (!WISHLIST || !WISHLIST.length) {
+                    el.innerHTML = `<p style="color:var(--muted)">Your wishlist is empty.</p>`;
+                    return;
+                }
+
+                el.innerHTML = WISHLIST.map((w, i) => {
+                    // Safely extract the ID whether it was stored as an integer [3] or an object [{id: 3}]
+                    const wId = (typeof w === 'object' && w !== null) ? (w.id || w.productId) : w;
+
+                    // Lookup the exact product in the live database array
+                    const dbProduct = DB_PRODUCTS.find(p => p.id == wId);
+
+                    if (dbProduct) {
+                        // Scenario A: Product exists in the DB (Active)
+                        const imgUrl = dbProduct.productImage || '/image/photo-1555041469-a586c61ea9bc.2.jpeg';
+                        const oldPriceHtml = dbProduct.oldPrice ? `<span class="wish-old">₹${Number(dbProduct.oldPrice).toLocaleString('en-IN')}</span>` : '';
+
+                        return `
+                    <div class="wish-item" id="wi-${wId}">
+                        <div class="wish-img">
+                        <img src="${imgUrl}" alt="${dbProduct.name}" loading="lazy">
+                        <button class="wish-rm" onclick="removeWish('${wId}')" title="Remove"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="wish-info">
+                        <div class="wish-name">${dbProduct.name}</div>
+                        <div>
+                            <span class="wish-price">₹${Number(dbProduct.price).toLocaleString('en-IN')}</span>
+                            ${oldPriceHtml}
+                        </div>
+                        <button class="wish-btn" onclick="window.location.href='/product-detail?id=${wId}'"><i class="fas fa-shopping-bag"></i> View Product</button>
+                        </div>
+                    </div>`;
+                    } else {
+                        // Scenario B: Product was deleted by the Admin from the MySQL DB
+                        return `
+                    <div class="wish-item" id="wi-${wId}">
+                        <div class="wish-img">
+                        <img src="/image/photo-1555041469-a586c61ea9bc.2.jpeg" alt="Unavailable" loading="lazy" style="filter: grayscale(100%); opacity: 0.5;">
+                        <button class="wish-rm" onclick="removeWish('${wId}')" title="Remove"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="wish-info">
+                        <div class="wish-name" style="color:var(--muted)">Product Unavailable</div>
+                        <div><span class="wish-price" style="font-size:0.9rem">No longer in stock</span></div>
+                        <button class="wish-btn" disabled style="opacity:0.5; cursor:not-allowed; background:var(--cream2); color:var(--text-muted)">Unavailable</button>
+                        </div>
+                    </div>`;
+                    }
+                }).join('');
+            }
+            /*
+                        function removeWish(id) {
+                            WISHLIST = WISHLIST.filter(w => w.id !== id && w !== id);
+                            localStorage.setItem('luxecasa_wishlist', JSON.stringify(WISHLIST));
+                            updateDynamicStats();
+                            renderWishlist();
+                            toast('Removed from wishlist');
+                        }
+            */
+            function removeWish(id) {
+                const removeId = Number(id);
+
+                WISHLIST = WISHLIST.filter(w => {
+                    const currentId = (typeof w === 'object' && w !== null)
+                        ? Number(w.id ?? w.productId)
+                        : Number(w);
+
+                    return currentId !== removeId;
+                });
+
+                localStorage.setItem('luxecasa_wishlist', JSON.stringify(WISHLIST));
+                updateDynamicStats();
+                renderWishlist();
+                toast('Removed from wishlist');
+            }
+            // ── SAVE PROFILE ──────────────────────────
+            // ── SAVE PROFILE (Database Connected) ──────────────────────────
+            async function saveProfile() {
+                const firstName = document.getElementById('firstName').value.trim();
+                const lastName = document.getElementById('lastName').value.trim();
+
+                if (!firstName) {
+                    toast('⚠ First name is required');
+                    return;
+                }
+
+                try {
+                    const response = await fetch('/api/profile/update', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify({ firstName, lastName })
+                    });
+
+                    const data = await response.json();
+
+                    if (data.success) {
+                        const fullName = firstName + (lastName ? ' ' + lastName : '');
+                        const ini = fullName.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+
+                        // Update UI Instantly
+                        document.getElementById('heroName').textContent = fullName;
+                        document.getElementById('heroAvatar').textContent = ini;
+                        document.getElementById('sidebarAva').textContent = ini;
+                        document.querySelector('.smini-name').textContent = fullName;
+
+                        toast('✓ Profile updated successfully!');
+                    } else {
+                        toast('⚠ ' + data.message);
+                    }
+                } catch (err) {
+                    toast('⚠ Server error. Please try again.');
+                }
+            }
+
+            // ── LOGOUT ────────────────────────────────
+            async function handleLogout() {
+                try {
+                    await fetch('/api/auth/logout', { method: 'POST' });
+                    localStorage.removeItem('luxecasa_user');
+                    toast('👋 Logged out successfully. Redirecting...');
+                    setTimeout(() => window.location.href = '/', 1500);
+                } catch (err) {
+                    toast('Error logging out.');
+                }
+            }
+
+            // ── TOAST ─────────────────────────────────
+            let toastTimer;
+            function toast(msg) {
+                const t = document.getElementById('toastEl');
+                t.textContent = msg; t.classList.add('show');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+            }
+
+            // ── INIT ──────────────────────────────────
+            window.addEventListener('DOMContentLoaded', () => {
+                updateDynamicStats();
+                renderOrders(ORDERS, 'allOrdersList');
+                renderOrders(ORDERS.slice(0, 3), 'recentOrdersList');
+                renderWishlist();
+            });
+        </script>
+</body>
+
+</html>

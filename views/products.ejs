@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeCasa – All Products | Premium Furniture Collection</title>
+    <meta name="description"
+        content="Browse 40+ premium furniture pieces. Sofas, Beds, Chairs, Dining, Wardrobes, Coffee Tables & Cabinets. Free delivery above ₹10,000.">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/<%= pageCss %>">
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <span class="top-bar-scroll">
+            🚚 <span class="gold">FREE DELIVERY</span> on orders above ₹10,000 &nbsp;&nbsp;|&nbsp;&nbsp;
+            ✨ <span class="gold">UP TO 40% OFF</span> on Premium Collections &nbsp;&nbsp;|&nbsp;&nbsp;
+            🛠️ <span class="gold">FREE ASSEMBLY</span> on Bedroom & Dining Sets &nbsp;&nbsp;|&nbsp;&nbsp;
+            ⭐ <span class="gold">5-YEAR WARRANTY</span> on All Products &nbsp;&nbsp;|&nbsp;&nbsp;
+            📞 Call us: <span class="gold">+91 98765 43210</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav id="mainNav">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon"><i class="fas fa-couch" style="color:#C8A96E"></i></div>
+            <h1>LUXE<span>CASA</span></h1>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="nav-dropdown">
+                <a href="products" class="active">Products <i class="fas fa-chevron-down"
+                        style="font-size:0.65rem;margin-left:4px"></i></a>
+                <div class="dropdown-menu">
+                    <a href="products?cat=sofas" class="dropdown-item"><span class="cat-icon">🛋️</span><span
+                            class="cat-name">Sofas</span></a>
+                    <a href="products?cat=beds" class="dropdown-item"><span class="cat-icon">🛏️</span><span
+                            class="cat-name">Beds</span></a>
+                    <a href="products?cat=chairs" class="dropdown-item"><span class="cat-icon">🪑</span><span
+                            class="cat-name">Chairs</span></a>
+                    <a href="products?cat=dining" class="dropdown-item"><span class="cat-icon">🍽️</span><span
+                            class="cat-name">Dining</span></a>
+                    <a href="products?cat=wardrobes" class="dropdown-item"><span class="cat-icon">🚪</span><span
+                            class="cat-name">Wardrobes</span></a>
+                    <a href="products?cat=coffee-tables" class="dropdown-item"><span class="cat-icon">☕</span><span
+                            class="cat-name">Coffee Tables</span></a>
+                    <a href="products?cat=cabinets" class="dropdown-item"><span class="cat-icon">🗄️</span><span
+                            class="cat-name">Cabinets</span></a>
+                </div>
+            </li>
+            <li><a href="about">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="offers.html">Offers</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="nav-icon-btn" onclick="toggleSearch()" title="Search"><i class="fas fa-search"></i></button>
+            <a href="wishlist.html" class="nav-icon-btn" title="Wishlist"><i class="fas fa-heart"></i></a>
+            <button class="nav-icon-btn" onclick="toggleCart()" title="Cart">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+            <a href="login.html" class="btn-nav-login" id="navLoginBtn"><i class="fas fa-user"></i> Sign In</a>
+            <div class="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <!-- PAGE HERO -->
+    <div class="page-hero">
+        <div class="page-hero-content">
+            <div class="breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <span>/</span>
+                <span class="current" id="breadcrumbCurrent">All Products</span>
+            </div>
+            <h1 id="pageHeroTitle">Our Premium <em>Collection</em></h1>
+            <p id="pageHeroDesc">Curated luxury furniture for the discerning homeowner — 40+ unique pieces, every one
+                crafted to perfection.</p>
+            <div class="hero-stats">
+                <div class="hero-stat-item"><span class="hero-stat-num">40+</span><span
+                        class="hero-stat-lbl">Products</span></div>
+                <div class="hero-stat-item"><span class="hero-stat-num">7</span><span
+                        class="hero-stat-lbl">Categories</span></div>
+                <div class="hero-stat-item"><span class="hero-stat-num">5★</span><span class="hero-stat-lbl">Avg
+                        Rating</span></div>
+                <div class="hero-stat-item"><span class="hero-stat-num">10K+</span><span class="hero-stat-lbl">Happy
+                        Homes</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MAIN PRODUCTS PAGE -->
+    <div class="products-page">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+            <!-- Category Filter -->
+            <div class="sidebar-section">
+                <p class="sidebar-title">Categories</p>
+                <ul class="cat-filter-list">
+                    <li><button class="cat-filter-btn active" onclick="filterByCat('all', this)"><span>🏠 All
+                                Products</span><span class="cat-count">
+                                <%= products.length %>
+                            </span></button></li>
+                    <li><button class="cat-filter-btn" onclick="filterByCat('sofas', this)"><span>🛋️ Sofas</span>
+                            <span class="cat-count">
+                                <%= products.filter(p=> p.cat === 'sofas').length %>
+                            </span></button></li>
+                    <li><button class="cat-filter-btn" onclick="filterByCat('beds', this)"><span>🛏️ Beds</span><span
+                                class="cat-count">
+                                <%= products.filter(p=> p.cat === 'beds').length %>
+                            </span></button></li>
+                    <li><button class="cat-filter-btn" onclick="filterByCat('chairs', this)"><span>🪑 Chairs</span><span
+                                class="cat-count">
+                                <%= products.filter(p=> p.cat === 'chairs').length %>
+                            </span></button></li>
+                    <li><button class="cat-filter-btn" onclick="filterByCat('dining', this)"><span>🍽️
+                                Dining</span><span class="cat-count">
+                                <%= products.filter(p=> p.cat === 'dining').length %>
+                            </span></button></li>
+                    <li><button class="cat-filter-btn" onclick="filterByCat('wardrobes', this)"><span>🚪
+                                Wardrobes</span><span class="cat-count">
+                                <%= products.filter(p=> p.cat === 'wardrobes').length %>
+                            </span></button></li>
+                    <li><button class="cat-filter-btn" onclick="filterByCat('coffee-tables', this)"><span>☕ Coffee
+                                Tables</span><span class="cat-count">
+                                <%= products.filter(p=> p.cat === 'coffee-tables').length %>
+                            </span></button></li>
+                    <li><button class="cat-filter-btn" onclick="filterByCat('cabinets', this)"><span>🗄️
+                                Cabinets</span><span class="cat-count">
+                                <%= products.filter(p=> p.cat === 'cabinets').length %>
+                            </span></button></li>
+                </ul>
+            </div>
+
+            <!-- Price Range -->
+            <div class="sidebar-section">
+                <p class="sidebar-title">Price Range</p>
+                <div class="price-range-wrap">
+                    <input type="range" class="price-slider" id="priceSlider" min="5000" max="500000" value="500000"
+                        step="5000" oninput="updatePriceFilter(this.value)">
+                    <div class="price-labels">
+                        <span>₹5,000</span>
+                        <span id="priceLabel">Up to ₹5,00,000</span>
+                    </div>
+                </div>
+            </div>
+            <!-- Rating Filter -->
+            <div class="sidebar-section">
+                <p class="sidebar-title">Min Rating</p>
+                <label class="rating-filter"><input type="radio" name="rating" value="0" onchange="applyRatingFilter(0)"
+                        checked> All Ratings</label>
+                <label class="rating-filter"><input type="radio" name="rating" value="4"
+                        onchange="applyRatingFilter(4)"> ⭐⭐⭐⭐ &
+                    above</label>
+                <label class="rating-filter"><input type="radio" name="rating" value="5"
+                        onchange="applyRatingFilter(5)"> ⭐⭐⭐⭐⭐
+                    Only</label>
+            </div>
+
+            <button class="btn-clear-filter" onclick="clearAllFilters()"><i class="fas fa-undo"
+                    style="margin-right:6px"></i>
+                Clear All Filters</button>
+        </aside>
+
+        <!-- PRODUCTS AREA -->
+        <div class="products-area">
+
+            <!-- Mobile filter toggle -->
+            <button id="mobileFilterBtn" onclick="toggleMobileFilter()"
+                style="display:none;width:100%;padding:12px;background:var(--dark);color:var(--gold);border:none;border-radius:8px;font-size:0.85rem;font-weight:600;cursor:pointer;margin-bottom:15px;"><i
+                    class="fas fa-sliders-h" style="margin-right:8px"></i> Filters & Sort</button>
+
+            <!-- Search -->
+            <div class="search-bar-wrap">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" class="search-bar" id="searchInput" placeholder="Search for sofas, beds, chairs..."
+                    oninput="applySearch(this.value)">
+                <button class="search-clear" id="searchClear" onclick="clearSearch()"><i
+                        class="fas fa-times"></i></button>
+            </div>
+
+            <!-- Toolbar -->
+            <div class="products-toolbar">
+                <div class="toolbar-left">
+                    <span class="result-count" id="resultCount"><strong>40</strong> products found</span>
+                    <div class="active-filters" id="activeFilters"></div>
+                </div>
+                <div class="toolbar-right">
+                    <select class="sort-select" id="sortSelect" onchange="applySort(this.value)">
+                        <option value="default">Sort: Featured</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                        <option value="rating">Top Rated</option>
+                        <option value="newest">Newest First</option>
+                        <option value="discount">Best Discount</option>
+                    </select>
+                    <div class="view-toggle">
+                        <button class="view-btn active" onclick="setView(3, this)" title="3 columns"><i
+                                class="fas fa-th-large"></i></button>
+                        <button class="view-btn" onclick="setView(4, this)" title="4 columns"><i
+                                class="fas fa-th"></i></button>
+                        <button class="view-btn" onclick="setView('list', this)" title="List view"><i
+                                class="fas fa-list"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="productsGrid"></div>
+
+            <!-- Pagination -->
+            <div class="pagination-wrap" id="paginationWrap"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>LUXE<span>CASA</span></h3>
+                <p class="tagline">WHERE LUXURY MEETS COMFORT</p>
+                <p>India's most trusted premium furniture brand, crafting beautiful spaces for over 15 years.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="?cat=sofas"><i class="fas fa-angle-right"></i> Sofas</a></li>
+                    <li><a href="?cat=beds"><i class="fas fa-angle-right"></i> Beds</a></li>
+                    <li><a href="?cat=chairs"><i class="fas fa-angle-right"></i> Chairs</a></li>
+                    <li><a href="?cat=dining"><i class="fas fa-angle-right"></i> Dining</a></li>
+                    <li><a href="?cat=wardrobes"><i class="fas fa-angle-right"></i> Wardrobes</a></li>
+                    <li><a href="?cat=cabinets"><i class="fas fa-angle-right"></i> Cabinets</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+                    <li><a href="about"><i class="fas fa-angle-right"></i> About Us</a></li>
+                    <li><a href="offers.html"><i class="fas fa-angle-right"></i> Offers</a></li>
+                    <li><a href="faq.html"><i class="fas fa-angle-right"></i> FAQ</a></li>
+                    <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-phone"></i> +91 98765 43210</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> hello@luxecasa.in</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Mumbai, India</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 <span>LuxeCasa</span>. All rights reserved. Crafted with ❤ in India.</p>
+            <p>Made with premium quality & <span>luxury</span> in mind.</p>
+        </div>
+    </footer>
+
+    <!-- CART -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-bag" style="color:var(--gold);margin-right:10px"></i> My Cart <span
+                    id="cartCount" style="font-size:0.85rem;color:var(--text-muted);font-family:'DM Sans'">(0
+                    items)</span></h3>
+            <button class="cart-close-btn" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items-list" id="cartItemsList"></div>
+        <div class="cart-footer" id="cartFooter" style="display:none">
+            <div class="cart-totals">
+                <div class="cart-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+                <div class="cart-row"><span>GST (18%)</span><span id="cartGST">₹0</span></div>
+                <div class="cart-row"><span>Delivery</span><span style="color:#52C07A">FREE</span></div>
+                <div class="cart-total-row"><span>Total</span><span id="cartTotal">₹0</span></div>
+            </div>
+            <button class="btn-checkout"
+                onclick="showToast('🎉 Redirecting to checkout...'); setTimeout(() => window.location.href='checkout.html', 800)">Proceed
+                to Checkout <i class="fas fa-arrow-right" style="margin-left:8px"></i></button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i
+            class="fas fa-chevron-up"></i></button>
+
+    <script>
+
+        // ============================================================
+        // CART SYSTEM
+        // ============================================================
+        let cart = JSON.parse(localStorage.getItem('luxecasa_cart') || '[]');
+        let wishlist = JSON.parse(localStorage.getItem('luxecasa_wishlist') || '[]');
+
+        function addToCart(id, name, price) {
+            const existing = cart.find(i => i.id === id);
+            if (existing) existing.qty++;
+            else {
+                const prod = allProducts.find(p => p.id === id);
+                cart.push({ id, name, price, qty: 1, img: prod?.productImage || '' });
+            }
+            saveCart(); updateCartUI();
+            showToast(`✓ ${name} added to cart!`);
+        }
+
+        function removeFromCart(id) { cart = cart.filter(i => i.id !== id); saveCart(); updateCartUI(); }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (item) { item.qty += delta; if (item.qty <= 0) removeFromCart(id); else { saveCart(); updateCartUI(); } }
+        }
+
+        function saveCart() { localStorage.setItem('luxecasa_cart', JSON.stringify(cart)); }
+
+        function updateCartUI() {
+            const total = cart.reduce((s, i) => s + i.qty, 0);
+            const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+            const gst = Math.round(subtotal * 0.18);
+            const grand = subtotal + gst;
+            document.getElementById('cartBadge').textContent = total;
+            document.getElementById('cartCount').textContent = `(${total} item${total !== 1 ? 's' : ''})`;
+            const listEl = document.getElementById('cartItemsList');
+            const footerEl = document.getElementById('cartFooter');
+            if (cart.length === 0) {
+                listEl.innerHTML = `<div style="text-align:center;padding:60px 20px;color:var(--text-muted)"><i class="fas fa-shopping-bag" style="font-size:3rem;color:var(--cream2);margin-bottom:15px;display:block"></i><p>Your cart is empty</p></div>`;
+                footerEl.style.display = 'none';
+            } else {
+                listEl.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <div class="cart-item-img"><img src="${item.img}" alt="${item.name}" onerror="this.src='/image/photo-1555041469-a586c61ea9bc.2.jpeg'"></div>
+            <div class="cart-item-info">
+                <h4 class="cart-item-name">${item.name}</h4>
+                <p class="cart-item-price">₹${item.price.toLocaleString('en-IN')}</p>
+                <div class="cart-item-qty">
+                    <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+                    <span class="qty-num">${item.qty}</span>
+                    <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+                </div>
+                <button class="cart-item-remove" onclick="removeFromCart(${item.id})">Remove</button>
+            </div>
+        </div>`).join('');
+                document.getElementById('cartSubtotal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+                document.getElementById('cartGST').textContent = `₹${gst.toLocaleString('en-IN')}`;
+                document.getElementById('cartTotal').textContent = `₹${grand.toLocaleString('en-IN')}`;
+                footerEl.style.display = 'block';
+            }
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('open');
+            document.getElementById('cartOverlay').classList.toggle('show');
+        }
+
+        function toggleWishlist(id, btn) {
+            const idx = wishlist.indexOf(id);
+            if (idx === -1) { wishlist.push(id); btn.classList.add('wishlist-active'); showToast('❤ Added to wishlist'); }
+            else { wishlist.splice(idx, 1); btn.classList.remove('wishlist-active'); showToast('Removed from wishlist'); }
+            localStorage.setItem('luxecasa_wishlist', JSON.stringify(wishlist));
+        }
+
+        // ============================================================
+        // PRODUCTS DATA (Loaded dynamically from MySQL via Node.js)
+        // ============================================================
+        const allProducts = JSON.parse('<%- JSON.stringify(products) %>');
+        // ============================================================
+        // FILTER STATE
+        // ============================================================
+        let activeCategory = 'all';
+        let activeMaxPrice = 500000;
+        let activeMinRating = 0;
+        let activeSearch = '';
+        let activeSort = 'default';
+        let currentPage = 1;
+        const PER_PAGE = 12;
+        let currentView = 3;
+
+        // ============================================================
+        // INIT FROM URL PARAMS
+        // ============================================================
+        function initFromURL() {
+            const params = new URLSearchParams(window.location.search);
+            const cat = params.get('cat');
+            const search = params.get('search');
+            if (cat) {
+                activeCategory = cat;
+                document.querySelectorAll('.cat-filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.textContent.toLowerCase().includes(cat.replace('-', ' '))) btn.classList.add('active');
+                });
+                updateHero(cat);
+            }
+            if (search) {
+                activeSearch = search;
+                document.getElementById('searchInput').value = search;
+                document.getElementById('searchClear').style.display = 'block';
+            }
+            renderProducts();
+        }
+
+        function updateHero(cat) {
+            const map = {
+                sofas: ['Sofa', 'Sofas & Sectionals', 'Luxury sofas for every living room'],
+                beds: ['Bed', 'Beds & Bedroom', 'Create your perfect sleep sanctuary'],
+                chairs: ['Chair', 'Chairs & Seating', 'Comfort and style in every seat'],
+                dining: ['Dining', 'Dining Tables & Sets', 'Gather in style around our dining collections'],
+                wardrobes: ['Wardrobe', 'Wardrobes & Storage', 'Smart storage solutions for every bedroom'],
+                'coffee-tables': ['Coffee Table', 'Coffee Tables', 'The perfect centrepiece for your living room'],
+                'cabinets': ['Cabinet', 'Cabinets', 'Beautiful cabinets for modern homes'],
+            };
+            const d = map[cat];
+            if (d) {
+                document.getElementById('pageHeroTitle').innerHTML = `Premium <em>${d[1]}</em>`;
+                document.getElementById('pageHeroDesc').textContent = d[2];
+                document.getElementById('breadcrumbCurrent').textContent = d[1];
+            }
+        }
+
+        // ============================================================
+        // FILTER FUNCTIONS
+        // ============================================================
+        function filterByCat(cat, btn) {
+            activeCategory = cat;
+            currentPage = 1;
+            document.querySelectorAll('.cat-filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            updateHero(cat);
+            if (cat !== 'all') {
+                const count = allProducts.filter(p => p.cat === cat).length;
+                document.getElementById('pageHeroTitle').innerHTML = `Premium <em>${btn.textContent.split(' ').slice(1).join(' ') || cat}</em>`;
+            }
+            renderProducts();
+        }
+
+        function updatePriceFilter(val) {
+            activeMaxPrice = parseInt(val);
+            currentPage = 1;
+            const formatted = parseInt(val).toLocaleString('en-IN');
+            document.getElementById('priceLabel').textContent = `Up to ₹${formatted}`;
+            renderProducts();
+        }
+/*
+        function applyMaterialFilter() {
+            activeMaterials = Array.from(document.querySelectorAll('.material-check input:checked')).map(el => el.value);
+            currentPage = 1;
+            renderProducts();
+        }
+*/
+        function applyRatingFilter(minRating) {
+            activeMinRating = minRating;
+            currentPage = 1;
+            renderProducts();
+        }
+
+        function applySearch(val) {
+            activeSearch = val.toLowerCase();
+            currentPage = 1;
+            const clearBtn = document.getElementById('searchClear');
+            clearBtn.style.display = val ? 'block' : 'none';
+            renderProducts();
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchClear').style.display = 'none';
+            activeSearch = '';
+            renderProducts();
+        }
+
+        function applySort(val) {
+            activeSort = val;
+            renderProducts();
+        }
+
+        function clearAllFilters() {
+            activeCategory = 'all';
+            activeMaxPrice = 500000;
+            activeMinRating = 0;
+            activeSearch = '';
+            activeSort = 'default';
+            currentPage = 1;
+            
+            document.querySelectorAll('.cat-filter-btn').forEach(b => b.classList.remove('active'));
+            document.querySelector('.cat-filter-btn').classList.add('active');
+            document.getElementById('priceSlider').value = 500000;
+            document.getElementById('priceLabel').textContent = 'Up to ₹5,00,000';
+
+            document.querySelector('.rating-filter input[value="0"]').checked = true;
+            document.getElementById('searchInput').value = '';
+            document.getElementById('searchClear').style.display = 'none';
+            document.getElementById('sortSelect').value = 'default';
+            
+            renderProducts();
+            updateHero('all');
+            document.getElementById('pageHeroTitle').innerHTML = 'Our Premium <em>Collection</em>';
+            document.getElementById('pageHeroDesc').textContent = 'Curated luxury furniture for the discerning homeowner — 4+ unique pieces, every one crafted to perfection.';
+            document.getElementById('breadcrumbCurrent').textContent = 'All Products';
+        }
+
+        function setView(cols, btn) {
+            currentView = cols;
+            document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const grid = document.getElementById('productsGrid');
+            grid.className = 'products-grid';
+            if (cols === 4) grid.classList.add('grid-4');
+            if (cols === 'list') grid.classList.add('grid-list');
+        }
+
+        // ============================================================
+        // RENDER
+        // ============================================================
+        function getFiltered() {
+            let list = [...allProducts];
+            
+            if (activeCategory !== 'all') list = list.filter(p => p.cat === activeCategory);
+            
+            list = list.filter(p => p.price <= activeMaxPrice);
+            
+            // material filter step removed
+            
+            if (activeMinRating > 0) list = list.filter(p => p.rating >= activeMinRating);
+
+            if (activeSearch) {list = list.filter(p => {
+                    const nameStr = (p.name || '').toLowerCase();
+                    const descStr = (p.description || '').toLowerCase();
+                    const catStr = (p.cat || '').toLowerCase();
+                    // p.material is removed from search check
+                    
+                    return nameStr.includes(activeSearch) ||
+                           descStr.includes(activeSearch) ||
+                           catStr.includes(activeSearch);
+                });
+            }
+            
+            // Sort
+            switch (activeSort) {
+                case 'price-low': list.sort((a, b) => a.price - b.price); break;
+                case 'price-high': list.sort((a, b) => b.price - a.price); break;
+                case 'rating': list.sort((a, b) => b.rating - a.rating || b.reviews - a.reviews); break;
+                case 'newest': list.sort((a, b) => (b.badge === 'new' ? 1 : 0) - (a.badge === 'new' ? 1 : 0)); break;
+                case 'discount': list.sort((a, b) => (b.oldPrice - b.price) / b.oldPrice - (a.oldPrice - a.price) / a.oldPrice); break;
+            }
+            return list;
+        }
+
+        function renderProducts() {
+            const filtered = getFiltered();
+            const total = filtered.length;
+            const totalPages = Math.ceil(total / PER_PAGE);
+            if (currentPage > totalPages) currentPage = 1;
+
+            const start = (currentPage - 1) * PER_PAGE;
+            const pageItems = filtered.slice(start, start + PER_PAGE);
+
+            // Update count
+            document.getElementById('resultCount').innerHTML = `<strong>${total}</strong> product${total !== 1 ? 's' : ''} found`;
+
+            // Update active filter tags
+            const tagsEl = document.getElementById('activeFilters');
+            let tags = [];
+            if (activeCategory !== 'all') tags.push(`<span class="filter-tag" onclick="filterByCat('all', document.querySelector('.cat-filter-btn'))">${activeCategory.replace('-', ' ')} ×</span>`);
+            if (activeSearch) tags.push(`<span class="filter-tag" onclick="clearSearch()">"${activeSearch}" ×</span>`);
+            //if (activeMaterials.length) tags.push(`<span class="filter-tag" onclick="clearAllFilters()">${activeMaterials.length} material${activeMaterials.length > 1 ? 's' : ''} ×</span>`);
+            tagsEl.innerHTML = tags.join('');
+
+            const grid = document.getElementById('productsGrid');
+            if (pageItems.length === 0) {
+                grid.innerHTML = `<div class="empty-state"><i class="fas fa-search"></i><h3>No products found</h3><p>Try adjusting your filters or search term.</p><button onclick="clearAllFilters()" style="padding:12px 28px;background:var(--dark);color:var(--gold);border:none;border-radius:8px;cursor:pointer;font-size:0.9rem;font-weight:600;">Clear Filters</button></div>`;
+            } else {
+                const badgeMap = {
+                    sale: '<span class="badge badge-sale">Sale</span>',
+                    new: '<span class="badge badge-new">New</span>',
+                    hot: '<span class="badge badge-hot">🔥 Hot</span>',
+                    bestseller: '<span class="badge badge-bestseller">⭐ Bestseller</span>',
+                    limited: '<span class="badge badge-limited">💎 Limited</span>'
+                };
+                grid.innerHTML = pageItems.map((p, i) => {
+                    const stars = '★'.repeat(p.rating) + '☆'.repeat(5 - p.rating);
+                    const discount = Math.round((1 - p.price / p.oldPrice) * 100);
+                    const isWishlisted = wishlist.includes(p.id);
+                    return `
+            <div class="product-card" style="animation-delay:${i * 50}ms" onclick="window.location.href='product-detail?id=${p.id}'">
+                <div class="product-img-wrap">
+                    <img src="${p.productImage}" alt="${p.name}" loading="lazy" onerror="this.src='/image/photo-1555041469-a586c61ea9bc.2.jpeg'">
+                    <div class="product-badges">${badgeMap[p.badge] || ''}</div>
+                    <div class="product-actions">
+                        <button class="action-btn ${isWishlisted ? 'wishlist-active' : ''}" onclick="event.stopPropagation(); toggleWishlist(${p.id}, this)" title="Wishlist"><i class="fas fa-heart"></i></button>
+                        <button class="action-btn" onclick="event.stopPropagation(); window.location.href='product-detail?id=${p.id}'" title="Quick View"><i class="fas fa-eye"></i></button>
+                        <button class="action-btn" onclick="event.stopPropagation(); addToCart(${p.id},'${p.name}',${p.price})" title="Add to Cart"><i class="fas fa-bag-shopping"></i></button>
+                    </div>
+                </div>
+                <div class="product-body">
+                    <p class="product-cat">${p.cat.replace('-', ' ')}</p>
+                    <h3 class="product-name">${p.name}</h3>
+                    <p class="product-short-desc">${p.description}</p>
+                    <div class="product-meta">
+                        <div class="product-rating">
+                            <span style="color:var(--gold)">${stars}</span>
+                            <span style="font-size:0.75rem;color:var(--text-muted)">(${p.reviews})</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <div class="product-price">
+                            <span class="price-main">₹${p.price.toLocaleString('en-IN')}</span>
+                            <span class="price-old">₹${p.oldPrice.toLocaleString('en-IN')}</span>
+                            <span class="price-off">${discount}% OFF</span>
+                        </div>
+                        <button class="btn-cart" onclick="event.stopPropagation(); addToCart(${p.id},'${p.name}',${p.price})">
+                            <i class="fas fa-bag-shopping"></i> Add
+                        </button>
+                    </div>
+                </div>
+            </div>`;
+                }).join('');
+            }
+
+            renderPagination(totalPages);
+            window.scrollTo({ top: document.querySelector('.products-area').offsetTop - 100, behavior: 'smooth' });
+        }
+
+        // ============================================================
+        // PAGINATION
+        // ============================================================
+        function renderPagination(totalPages) {
+            const wrap = document.getElementById('paginationWrap');
+            if (totalPages <= 1) { wrap.innerHTML = ''; return; }
+            let html = `<button class="page-btn prev-next" onclick="goPage(${currentPage - 1})" ${currentPage === 1 ? 'disabled' : ''}><i class="fas fa-chevron-left"></i> Prev</button>`;
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === 1 || i === totalPages || (i >= currentPage - 1 && i <= currentPage + 1)) {
+                    html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" onclick="goPage(${i})">${i}</button>`;
+                } else if (i === currentPage - 2 || i === currentPage + 2) {
+                    html += `<span style="padding:0 5px;color:var(--text-muted)">...</span>`;
+                }
+            }
+            html += `<button class="page-btn prev-next" onclick="goPage(${currentPage + 1})" ${currentPage === totalPages ? 'disabled' : ''}>Next <i class="fas fa-chevron-right"></i></button>`;
+            wrap.innerHTML = html;
+        }
+
+        function goPage(page) {
+            const filtered = getFiltered();
+            const totalPages = Math.ceil(filtered.length / PER_PAGE);
+            if (page < 1 || page > totalPages) return;
+            currentPage = page;
+            renderProducts();
+        }
+
+        // ============================================================
+        // MOBILE FILTER TOGGLE
+        // ============================================================
+        function toggleMobileFilter() {
+            document.getElementById('sidebar').classList.toggle('mobile-open');
+        }
+
+        // ============================================================
+        // NAVBAR
+        // ============================================================
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            const backTop = document.getElementById('backTop');
+            if (window.scrollY > 80) { nav.classList.add('scrolled'); backTop.classList.add('show'); }
+            else { nav.classList.remove('scrolled'); backTop.classList.remove('show'); }
+        });
+
+        function toggleSearch() {
+            const q = prompt('Search for furniture...');
+            if (q) {
+                document.getElementById('searchInput').value = q;
+                applySearch(q);
+                window.scrollTo({ top: document.querySelector('.products-area').offsetTop, behavior: 'smooth' });
+            }
+        }
+
+        function toggleMobileMenu() {
+            const links = document.querySelector('.nav-links');
+            if (links.style.display === 'flex') {
+                links.style.display = 'none';
+            } else {
+                links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:80px;left:0;right:0;background:#fff;padding:20px;box-shadow:0 20px 40px rgba(0,0,0,0.1);z-index:999;gap:15px;';
+            }
+        }
+
+        // ============================================================
+        // TOAST
+        // ============================================================
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerHTML = msg;
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ============================================================
+        // RESPONSIVE: Show mobile filter btn
+        // ============================================================
+        function checkResponsive() {
+            const mobileBtn = document.getElementById('mobileFilterBtn');
+            if (window.innerWidth <= 992) mobileBtn.style.display = 'block';
+            else mobileBtn.style.display = 'none';
+        }
+
+        window.addEventListener('resize', checkResponsive);
+        checkResponsive();
+
+        // ============================================================
+        // SESSION
+        // ============================================================
+        function checkSession() {
+            const user = JSON.parse(localStorage.getItem('luxecasa_user') || 'null');
+            const btn = document.getElementById('navLoginBtn');
+            if (user && btn) {
+                btn.innerHTML = `<i class="fas fa-user-circle"></i> ${user.full_name?.split(' ')[0] || 'Account'}`;
+                btn.href = 'profile.html';
+            }
+        }
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        updateCartUI();
+        checkSession();
+        initFromURL();
+    </script>
+</body>
+
+</html>

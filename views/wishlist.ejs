@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeCasa – My Wishlist | Saved Furniture Pieces</title>
+    <meta name="description"
+        content="Your saved furniture pieces on LuxeCasa. View, manage and shop your wishlist of premium furniture.">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/<%= pageCss %>">
+</head>
+
+<body>
+
+    <!-- ===== TOP BAR ===== -->
+    <div class="top-bar">
+        <span class="top-bar-scroll">
+            ✦ FREE DELIVERY above ₹10,000 &nbsp;&nbsp;&nbsp; ✦ <span class="gold">MONSOON SALE — Up to 40% OFF</span>
+            &nbsp;&nbsp;&nbsp; ✦ 5-Year Warranty on all furniture &nbsp;&nbsp;&nbsp; ✦ EMI available from ₹999/month
+            &nbsp;&nbsp;&nbsp; ✦ FREE assembly by experts &nbsp;&nbsp;&nbsp; ✦ <span class="gold">10,000+ Happy Homes
+                across India</span> &nbsp;&nbsp;&nbsp;
+        </span>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav id="mainNav">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon">🏠</div>
+            <h1>LUXE<span>CASA</span></h1>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="nav-dropdown">
+                <a href="products">Products ▾</a>
+                <div class="dropdown-menu">
+                    <a href="products?cat=sofas" class="dropdown-item">
+                        <span class="cat-icon">🛋️</span>
+                        <span class="cat-name">Sofas</span>
+                    </a>
+                    <a href="products?cat=beds" class="dropdown-item">
+                        <span class="cat-icon">🛏️</span>
+                        <span class="cat-name">Beds</span>
+                    </a>
+                    <a href="products?cat=dining" class="dropdown-item">
+                        <span class="cat-icon">🍽️</span>
+                        <span class="cat-name">Dining</span>
+                    </a>
+                    <a href="products?cat=chairs" class="dropdown-item">
+                        <span class="cat-icon">🪑</span>
+                        <span class="cat-name">Chairs</span>
+                    </a>
+                    <a href="products?cat=wardrobes" class="dropdown-item">
+                        <span class="cat-icon">🚪</span>
+                        <span class="cat-name">Wardrobes</span>
+                    </a>
+                    <a href="products?cat=cabinets" class="dropdown-item">
+                        <span class="cat-icon">🗄️</span>
+                        <span class="cat-name">Cabinets</span>
+                    </a>
+                    <a href="products?cat=coffee-tables" class="dropdown-item">
+                        <span class="cat-icon">☕</span>
+                        <span class="cat-name">Coffee Tables</span>
+                    </a>
+                    <a href="products" class="dropdown-item">
+                        <span class="cat-icon">✨</span>
+                        <span class="cat-name">All Products</span>
+                    </a>
+                </div>
+            </li>
+            <li><a href="offers.html">Offers</a></li>
+            <li><a href="about">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button class="nav-icon-btn" onclick="toggleSearch()" title="Search">
+                <i class="fas fa-search"></i>
+            </button>
+            <a href="wishlist.html" class="nav-icon-btn active" title="Wishlist"
+                style="background:var(--dark);color:var(--gold);border-color:var(--dark)">
+                <i class="fas fa-heart"></i>
+            </a>
+            <button class="nav-icon-btn" onclick="toggleCart()" title="Cart">
+                <i class="fas fa-bag-shopping"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+            <a href="login.html" class="btn-nav-login" id="navLoginBtn">
+                <i class="fas fa-user"></i> Login
+            </a>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== PAGE HERO ===== -->
+    <div class="page-hero">
+        <div class="page-hero-content">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a>
+                <span>›</span>
+                <span class="current">My Wishlist</span>
+            </div>
+            <h1>My <em>Wishlist</em></h1>
+            <p>Your curated collection of dream furniture pieces — saved and ready to shop.</p>
+            <div class="wishlist-hero-stats">
+                <div class="wh-stat">
+                    <span class="wh-stat-num" id="heroStatCount">0</span>
+                    <span class="wh-stat-label">Saved Items</span>
+                </div>
+                <div class="wh-stat">
+                    <span class="wh-stat-num" id="heroStatValue">₹0</span>
+                    <span class="wh-stat-label">Total Value</span>
+                </div>
+                <div class="wh-stat">
+                    <span class="wh-stat-num" id="heroStatSavings">₹0</span>
+                    <span class="wh-stat-label">You Save</span>
+                </div>
+                <div class="wh-stat">
+                    <span class="wh-stat-num" id="heroStatCategories">0</span>
+                    <span class="wh-stat-label">Categories</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== ACTIONS BAR ===== -->
+    <div class="wishlist-actions-bar" id="actionsBar">
+        <div class="wab-left">
+            <span class="wab-count">Showing <span id="wabCount">0</span> saved items</span>
+            <select class="wab-sort" id="sortSelect" onchange="sortWishlist()">
+                <option value="default">Sort: Default</option>
+                <option value="price-low">Price: Low to High</option>
+                <option value="price-high">Price: High to Low</option>
+                <option value="discount">Highest Discount</option>
+                <option value="rating">Best Rated</option>
+                <option value="name">Name A-Z</option>
+            </select>
+        </div>
+        <div class="wab-right">
+            <div class="view-toggle">
+                <button class="view-btn active" id="gridViewBtn" onclick="setView('grid')" title="Grid View"><i
+                        class="fas fa-th"></i></button>
+                <button class="view-btn" id="listViewBtn" onclick="setView('list')" title="List View"><i
+                        class="fas fa-list"></i></button>
+            </div>
+            <button class="btn-wab btn-wab-outline" onclick="openShareModal()">
+                <i class="fas fa-share-alt"></i> Share
+            </button>
+            <button class="btn-wab btn-wab-outline" onclick="clearAllWishlist()" id="clearAllBtn">
+                <i class="fas fa-trash-alt"></i> Clear All
+            </button>
+            <button class="btn-wab btn-wab-dark" onclick="addAllToCart()" id="addAllBtn">
+                <i class="fas fa-bag-shopping"></i> Add All to Cart
+            </button>
+        </div>
+    </div>
+
+    <!-- ===== MAIN WISHLIST SECTION ===== -->
+    <section class="wishlist-section">
+
+        <!-- Empty State -->
+        <div class="wishlist-empty" id="wishlistEmpty">
+            <div class="empty-heart-container">
+                <div class="empty-heart-bg">💔</div>
+            </div>
+            <h2>Your Wishlist is <em>Empty</em></h2>
+            <p>You haven't saved any furniture pieces yet. Browse our curated collection and tap the heart icon to save
+                your favourites.</p>
+            <a href="products" class="btn-explore">
+                Explore Collection <i class="fas fa-arrow-right"></i>
+            </a>
+
+            <div class="empty-suggestions reveal">
+                <h3>Start Exploring by Category</h3>
+                <p>Find your perfect furniture from our premium collections</p>
+                <div class="cat-quick-links">
+                    <a href="products?cat=sofas" class="cat-qlink">🛋️ Sofas</a>
+                    <a href="products?cat=beds" class="cat-qlink">🛏️ Beds</a>
+                    <a href="products?cat=dining" class="cat-qlink">🍽️ Dining</a>
+                    <a href="products?cat=chairs" class="cat-qlink">🪑 Chairs</a>
+                    <a href="products?cat=wardrobes" class="cat-qlink">🚪 Wardrobes</a>
+                    <a href="products?cat=cabinets" class="cat-qlink">🗄️ Cabinets</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Wishlist Grid + Sidebar Layout -->
+        <div class="wishlist-layout" id="wishlistLayout" style="display:none">
+            <!-- Products Grid -->
+            <div>
+                <div id="wishlistGrid">
+                    <!-- Cards injected by JS -->
+                </div>
+            </div>
+
+            <!-- Summary Sidebar -->
+            <div class="wishlist-sidebar">
+                <!-- Summary Card -->
+                <div class="sidebar-card">
+                    <div class="sidebar-card-header">
+                        <i class="fas fa-receipt"></i>
+                        <h4>Wishlist Summary</h4>
+                    </div>
+                    <div class="sidebar-card-body">
+                        <div class="summary-row">
+                            <span class="label">Total Items</span>
+                            <span class="value" id="summaryItems">0 items</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="label">Original Price</span>
+                            <span class="value" id="summaryOriginal">₹0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="label">After Discount</span>
+                            <span class="value gold" id="summaryDiscounted">₹0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="label">Total Savings</span>
+                            <span class="value savings" id="summarySavings">₹0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span class="label">Delivery</span>
+                            <span class="value savings">FREE</span>
+                        </div>
+                        <button class="btn-cart-all" onclick="addAllToCart()">
+                            <i class="fas fa-bag-shopping"></i> Add All to Cart
+                        </button>
+                        <button class="btn-share-wishlist" onclick="openShareModal()">
+                            <i class="fas fa-share-alt"></i> Share Wishlist
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Promo Sidebar -->
+                <div class="promo-sidebar-card reveal">
+                    <span class="promo-tag-small">🔥 Limited Time</span>
+                    <h5>Monsoon Sale<br><span>Up to 40% Off</span></h5>
+                    <p>Grab your wishlist items now before they run out. Offer valid while stocks last.</p>
+                    <a href="offers.html" class="btn-promo-small">
+                        View All Offers <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Trust Badges -->
+                <div class="sidebar-card">
+                    <div class="sidebar-card-body" style="padding: 16px 20px;">
+                        <div style="display:flex; flex-direction:column; gap:12px;">
+                            <div style="display:flex; align-items:center; gap:12px;">
+                                <div
+                                    style="width:36px;height:36px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">
+                                    🚚</div>
+                                <div>
+                                    <p style="font-size:0.8rem;font-weight:700;color:var(--dark);">Free Delivery</p>
+                                    <p style="font-size:0.72rem;color:var(--text-muted);">On orders above ₹10,000</p>
+                                </div>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:12px;">
+                                <div
+                                    style="width:36px;height:36px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">
+                                    🛡️</div>
+                                <div>
+                                    <p style="font-size:0.8rem;font-weight:700;color:var(--dark);">5-Year Warranty</p>
+                                    <p style="font-size:0.72rem;color:var(--text-muted);">On all furniture pieces</p>
+                                </div>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:12px;">
+                                <div
+                                    style="width:36px;height:36px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">
+                                    🔧</div>
+                                <div>
+                                    <p style="font-size:0.8rem;font-weight:700;color:var(--dark);">Free Assembly</p>
+                                    <p style="font-size:0.72rem;color:var(--text-muted);">Professional installation</p>
+                                </div>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:12px;">
+                                <div
+                                    style="width:36px;height:36px;background:var(--cream);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0;">
+                                    ↩️</div>
+                                <div>
+                                    <p style="font-size:0.8rem;font-weight:700;color:var(--dark);">30-Day Returns</p>
+                                    <p style="font-size:0.72rem;color:var(--text-muted);">Hassle-free return policy</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RECOMMENDED SECTION ===== -->
+    <section class="recently-section" id="recommendSection">
+        <div class="section-header reveal">
+            <span class="section-tag">You Might Also Love</span>
+            <h2 class="section-title">Recommended <em>For You</em></h2>
+            <div class="divider-ornament"><i class="fas fa-diamond"></i></div>
+        </div>
+        <div class="rec-grid" id="recGrid">
+            <!-- Injected by JS -->
+        </div>
+    </section>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="newsletter-section">
+        <h2>Subscribe & <span>Save 10%</span></h2>
+        <p>Join 50,000+ design lovers. Get exclusive deals, new arrivals and interior inspiration delivered to your
+            inbox.</p>
+        <div class="newsletter-form">
+            <input type="email" id="newsletterEmail" placeholder="Enter your email address...">
+            <button onclick="subscribeNewsletter()">Subscribe Now</button>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>LUXE<span>CASA</span></h3>
+                <p class="tagline">WHERE LUXURY MEETS COMFORT</p>
+                <p>India's most trusted premium furniture brand, crafting beautiful spaces for over 15 years. Every
+                    piece tells a story of quality, craftsmanship and timeless design.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+                    <li><a href="products"><i class="fas fa-angle-right"></i> All Products</a></li>
+                    <li><a href="about"><i class="fas fa-angle-right"></i> About Us</a></li>
+                    <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                    <li><a href="offers.html"><i class="fas fa-angle-right"></i> Special Offers</a></li>
+                    <li><a href="faq.html"><i class="fas fa-angle-right"></i> FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="products?cat=sofas"><i class="fas fa-angle-right"></i> Sofas & Sectionals</a></li>
+                    <li><a href="products?cat=beds"><i class="fas fa-angle-right"></i> Beds & Bedroom</a></li>
+                    <li><a href="products?cat=dining"><i class="fas fa-angle-right"></i> Dining Tables</a></li>
+                    <li><a href="products?cat=chairs"><i class="fas fa-angle-right"></i> Chairs</a></li>
+                    <li><a href="products?cat=wardrobes"><i class="fas fa-angle-right"></i> Wardrobes</a></li>
+                    <li><a href="products?cat=cabinets"><i class="fas fa-angle-right"></i> Cabinets</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-map-marker-alt"></i> 42, Design District, Connaught Place, New Delhi – 110001</p>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> info@luxecasa.com</p>
+                <p><i class="fas fa-clock"></i> Mon–Sat: 10 AM – 8 PM</p>
+                <p><i class="fab fa-whatsapp"></i> WhatsApp: +91 98765 43210</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 <span>LuxeCasa Furniture</span>. All rights reserved. Designed with ❤️ in India.</p>
+            <div style="display:flex;gap:20px">
+                <a href="privacy.html" style="color:rgba(245,240,232,0.3);font-size:0.8rem;text-decoration:none">Privacy
+                    Policy</a>
+                <a href="terms.html" style="color:rgba(245,240,232,0.3);font-size:0.8rem;text-decoration:none">Terms of
+                    Service</a>
+                <a href="refund.html" style="color:rgba(245,240,232,0.3);font-size:0.8rem;text-decoration:none">Refund
+                    Policy</a>
+            </div>
+            <div class="footer-payment">
+                <span class="payment-icon">VISA</span>
+                <span class="payment-icon">MASTERCARD</span>
+                <span class="payment-icon">UPI</span>
+                <span class="payment-icon">RAZORPAY</span>
+                <span class="payment-icon">COD</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ===== CART SIDEBAR ===== -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart <span style="font-size:0.9rem;color:rgba(200,169,110,0.6)" id="cartCount">(0 items)</span>
+            </h3>
+            <button class="cart-close" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItemsList">
+            <div style="text-align:center;padding:60px 20px;color:var(--text-muted)">
+                <i class="fas fa-shopping-bag"
+                    style="font-size:3rem;color:var(--cream2);margin-bottom:15px;display:block"></i>
+                <p>Your cart is empty</p>
+                <a href="products" style="color:var(--gold);font-size:0.85rem">Start Shopping →</a>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display:none">
+            <div class="cart-total-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+            <div class="cart-total-row"><span>Delivery</span><span style="color:#52C07A">FREE</span></div>
+            <div class="cart-total-row"><span>GST (18%)</span><span id="cartGST">₹0</span></div>
+            <div class="cart-total-row final"><span>Total</span><span id="cartTotal">₹0</span></div>
+            <a href="checkout.html" class="btn-checkout">Proceed to Checkout <i class="fas fa-arrow-right"></i></a>
+            <button class="btn-continue-shop" onclick="toggleCart()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- ===== SHARE MODAL ===== -->
+    <div class="modal-overlay" id="shareModal" onclick="closeShareModal(event)">
+        <div class="modal-box">
+            <button class="modal-close" onclick="document.getElementById('shareModal').classList.remove('show')">
+                <i class="fas fa-times"></i>
+            </button>
+            <span class="modal-icon">💌</span>
+            <h3>Share Your <em style="color:var(--gold);font-style:italic">Wishlist</em></h3>
+            <p>Share your dream furniture collection with friends and family. They can see your saved picks and even
+                gift you something special!</p>
+            <div class="share-link-box">
+                <input type="text" id="shareLink" value="https://luxecasa.com/wishlist?ref=user123" readonly>
+                <button class="btn-copy" onclick="copyShareLink()"><i class="fas fa-copy"></i> Copy</button>
+            </div>
+            <div class="share-social-row">
+                <a href="#" class="share-social-btn" title="WhatsApp" style="color:#25D366"><i
+                        class="fab fa-whatsapp"></i></a>
+                <a href="#" class="share-social-btn" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="share-social-btn" title="Facebook" style="color:#1877F2"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="#" class="share-social-btn" title="Twitter / X"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="share-social-btn" title="Pinterest" style="color:#E60023"><i
+                        class="fab fa-pinterest"></i></a>
+                <a href="#" class="share-social-btn" title="Email"><i class="fas fa-envelope"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ============================================================
+        // PRODUCTS DATA (same as all other pages)
+        // ============================================================
+        const productsData = [
+            { id: 1, name: 'Majestic Velvet Sofa', cat: 'sofas', price: 89999, oldPrice: 124999, rating: 5, reviews: 247, badge: 'sale', material: 'Velvet', desc: 'Premium midnight velvet upholstery with solid teak wood frame. Feather-soft cushioning.', img: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=80' },
+            { id: 2, name: 'Royal Emperor Bed', cat: 'beds', price: 124999, oldPrice: 179999, rating: 5, reviews: 389, badge: 'bestseller', material: 'Sheesham Wood', desc: 'Handcrafted from premium sheesham wood with upholstered headboard.', img: 'https://images.unsplash.com/photo-1505693314120-0d443867891c?w=500&q=80' },
+            { id: 3, name: 'Marble Dining Table 8-Seater', cat: 'dining', price: 189999, oldPrice: 249999, rating: 4, reviews: 156, badge: 'new', material: 'Marble', desc: 'Italian Calacatta marble top with brushed stainless steel base.', img: 'https://images.unsplash.com/photo-1449247709967-d4461a6a6103?w=500&q=80' },
+            { id: 4, name: 'Luxe Wingback Chair', cat: 'chairs', price: 44999, oldPrice: 62999, rating: 5, reviews: 203, badge: 'sale', material: 'Leather', desc: 'Mid-century modern design in caramel leather with solid brass legs.', img: 'https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=500&q=80' },
+            { id: 5, name: 'L-Shape Corner Sofa', cat: 'sofas', price: 129999, oldPrice: 179999, rating: 4, reviews: 178, badge: 'hot', material: 'Fabric', desc: 'Spacious L-shape sectional sofa perfect for large living rooms.', img: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?w=500&q=80' },
+            { id: 6, name: 'Moroccan Wardrobe', cat: 'wardrobes', price: 74999, oldPrice: 99999, rating: 5, reviews: 92, badge: 'bestseller', material: 'Mango Wood', desc: 'Intricately carved wardrobe with 4 mirrored sliding doors.', img: 'https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=500&q=80' },
+            { id: 7, name: 'High Gloss Ceramic Cabinet', cat: 'cabinets', price: 54999, oldPrice: 74999, rating: 4, reviews: 67, badge: 'sale', material: 'Teak Wood', desc: 'Premium high-gloss ceramic finish cabinet with brass handles.', img: 'https://images.unsplash.com/photo-1631048498692-af6262577031?w=600' },
+            { id: 8, name: 'Nordic Coffee Table', cat: 'cabinets', price: 24999, oldPrice: 34999, rating: 4, reviews: 118, badge: 'new', material: 'Oak Wood', desc: 'Minimalist Scandinavian design with solid oak legs and glass top.', img: 'https://images.unsplash.com/photo-1567016432779-094069958ea5?w=500&q=80' },
+            { id: 9, name: 'Rattan Accent Chair', cat: 'chairs', price: 18999, oldPrice: 27999, rating: 4, reviews: 84, badge: 'hot', material: 'Rattan', desc: 'Boho-chic rattan accent chair with plush cushioned seat.', img: 'https://images.unsplash.com/photo-1567538096621-38d2284b23ff?w=500&q=80' },
+            { id: 10, name: 'Platform Storage Bed', cat: 'beds', price: 79999, oldPrice: 109999, rating: 5, reviews: 201, badge: 'bestseller', material: 'Walnut Wood', desc: 'Low-profile platform bed with integrated storage drawers.', img: 'https://images.unsplash.com/photo-1631049307264-da0ec9d70304?w=500&q=80' },
+            { id: 11, name: 'Extendable Dining Set 6-Seat', cat: 'dining', price: 94999, oldPrice: 134999, rating: 4, reviews: 73, badge: 'sale', material: 'Solid Wood', desc: 'Elegant extendable table that converts from 4 to 8 seating with ease.', img: 'https://images.unsplash.com/photo-1615876234886-fd9a39fda97f?w=500&q=80' },
+            { id: 12, name: 'Executive Office Desk', cat: 'cabinets', price: 49999, oldPrice: 69999, rating: 5, reviews: 145, badge: 'new', material: 'Wenge Wood', desc: 'Sophisticated executive desk with cable management and leather inlay.', img: 'https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=500&q=80' },
+        ];
+
+        // ============================================================
+        // GLOBAL STATE
+        // ============================================================
+        let cart = JSON.parse(localStorage.getItem('luxecasa_cart') || '[]');
+        let wishlist = JSON.parse(localStorage.getItem('luxecasa_wishlist') || '[]');
+        let currentView = 'grid';
+        let currentSort = 'default';
+
+        // ============================================================
+        // WISHLIST RENDER
+        // ============================================================
+        function getWishlistProducts() {
+            let items = productsData.filter(p => wishlist.includes(p.id));
+            const sort = document.getElementById('sortSelect')?.value || 'default';
+            if (sort === 'price-low') items.sort((a, b) => a.price - b.price);
+            else if (sort === 'price-high') items.sort((a, b) => b.price - a.price);
+            else if (sort === 'discount') items.sort((a, b) => (b.oldPrice - b.price) - (a.oldPrice - a.price));
+            else if (sort === 'rating') items.sort((a, b) => b.rating - a.rating);
+            else if (sort === 'name') items.sort((a, b) => a.name.localeCompare(b.name));
+            return items;
+        }
+
+        function renderWishlist() {
+            const items = getWishlistProducts();
+            const grid = document.getElementById('wishlistGrid');
+            const emptyEl = document.getElementById('wishlistEmpty');
+            const layoutEl = document.getElementById('wishlistLayout');
+            const actionsBar = document.getElementById('actionsBar');
+
+            // Update count
+            document.getElementById('wabCount').textContent = items.length;
+            document.getElementById('heroStatCount').textContent = items.length;
+
+            if (items.length === 0) {
+                emptyEl.classList.add('show');
+                layoutEl.style.display = 'none';
+                actionsBar.style.opacity = '0.5';
+                actionsBar.style.pointerEvents = 'none';
+                updateHeroStats([]);
+                return;
+            }
+
+            emptyEl.classList.remove('show');
+            layoutEl.style.display = 'grid';
+            actionsBar.style.opacity = '1';
+            actionsBar.style.pointerEvents = 'all';
+
+            const badgeMap = {
+                sale: '<span class="badge badge-sale">Sale</span>',
+                new: '<span class="badge badge-new">New</span>',
+                hot: '<span class="badge badge-hot">🔥 Hot</span>',
+                bestseller: '<span class="badge badge-bestseller">Bestseller</span>',
+                limited: '<span class="badge badge-limited">💎 Limited</span>'
+            };
+
+            grid.innerHTML = items.map((p, i) => {
+                const stars = '★'.repeat(p.rating) + '☆'.repeat(5 - p.rating);
+                const discount = Math.round((1 - p.price / p.oldPrice) * 100);
+                return `
+        <div class="product-card" style="animation-delay:${i * 60}ms" onclick="window.location.href='product-detail.html?id=${p.id}'">
+            <button class="btn-remove-wishlist" onclick="event.stopPropagation(); removeFromWishlist(${p.id})" title="Remove from Wishlist">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="product-img-wrap">
+                <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=60'">
+                <div class="product-badges">${badgeMap[p.badge] || ''}</div>
+                <div class="product-actions">
+                    <button class="action-btn wishlist-active" onclick="event.stopPropagation(); removeFromWishlist(${p.id})" title="Remove from Wishlist"><i class="fas fa-heart"></i></button>
+                    <button class="action-btn" onclick="event.stopPropagation(); window.location.href='product-detail.html?id=${p.id}'" title="Quick View"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn" onclick="event.stopPropagation(); addToCart(${p.id},'${p.name}',${p.price})" title="Add to Cart"><i class="fas fa-bag-shopping"></i></button>
+                </div>
+            </div>
+            <div class="product-body">
+                <div class="date-added"><i class="fas fa-heart"></i> Saved to wishlist</div>
+                <p class="product-cat">${p.cat.replace('-', ' ')}</p>
+                <h3 class="product-name">${p.name}</h3>
+                <p class="product-short-desc">${p.desc}</p>
+                <div class="product-meta">
+                    <div class="product-rating">
+                        <span style="color:var(--gold)">${stars}</span>
+                        <span style="font-size:0.75rem;color:var(--text-muted)">(${p.reviews})</span>
+                    </div>
+                    <span class="product-material">${p.material}</span>
+                </div>
+                <div class="product-footer">
+                    <div class="product-price">
+                        <span class="price-main">₹${p.price.toLocaleString('en-IN')}</span>
+                        <span class="price-old">₹${p.oldPrice.toLocaleString('en-IN')}</span>
+                        <span class="price-off">${discount}% OFF</span>
+                    </div>
+                    <button class="btn-cart" onclick="event.stopPropagation(); addToCart(${p.id},'${p.name}',${p.price})">
+                        <i class="fas fa-bag-shopping"></i> Add
+                    </button>
+                </div>
+            </div>
+        </div>`;
+            }).join('');
+
+            // Apply view
+            grid.className = currentView === 'list' ? 'list-view' : '';
+
+            // Trigger animations
+            setTimeout(() => {
+                document.querySelectorAll('.product-card').forEach((el, i) => {
+                    setTimeout(() => el.classList.add('visible'), i * 60);
+                });
+            }, 80);
+
+            updateSummary(items);
+            updateHeroStats(items);
+            renderRecommended(items);
+        }
+
+        // ============================================================
+        // HERO STATS
+        // ============================================================
+        function updateHeroStats(items) {
+            const totalVal = items.reduce((s, p) => s + p.price, 0);
+            const totalOld = items.reduce((s, p) => s + p.oldPrice, 0);
+            const savings = totalOld - totalVal;
+            const cats = new Set(items.map(p => p.cat)).size;
+
+            document.getElementById('heroStatCount').textContent = items.length;
+            document.getElementById('heroStatValue').textContent = '₹' + totalVal.toLocaleString('en-IN');
+            document.getElementById('heroStatSavings').textContent = '₹' + savings.toLocaleString('en-IN');
+            document.getElementById('heroStatCategories').textContent = cats;
+        }
+
+        // ============================================================
+        // SIDEBAR SUMMARY
+        // ============================================================
+        function updateSummary(items) {
+            const totalPrice = items.reduce((s, p) => s + p.price, 0);
+            const totalOld = items.reduce((s, p) => s + p.oldPrice, 0);
+            const savings = totalOld - totalPrice;
+
+            document.getElementById('summaryItems').textContent = items.length + ' item' + (items.length !== 1 ? 's' : '');
+            document.getElementById('summaryOriginal').textContent = '₹' + totalOld.toLocaleString('en-IN');
+            document.getElementById('summaryDiscounted').textContent = '₹' + totalPrice.toLocaleString('en-IN');
+            document.getElementById('summarySavings').textContent = '₹' + savings.toLocaleString('en-IN');
+        }
+
+        // ============================================================
+        // REMOVE FROM WISHLIST
+        // ============================================================
+        function removeFromWishlist(id) {
+            wishlist = wishlist.filter(wid => wid !== id);
+            localStorage.setItem('luxecasa_wishlist', JSON.stringify(wishlist));
+            showToast('Removed from wishlist');
+            renderWishlist();
+        }
+
+        // ============================================================
+        // CLEAR ALL WISHLIST
+        // ============================================================
+        function clearAllWishlist() {
+            if (wishlist.length === 0) { showToast('⚠ Wishlist is already empty'); return; }
+            if (!confirm('Are you sure you want to clear your entire wishlist?')) return;
+            wishlist = [];
+            localStorage.setItem('luxecasa_wishlist', JSON.stringify(wishlist));
+            showToast('🗑 Wishlist cleared');
+            renderWishlist();
+        }
+
+        // ============================================================
+        // ADD ALL TO CART
+        // ============================================================
+        function addAllToCart() {
+            const items = getWishlistProducts();
+            if (items.length === 0) { showToast('⚠ No items in wishlist'); return; }
+            items.forEach(p => addToCart(p.id, p.name, p.price, false));
+            showToast(`✓ ${items.length} item${items.length > 1 ? 's' : ''} added to cart!`);
+            setTimeout(() => toggleCart(), 600);
+        }
+
+        // ============================================================
+        // SORT
+        // ============================================================
+        function sortWishlist() {
+            renderWishlist();
+        }
+
+        // ============================================================
+        // VIEW TOGGLE (Grid / List)
+        // ============================================================
+        function setView(view) {
+            currentView = view;
+            const grid = document.getElementById('wishlistGrid');
+            const gridBtn = document.getElementById('gridViewBtn');
+            const listBtn = document.getElementById('listViewBtn');
+            if (view === 'list') {
+                grid.className = 'list-view';
+                listBtn.classList.add('active');
+                gridBtn.classList.remove('active');
+            } else {
+                grid.className = '';
+                gridBtn.classList.add('active');
+                listBtn.classList.remove('active');
+            }
+        }
+
+        // ============================================================
+        // RECOMMENDED PRODUCTS
+        // ============================================================
+        function renderRecommended(wishlistItems) {
+            const wishlistIds = wishlistItems.map(p => p.id);
+            const recProducts = productsData.filter(p => !wishlistIds.includes(p.id)).slice(0, 4);
+            const recGrid = document.getElementById('recGrid');
+            const section = document.getElementById('recommendSection');
+
+            if (recProducts.length === 0) { section.style.display = 'none'; return; }
+            section.style.display = 'block';
+
+            const badgeMap = {
+                sale: '<span class="badge badge-sale">Sale</span>',
+                new: '<span class="badge badge-new">New</span>',
+                hot: '<span class="badge badge-hot">🔥 Hot</span>',
+                bestseller: '<span class="badge badge-bestseller">Bestseller</span>'
+            };
+
+            recGrid.innerHTML = recProducts.map((p, i) => {
+                const stars = '★'.repeat(p.rating) + '☆'.repeat(5 - p.rating);
+                const discount = Math.round((1 - p.price / p.oldPrice) * 100);
+                const isInWishlist = wishlist.includes(p.id);
+                return `
+        <div class="product-card reveal" style="animation-delay:${i * 80}ms" onclick="window.location.href='product-detail.html?id=${p.id}'">
+            <div class="product-img-wrap">
+                <img src="${p.img}" alt="${p.name}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&q=60'">
+                <div class="product-badges">${badgeMap[p.badge] || ''}</div>
+                <div class="product-actions">
+                    <button class="action-btn ${isInWishlist ? 'wishlist-active' : ''}" onclick="event.stopPropagation(); toggleWishlistBtn(${p.id}, this)" title="Wishlist"><i class="fas fa-heart"></i></button>
+                    <button class="action-btn" onclick="event.stopPropagation(); window.location.href='product-detail.html?id=${p.id}'" title="Quick View"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn" onclick="event.stopPropagation(); addToCart(${p.id},'${p.name}',${p.price})" title="Add to Cart"><i class="fas fa-bag-shopping"></i></button>
+                </div>
+            </div>
+            <div class="product-body">
+                <p class="product-cat">${p.cat.replace('-', ' ')}</p>
+                <h3 class="product-name">${p.name}</h3>
+                <p class="product-short-desc">${p.desc}</p>
+                <div class="product-meta">
+                    <div class="product-rating">
+                        <span style="color:var(--gold)">${stars}</span>
+                        <span style="font-size:0.75rem;color:var(--text-muted)">(${p.reviews})</span>
+                    </div>
+                    <span class="product-material">${p.material}</span>
+                </div>
+                <div class="product-footer">
+                    <div class="product-price">
+                        <span class="price-main">₹${p.price.toLocaleString('en-IN')}</span>
+                        <span class="price-old">₹${p.oldPrice.toLocaleString('en-IN')}</span>
+                        <span class="price-off">${discount}% OFF</span>
+                    </div>
+                    <button class="btn-cart" onclick="event.stopPropagation(); addToCart(${p.id},'${p.name}',${p.price})">
+                        <i class="fas fa-bag-shopping"></i> Add
+                    </button>
+                </div>
+            </div>
+        </div>`;
+            }).join('');
+
+            // Trigger reveal for recommended cards
+            setTimeout(() => {
+                recGrid.querySelectorAll('.product-card.reveal').forEach((el, i) => {
+                    setTimeout(() => el.classList.add('visible'), i * 80);
+                });
+            }, 100);
+        }
+
+        // ============================================================
+        // WISHLIST TOGGLE (for recommended section)
+        // ============================================================
+        function toggleWishlistBtn(id, btn) {
+            const idx = wishlist.indexOf(id);
+            if (idx === -1) {
+                wishlist.push(id);
+                btn.classList.add('wishlist-active');
+                showToast('❤ Added to wishlist');
+            } else {
+                wishlist.splice(idx, 1);
+                btn.classList.remove('wishlist-active');
+                showToast('Removed from wishlist');
+            }
+            localStorage.setItem('luxecasa_wishlist', JSON.stringify(wishlist));
+            renderWishlist();
+        }
+
+        // ============================================================
+        // CART SYSTEM
+        // ============================================================
+        function addToCart(id, name, price, doToast = true) {
+            const existing = cart.find(item => item.id === id);
+            if (existing) { existing.qty++; }
+            else { cart.push({ id, name, price, qty: 1, img: productsData.find(p => p.id === id)?.img || '' }); }
+            saveCart();
+            updateCartUI();
+            if (doToast) showToast(`✓ ${name} added to cart!`);
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveCart();
+            updateCartUI();
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) removeFromCart(id);
+                else { saveCart(); updateCartUI(); }
+            }
+        }
+
+        function saveCart() {
+            localStorage.setItem('luxecasa_cart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            const total = cart.reduce((sum, i) => sum + i.qty, 0);
+            const subtotal = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+            const gst = Math.round(subtotal * 0.18);
+            const grandTotal = subtotal + gst;
+
+            document.getElementById('cartBadge').textContent = total;
+            document.getElementById('cartCount').textContent = `(${total} item${total !== 1 ? 's' : ''})`;
+
+            const listEl = document.getElementById('cartItemsList');
+            const footerEl = document.getElementById('cartFooter');
+
+            if (cart.length === 0) {
+                listEl.innerHTML = `<div style="text-align:center;padding:60px 20px;color:var(--text-muted)">
+            <i class="fas fa-shopping-bag" style="font-size:3rem;color:var(--cream2);margin-bottom:15px;display:block"></i>
+            <p>Your cart is empty</p>
+            <a href="products" style="color:var(--gold);font-size:0.85rem">Start Shopping →</a>
+        </div>`;
+                footerEl.style.display = 'none';
+            } else {
+                listEl.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <div class="cart-item-img">
+                <img src="${item.img}" alt="${item.name}" onerror="this.src='https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=80&q=60'">
+            </div>
+            <div class="cart-item-info">
+                <h4 class="cart-item-name">${item.name}</h4>
+                <p class="cart-item-price">₹${item.price.toLocaleString('en-IN')}</p>
+                <div class="cart-item-qty">
+                    <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+                    <span class="qty-num">${item.qty}</span>
+                    <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                </div>
+                <button class="cart-item-remove" onclick="removeFromCart(${item.id})">Remove</button>
+            </div>
+        </div>`).join('');
+
+                document.getElementById('cartSubtotal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+                document.getElementById('cartGST').textContent = `₹${gst.toLocaleString('en-IN')}`;
+                document.getElementById('cartTotal').textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
+                footerEl.style.display = 'block';
+            }
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('open');
+            document.getElementById('cartOverlay').classList.toggle('show');
+        }
+
+        // ============================================================
+        // SHARE MODAL
+        // ============================================================
+        function openShareModal() {
+            if (wishlist.length === 0) { showToast('⚠ Add items to wishlist first'); return; }
+            document.getElementById('shareModal').classList.add('show');
+        }
+
+        function closeShareModal(e) {
+            if (e.target === document.getElementById('shareModal')) {
+                document.getElementById('shareModal').classList.remove('show');
+            }
+        }
+
+        function copyShareLink() {
+            const input = document.getElementById('shareLink');
+            input.select();
+            document.execCommand('copy');
+            showToast('🔗 Link copied to clipboard!');
+        }
+
+        // ============================================================
+        // NAVBAR
+        // ============================================================
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            const backTop = document.getElementById('backTop');
+            if (window.scrollY > 80) { nav.classList.add('scrolled'); backTop.classList.add('show'); }
+            else { nav.classList.remove('scrolled'); backTop.classList.remove('show'); }
+        });
+
+        function toggleSearch() {
+            const q = prompt('Search for furniture...');
+            if (q) window.location.href = `products?search=${encodeURIComponent(q)}`;
+        }
+
+        function toggleMobileMenu() {
+            const links = document.querySelector('.nav-links');
+            if (links.style.display === 'flex') {
+                links.style.display = 'none';
+            } else {
+                links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:80px;left:0;right:0;background:#fff;padding:20px;box-shadow:0 20px 40px rgba(0,0,0,0.1);z-index:999;gap:15px;';
+            }
+        }
+
+        // ============================================================
+        // NEWSLETTER
+        // ============================================================
+        function subscribeNewsletter() {
+            const email = document.getElementById('newsletterEmail').value.trim();
+            if (!email || !/\S+@\S+\.\S+/.test(email)) {
+                showToast('⚠ Please enter a valid email address.');
+                return;
+            }
+            showToast('🎉 Subscribed! Check your email for 10% discount code.');
+            document.getElementById('newsletterEmail').value = '';
+        }
+
+        // ============================================================
+        // TOAST
+        // ============================================================
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerHTML = msg;
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ============================================================
+        // REVEAL ANIMATION
+        // ============================================================
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // ============================================================
+        // SESSION CHECK
+        // ============================================================
+        function checkSession() {
+            const user = JSON.parse(localStorage.getItem('luxecasa_user') || 'null');
+            const btn = document.getElementById('navLoginBtn');
+            if (user && btn) {
+                btn.innerHTML = `<i class="fas fa-user-circle"></i> ${user.full_name?.split(' ')[0] || 'Account'}`;
+                btn.href = 'profile.html';
+            }
+        }
+
+        // ============================================================
+        // DEMO: Pre-load some wishlist items if empty (for showcase)
+        // ============================================================
+        function loadDemoWishlist() {
+            // Only pre-load if wishlist is completely empty AND user hasn't visited before
+            if (wishlist.length === 0 && !localStorage.getItem('luxecasa_wishlist_visited')) {
+                wishlist = [1, 2, 4, 6]; // Pre-selected demo items
+                localStorage.setItem('luxecasa_wishlist', JSON.stringify(wishlist));
+                localStorage.setItem('luxecasa_wishlist_visited', '1');
+            }
+        }
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        loadDemoWishlist();
+        renderWishlist();
+        updateCartUI();
+        checkSession();
+    </script>
+</body>
+
+</html>

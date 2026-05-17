@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeCasa – Product Detail</title>
+    <meta name="description" content="Premium furniture detail – LuxeCasa India's finest furniture store.">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/<%= pageCss %>">
+</head>
+
+<body>
+
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <span class="top-bar-scroll">
+            🚚 <span class="gold">FREE DELIVERY</span> on orders above ₹10,000 &nbsp;|&nbsp;
+            ✨ <span class="gold">SUMMER SALE</span> — Up to 40% OFF &nbsp;|&nbsp;
+            🛡 <span class="gold">5-YEAR WARRANTY</span> on all furniture &nbsp;|&nbsp;
+            📞 Expert home visit available &nbsp;|&nbsp;
+        </span>
+    </div>
+
+    <!-- NAVBAR -->
+    <nav id="mainNav">
+        <a class="nav-logo" href="index.html">
+            <div class="logo-icon">🏠</div>
+            <h1>LUXE<span>CASA</span></h1>
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li class="nav-dropdown">
+                <a href="products" class="active">Products <i class="fas fa-chevron-down"
+                        style="font-size:0.65rem;margin-left:3px"></i></a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="products?cat=sofas"><span class="cat-icon">🛋</span><span
+                            class="cat-name">Sofas</span></a>
+                    <a class="dropdown-item" href="products?cat=beds"><span class="cat-icon">🛏</span><span
+                            class="cat-name">Beds</span></a>
+                    <a class="dropdown-item" href="products?cat=chairs"><span class="cat-icon">🪑</span><span
+                            class="cat-name">Chairs</span></a>
+                    <a class="dropdown-item" href="products?cat=dining"><span class="cat-icon">🍽</span><span
+                            class="cat-name">Dining</span></a>
+                    <a class="dropdown-item" href="products?cat=wardrobes"><span class="cat-icon">🚪</span><span
+                            class="cat-name">Wardrobes</span></a>
+                    <a class="dropdown-item" href="products?cat=coffee-tables"><span class="cat-icon">☕</span><span
+                            class="cat-name">Coffee Tables</span></a>
+                    <a class="dropdown-item" href="products?cat=cabinets"><span class="cat-icon">🗄</span><span
+                            class="cat-name">Cabinets</span></a>
+                </div>
+            </li>
+            <li><a href="offers.html">Offers</a></li>
+            <li><a href="about">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button class="nav-icon-btn" onclick="toggleSearch()" title="Search"><i class="fas fa-search"></i></button>
+            <a class="nav-icon-btn" href="wishlist.html" title="Wishlist"><i class="fas fa-heart"></i></a>
+            <button class="nav-icon-btn" onclick="toggleCart()" title="Cart">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+            <a href="login.html" class="btn-nav-login" id="navLoginBtn"><i class="fas fa-user"></i> Login</a>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb-bar">
+        <div class="breadcrumb">
+            <a href="index.html"><i class="fas fa-home"></i> Home</a><span>/</span>
+            <a href="/products" id="breadcrumbCategory">
+                <%= product.cat.replace('-', ' ' ) %>
+            </a> <span>/</span>
+            <span class="current" id="breadcrumbProduct">
+                <%= product.name %>
+            </span>
+        </div>
+    </div>
+    <!-- MAIN PRODUCT DETAIL -->
+    <div class="pd-section">
+        <div class="pd-gallery">
+            <div class="pd-main-img-wrap">
+                <img id="pdMainImg" src="<%= product.productImage %>" alt="<%= product.name %>">
+                <% if (product.badge) { %>
+                    <div class="pd-badge-overlay"><span class="badge badge-<%= product.badge %>">
+                            <%= product.badge %>
+                        </span></div>
+                    <% } %>
+                        <% if (product.oldPrice && product.oldPrice> product.price) { %>
+                            <div class="pd-discount-pill">
+                                <%= Math.round((1 - product.price / product.oldPrice) * 100) %>% OFF
+                            </div>
+                            <% } %>
+            </div>
+        </div>
+
+        <!-- RIGHT: INFO -->
+        <div class="pd-info">
+            <p class="pd-category" id="pdCategory">CATEGORY</p>
+            <h1 class="pd-name">
+                <%= product.name %>
+            </h1>
+
+            <!-- Rating -->
+            <div class="pd-rating-row">
+                <%= '★' .repeat(product.rating) %>
+                    <%= '☆' .repeat(5 - product.rating) %>
+                        <span class="pd-rating-num">
+                            <%= Number(product.rating).toFixed(1) %>
+                        </span>
+                        <span class="pd-review-count" id="pdReviewCount">(<%= product.reviews %>
+                                <%= product.reviews===1 ? 'review' : 'reviews' %>)</span>
+                        <span class="pd-verified"><i class="fas fa-check-circle"></i> Verified Brand</span>
+            </div>
+
+            <!-- Price -->
+            <div class="pd-price-box">
+                <span class="pd-price-main">₹<%= product.price.toLocaleString('en-IN') %></span>
+                <% if (product.oldPrice && product.oldPrice> product.price) { %>
+                    <span class="pd-price-old">₹<%= product.oldPrice.toLocaleString('en-IN') %></span>
+                    <span class="pd-price-save">
+                        <%= Math.round((1 - product.price / product.oldPrice) * 100) %>% OFF
+                    </span>
+                    <% } %>
+            </div>
+
+            <div class="pd-qty-row">
+                <div class="pd-qty-box">
+                    <button class="pd-qty-btn" onclick="changeDetailQty(-1)">−</button>
+                    <input class="pd-qty-num" type="number" id="pdQty" value="1" min="1" max="5" readonly>
+                    <button class="pd-qty-btn" onclick="changeDetailQty(1)">+</button>
+                </div>
+
+                <span class="pd-stock">
+                    <i class="fas fa-check-circle" style="margin-right:5px"></i>
+                    In Stock
+                </span>
+            </div>
+
+            <div class="pd-cta-row">
+                <button class="pd-btn-cart"
+                    onclick="addToCart(<%= product.id %>, '<%= product.name %>', <%= product.price %>, '<%= product.productImage %>')"
+                    <i class="fas fa-shopping-bag"></i> Add to Cart
+                </button>
+
+                <button class="pd-icon-btn" id="pdWishlistBtn" onclick="toggleDetailWishlist()">
+                    <i class="fas fa-heart"></i> Wishlist
+                </button>
+            </div>
+            <!-- Size Variants --><!--
+            <div class="pd-option-title">Size: <em id="pdSizeLabel">Select</em></div>
+            <div class="pd-sizes" id="pdSizes">
+                <button class="pd-size-btn active" onclick="selectSize(this)">Standard</button>
+                <button class="pd-size-btn" onclick="selectSize(this)">Large +₹8,000</button>
+                <button class="pd-size-btn" onclick="selectSize(this)">Extra Large +₹16,000</button>
+                <button class="pd-size-btn unavailable" onclick="">Custom (Out of stock)</button>
+            </div>-->
+
+            <!-- Quantity --><!--
+            <div class="pd-qty-row">
+                <div class="pd-qty-box">
+                    <button class="pd-qty-btn" onclick="changeDetailQty(-1)">−</button>
+                    <input class="pd-qty-num" type="number" id="pdQty" value="1" min="1" max="5" readonly>
+                    <button class="pd-qty-btn" onclick="changeDetailQty(1)">+</button>
+                </div>
+                <span class="pd-stock" id="pdStock"><i class="fas fa-check-circle" style="margin-right:5px"></i> In
+                    Stock (12 units left)</span>
+            </div>-->
+
+            <!-- CTA Buttons --><!--
+            <div class="pd-cta-row">
+                <button class="pd-btn-cart" id="addToCartBtn"><i class="fas fa-shopping-bag"></i> Add to Cart</button>
+                <button class="pd-icon-btn" id="pdWishlistBtn" onclick="toggleDetailWishlist()">
+                    <i class="fas fa-heart"></i> Wishlist
+                </button>
+            </div>-->
+
+            <!-- Icon Row --><!--
+            <div class="pd-icon-row"></div>
+
+                <button class="pd-icon-btn" onclick="showToast('📐 Compare feature coming soon!')">
+                    <i class="fas fa-sliders-h"></i> Compare
+                </button>
+                <button class="pd-icon-btn" onclick="showToast('📱 Share link copied!')">
+                    <i class="fas fa-share-alt"></i> Share
+                </button>-->
+
+
+            <!-- Trust Badges -->
+            <div class="pd-trust-grid">
+                <div class="pd-trust-item">
+                    <span class="pd-trust-icon"><i class="fas fa-truck"></i></span>
+                    <div class="pd-trust-text">
+                        <h4>Free Delivery</h4>
+                        <p>Above ₹10,000 orders</p>
+                    </div>
+                </div>
+                <div class="pd-trust-item">
+                    <span class="pd-trust-icon"><i class="fas fa-shield-alt"></i></span>
+                    <div class="pd-trust-text">
+                        <h4>5-Year Warranty</h4>
+                        <p>Full structural coverage</p>
+                    </div>
+                </div>
+                <div class="pd-trust-item">
+                    <span class="pd-trust-icon"><i class="fas fa-undo"></i></span>
+                    <div class="pd-trust-text">
+                        <h4>30-Day Returns</h4>
+                        <p>Hassle-free return policy</p>
+                    </div>
+                </div>
+                <div class="pd-trust-item">
+                    <span class="pd-trust-icon"><i class="fas fa-tools"></i></span>
+                    <div class="pd-trust-text">
+                        <h4>Free Assembly</h4>
+                        <p>Professional home installation</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Highlights -->
+            <div class="pd-highlights">
+                <h4>Key Highlights</h4>
+                <ul id="pdHighlights">
+                    <li><i class="fas fa-gem"></i> Premium handcrafted quality with artisan finishing</li>
+                    <li><i class="fas fa-leaf"></i> Sustainably sourced, eco-certified materials</li>
+                    <li><i class="fas fa-box"></i> Ready-to-assemble with all tools included</li>
+                    <li><i class="fas fa-certificate"></i> ISO certified manufacturing standards</li>
+                </ul>
+            </div>
+
+            <!-- Share -->
+            <div class="pd-share-row">
+                <span class="pd-share-label">Share:</span>
+                <a href="#" class="pd-share-btn" onclick="showToast('📘 Shared on Facebook!')"><i
+                        class="fab fa-facebook-f"></i></a>
+                <a href="#" class="pd-share-btn" onclick="showToast('📸 Shared on Instagram!')"><i
+                        class="fab fa-instagram"></i></a>
+                <a href="#" class="pd-share-btn" onclick="showToast('🐦 Shared on Twitter!')"><i
+                        class="fab fa-twitter"></i></a>
+                <a href="#" class="pd-share-btn" onclick="showToast('💚 Shared on WhatsApp!')"><i
+                        class="fab fa-whatsapp"></i></a>
+                <a href="#" class="pd-share-btn" onclick="showToast('📌 Saved to Pinterest!')"><i
+                        class="fab fa-pinterest-p"></i></a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- TABS SECTION -->
+    <div class="pd-tabs-section">
+        <div class="pd-tabs-header">
+            <button class="pd-tab-btn active" onclick="switchTab('description', this)">Description</button>
+            <button class="pd-tab-btn" onclick="switchTab('specs', this)">Specifications</button>
+            <button class="pd-tab-btn" onclick="switchTab('delivery', this)">Delivery & Returns</button>
+            <button class="pd-tab-btn" onclick="switchTab('reviews', this)">Reviews <span id="reviewCountTab"
+                    style="color:var(--gold-dark);font-weight:700"></span></button>
+        </div>
+
+        <!-- DESCRIPTION TAB -->
+        <div class="pd-tab-panel active" id="tab-description">
+            <div class="pd-desc-grid">
+                <div class="pd-desc-img">
+                    <img id="pdDescImg" src="<%= product.productImage %>" alt="Product Detail">
+                </div>
+                <div class="pd-desc-text">
+                    <h2>Crafted for <em>Living</em><br>Designed to Last</h2>
+                    <p id="pdDescLong">Every piece in our collection is meticulously crafted by master artisans using
+                        time-honoured techniques. We believe that furniture is not just functional — it is a statement
+                        of who you are.</p>
+                    <p>The natural grain, the weight of the material, the warmth it brings to a room — these are the
+                        details that transform a house into a home. Explore this piece and discover why LuxeCasa is
+                        India's most trusted premium furniture brand.</p>
+                    <h4
+                        style="font-family:'Playfair Display',serif;font-size:0.95rem;color:var(--dark);margin:20px 0 12px;letter-spacing:1px">
+                        CARE INSTRUCTIONS</h4>
+                    <ul class="pd-care-list">
+                        <li><i class="fas fa-spray-can"></i> Wipe with a soft, dry cloth regularly</li>
+                        <li><i class="fas fa-tint-slash"></i> Avoid exposure to direct moisture or sunlight</li>
+                        <li><i class="fas fa-temperature-low"></i> Keep away from extreme heat sources</li>
+                        <li><i class="fas fa-ban"></i> Do not use abrasive cleaners</li>
+                        <li><i class="fas fa-shield-alt"></i> Use furniture polish every 3 months for wood</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPECS TAB -->
+        <div class="pd-tab-panel" id="tab-specs">
+            <div class="pd-specs-grid">
+                <div class="pd-spec-card reveal">
+                    <h4>DIMENSIONS</h4>
+                    <table class="pd-spec-table">
+                        <tr>
+                            <td>Width</td>
+                            <td id="specWidth">—</td>
+                        </tr>
+                        <tr>
+                            <td>Depth</td>
+                            <td id="specDepth">—</td>
+                        </tr>
+                        <tr>
+                            <td>Height</td>
+                            <td id="specHeight">—</td>
+                        </tr>
+                        <tr>
+                            <td>Seat Height</td>
+                            <td id="specSeatH">—</td>
+                        </tr>
+                        <tr>
+                            <td>Weight</td>
+                            <td id="specWeight">—</td>
+                        </tr>
+                        <tr>
+                            <td>Max Load</td>
+                            <td id="specLoad">—</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="pd-spec-card reveal">
+                    <h4>MATERIALS & FINISH</h4>
+                    <table class="pd-spec-table">
+                        <tr>
+                            <td>Primary Material</td>
+                            <td id="specMaterial">—</td>
+                        </tr>
+                        <tr>
+                            <td>Frame</td>
+                            <td id="specFrame">—</td>
+                        </tr>
+                        <tr>
+                            <td>Filling</td>
+                            <td id="specFilling">—</td>
+                        </tr>
+                        <tr>
+                            <td>Surface Finish</td>
+                            <td id="specFinish">—</td>
+                        </tr>
+                        <tr>
+                            <td>Hardware</td>
+                            <td id="specHardware">—</td>
+                        </tr>
+                        <tr>
+                            <td>Legs/Base</td>
+                            <td id="specBase">—</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="pd-spec-card reveal">
+                    <h4>PRODUCT DETAILS</h4>
+                    <table class="pd-spec-table">
+                        <tr>
+                            <td>Brand</td>
+                            <td>LuxeCasa</td>
+                        </tr>
+                        <tr>
+                            <td>SKU</td>
+                            <td id="specSKU">—</td>
+                        </tr>
+                        <tr>
+                            <td>Warranty</td>
+                            <td>5 Years (Structural)</td>
+                        </tr>
+                        <tr>
+                            <td>Country of Origin</td>
+                            <td>India</td>
+                        </tr>
+                        <tr>
+                            <td>Assembly Required</td>
+                            <td>Minimal (tools included)</td>
+                        </tr>
+                        <tr>
+                            <td>Packaging</td>
+                            <td>Eco-friendly carton box</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="pd-spec-card reveal">
+                    <h4>CERTIFICATIONS</h4>
+                    <table class="pd-spec-table">
+                        <tr>
+                            <td>Quality Standard</td>
+                            <td>ISO 9001:2015</td>
+                        </tr>
+                        <tr>
+                            <td>Wood Certification</td>
+                            <td>FSC Certified</td>
+                        </tr>
+                        <tr>
+                            <td>Finish</td>
+                            <td>Non-toxic, Child Safe</td>
+                        </tr>
+                        <tr>
+                            <td>Fire Resistance</td>
+                            <td>BS 5852 Compliant</td>
+                        </tr>
+                        <tr>
+                            <td>Environment</td>
+                            <td>GREENGUARD Gold</td>
+                        </tr>
+                        <tr>
+                            <td>Foam Density</td>
+                            <td id="specFoam">—</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- DELIVERY TAB -->
+        <div class="pd-tab-panel" id="tab-delivery">
+            <div class="pd-delivery-wrap">
+                <div class="pd-delivery-card reveal">
+                    <div class="pd-delivery-icon"><i class="fas fa-truck"></i></div>
+                    <h4>Free Delivery</h4>
+                    <p>Free standard delivery on all orders above ₹10,000. Expected delivery within 5–8 working days
+                        across India.</p>
+                </div>
+                <div class="pd-delivery-card reveal">
+                    <div class="pd-delivery-icon"><i class="fas fa-tools"></i></div>
+                    <h4>Free Assembly</h4>
+                    <p>Our expert team will deliver and assemble your furniture in your home at no extra cost. Just tell
+                        us your preferred time slot.</p>
+                </div>
+                <div class="pd-delivery-card reveal">
+                    <div class="pd-delivery-icon"><i class="fas fa-undo-alt"></i></div>
+                    <h4>30-Day Returns</h4>
+                    <p>Not happy with your purchase? Return within 30 days for a full refund. We'll arrange pickup from
+                        your doorstep.</p>
+                </div>
+            </div>
+            <div class="pd-pincode-checker reveal">
+                <label><i class="fas fa-map-marker-alt" style="color:var(--gold);margin-right:6px"></i> Check Delivery
+                    Date</label>
+                <input type="text" class="pd-pincode-input" id="pincodeInput" placeholder="Enter your pincode..."
+                    maxlength="6">
+                <button class="pd-pincode-btn" onclick="checkPincode()">Check</button>
+                <span class="pd-pincode-result" id="pincodeResult"><i class="fas fa-check-circle"></i> Delivered in 5–7
+                    days. Free!</span>
+            </div>
+        </div>
+
+        <!-- REVIEWS TAB -->
+        <div class="pd-tab-panel" id="tab-reviews">
+            <div class="pd-reviews-summary">
+                <div class="pd-reviews-score">
+                    <div class="pd-score-big" id="reviewScoreBig">
+                        <%= Number(product.rating).toFixed(1) %>
+                    </div>
+                    <div class="pd-score-stars">
+                        <%= '★' .repeat(product.rating) %>
+                            <%= '☆' .repeat(5 - product.rating) %>
+                    </div>
+                    <div class="pd-score-label">Overall Rating</div>
+                    <div class="pd-score-total" id="reviewScoreTotal">Based on <%= product.reviews %>
+                            <%= product.reviews===1 ? 'review' : 'reviews' %>
+                    </div>
+                </div>
+                <div class="pd-rating-bars">
+                    <div class="pd-bar-row">
+                        <span class="pd-bar-label">5★</span>
+                        <div class="pd-bar-track">
+                            <div class="pd-bar-fill" style="width:78%"></div>
+                        </div>
+                        <span class="pd-bar-count">193</span>
+                    </div>
+                    <div class="pd-bar-row">
+                        <span class="pd-bar-label">4★</span>
+                        <div class="pd-bar-track">
+                            <div class="pd-bar-fill" style="width:14%"></div>
+                        </div>
+                        <span class="pd-bar-count">35</span>
+                    </div>
+                    <div class="pd-bar-row">
+                        <span class="pd-bar-label">3★</span>
+                        <div class="pd-bar-track">
+                            <div class="pd-bar-fill" style="width:5%"></div>
+                        </div>
+                        <span class="pd-bar-count">12</span>
+                    </div>
+                    <div class="pd-bar-row">
+                        <span class="pd-bar-label">2★</span>
+                        <div class="pd-bar-track">
+                            <div class="pd-bar-fill" style="width:2%"></div>
+                        </div>
+                        <span class="pd-bar-count">5</span>
+                    </div>
+                    <div class="pd-bar-row">
+                        <span class="pd-bar-label">1★</span>
+                        <div class="pd-bar-track">
+                            <div class="pd-bar-fill" style="width:1%"></div>
+                        </div>
+                        <span class="pd-bar-count">2</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pd-review-cards" id="reviewCards"></div>
+
+            <div class="pd-review-cards">
+                <div class="testimonial-card reveal">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">Ordered the Royal Emperor Bed and the Majestic Sofa together. The
+                        quality is
+                        absolutely stunning — better than anything I've seen in luxury showrooms at triple the price.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">RS</div>
+                        <div>
+                            <p class="author-name">Rahul Sharma</p>
+                            <p class="author-title">Interior Designer, Mumbai</p>
+                            <p class="author-verified">✓ Verified Purchase</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal" style="animation-delay:0.2s">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">The assembly team was professional, punctual and set up everything
+                        perfectly. My living room looks like it's straight out of a magazine. LuxeCasa is truly premium.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">PV</div>
+                        <div>
+                            <p class="author-name">Priya Verma</p>
+                            <p class="author-title">Homemaker, Delhi</p>
+                            <p class="author-verified">✓ Verified Purchase</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-card reveal" style="animation-delay:0.4s">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">Bought the marble dining table for our restaurant. Customers keep asking
+                        where we got it. LuxeCasa doesn't just sell furniture — they sell experiences.</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AK</div>
+                        <div>
+                            <p class="author-name">Arjun Kapoor</p>
+                            <p class="author-title">Restaurant Owner, Bangalore</p>
+                            <p class="author-verified">✓ Verified Purchase</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            </section>
+        </div>
+    </div>
+
+    <section class="related-section">
+        <h2 class="section-title" style="text-align:center; margin-bottom:40px;">You May Also <em>Like</em></h2>
+        <div class="related-grid">
+            <% if (relatedProducts && relatedProducts.length> 0) { %>
+                <% relatedProducts.forEach(function(rp, i) { %>
+                    <div class="product-card" style="animation-delay:<%= i * 50 %>ms"
+                        onclick="window.location.href='/product-detail?id=<%= rp.id %>'">
+                        <div class="product-img-wrap">
+                            <img src="<%= rp.productImage %>" alt="<%= rp.name %>" loading="lazy">
+                            <% if (rp.badge) { %>
+                                <div class="product-badges"><span class="badge badge-<%= rp.badge %>">
+                                        <%= rp.badge %>
+                                    </span></div>
+                                <% } %>
+                                    <div class="product-actions">
+                                        <button class="action-btn"
+                                            onclick="event.stopPropagation(); addToCart(<%= rp.id %>, '<%= rp.name %>', <%= rp.price %>)"
+                                            title="Add to Cart"><i class="fas fa-bag-shopping"></i></button>
+                                    </div>
+                        </div>
+                        <div class="product-body">
+                            <p class="product-cat">
+                                <%= rp.cat.replace('-', ' ' ) %>
+                            </p>
+                            <h3 class="product-name">
+                                <%= rp.name %>
+                            </h3>
+                            <div class="product-meta">
+                                <div class="product-rating">
+                                    <span style="color:var(--gold)">
+                                        <%= '★' .repeat(rp.rating) %>
+                                            <%= '☆' .repeat(5 - rp.rating) %>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="product-footer">
+                                <div class="product-price">
+                                    <span class="price-main">₹<%= rp.price.toLocaleString('en-IN') %></span>
+                                    <% if (rp.oldPrice> rp.price) { %>
+                                        <span class="price-old">₹<%= rp.oldPrice.toLocaleString('en-IN') %></span>
+                                        <% } %>
+                                </div>
+                                <button class="btn-cart"
+                                    onclick="event.stopPropagation(); addToCart(<%= rp.id %>, '<%= rp.name %>', <%= rp.price %>)">
+                                    <i class="fas fa-bag-shopping"></i> Add
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <% }); %>
+                        <% } else { %>
+                            <p style="text-align:center; grid-column: 1/-1;">No related products found.</p>
+                            <% } %>
+        </div>
+    </section>
+    <!-- RELATED PRODUCTS --><!--
+    <div class="related-section" id="relatedSection">
+        <div class="related-header">
+            <span class="section-tag">YOU MAY ALSO LIKE</span>
+            <h2>Related <em>Products</em></h2>
+        </div>
+        <div class="related-grid" id="relatedGrid"></div>
+    </div>-->
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>LUXE<span>CASA</span></h3>
+                <p class="tagline">WHERE LUXURY MEETS COMFORT</p>
+                <p>India's most trusted premium furniture brand, crafting beautiful spaces for over 15 years.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="products?cat=sofas"><i class="fas fa-angle-right"></i> Sofas</a></li>
+                    <li><a href="products?cat=beds"><i class="fas fa-angle-right"></i> Beds</a></li>
+                    <li><a href="products?cat=chairs"><i class="fas fa-angle-right"></i> Chairs</a></li>
+                    <li><a href="products?cat=dining"><i class="fas fa-angle-right"></i> Dining</a></li>
+                    <li><a href="products?cat=wardrobes"><i class="fas fa-angle-right"></i> Wardrobes</a></li>
+                    <li><a href="products?cat=cabinets"><i class="fas fa-angle-right"></i> Cabinets</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+                    <li><a href="about"><i class="fas fa-angle-right"></i> About Us</a></li>
+                    <li><a href="offers.html"><i class="fas fa-angle-right"></i> Offers</a></li>
+                    <li><a href="faq.html"><i class="fas fa-angle-right"></i> FAQ</a></li>
+                    <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-phone"></i> +91 98765 43210</a></li>
+                    <li><a href="#"><i class="fas fa-envelope"></i> hello@luxecasa.in</a></li>
+                    <li><a href="#"><i class="fas fa-map-marker-alt"></i> Mumbai, India</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 <span>LuxeCasa</span>. All rights reserved. Crafted with ❤ in India.</p>
+            <p>Made with premium quality & <span>luxury</span> in mind.</p>
+        </div>
+    </footer>
+
+    <!-- CART SIDEBAR -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3><i class="fas fa-shopping-bag" style="color:var(--gold);margin-right:10px"></i> My Cart <span
+                    id="cartCount" style="font-size:0.85rem;color:var(--text-muted);font-family:'DM Sans'">(0
+                    items)</span></h3>
+            <button class="cart-close-btn" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items-list" id="cartItemsList"></div>
+        <div class="cart-footer" id="cartFooter" style="display:none">
+            <div class="cart-totals">
+                <div class="cart-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+                <div class="cart-row"><span>GST (18%)</span><span id="cartGST">₹0</span></div>
+                <div class="cart-row"><span>Delivery</span><span style="color:#52C07A">FREE</span></div>
+                <div class="cart-total-row"><span>Total</span><span id="cartTotal">₹0</span></div>
+            </div>
+            <button class="btn-checkout"
+                onclick="showToast('🎉 Redirecting to checkout...'); setTimeout(() => { window.location.href = '/checkout'; }, 1000);">
+                Proceed to Checkout <i class="fas fa-arrow-right" style="margin-left:8px"></i>
+            </button>
+        </div>
+    </div>
+    <!-- STICKY BAR -->
+    <div class="sticky-bar" id="stickyBar">
+        <div class="sticky-bar-info">
+            <div class="sticky-bar-name" id="stickyName">
+                <%= product.name %>
+            </div>
+            <div class="sticky-bar-price" id="stickyPrice">₹<%= product.price.toLocaleString('en-IN') %>
+            </div>
+        </div>
+        <div class="sticky-bar-btns">
+            <button class="sticky-btn-cart" id="stickyCartBtn"><i class="fas fa-bag-shopping"
+                    style="margin-right:6px"></i> Add to Cart</button>
+        </div>
+    </div>
+
+    <div class="toast" id="toast"></div>
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"><i
+            class="fas fa-chevron-up"></i></button>
+
+    <!-- ================================================================
+     JAVASCRIPT
+    ================================================================ -->
+    <script>
+
+        const allProducts = JSON.parse('<%- JSON.stringify(product) %>');
+        // ============================================================
+        // PRODUCT SPEC TABLES (by category)
+        // ============================================================
+        const catSpecs = {
+            sofas: { width: '210 cm', depth: '95 cm', height: '86 cm', seatH: '44 cm', weight: '62 kg', load: '320 kg', frame: 'Solid Teak Hardwood', filling: 'High-density foam + spring', finish: 'Hand-rubbed satin oil', hardware: 'Solid brass', base: 'Tapered solid wood legs', foam: '40D / 35D seat+back' },
+            beds: { width: '193 cm (King)', depth: '213 cm', height: '130 cm', seatH: '38 cm', weight: '78 kg', load: '400 kg', frame: 'Solid Sheesham Wood', filling: 'N/A', finish: 'Hand-rubbed teak oil', hardware: 'Antique bronze pulls', base: 'Solid wood slat base (included)', foam: 'N/A' },
+            chairs: { width: '78 cm', depth: '83 cm', height: '98 cm', seatH: '46 cm', weight: '18 kg', load: '150 kg', frame: 'Solid hardwood / Steel', filling: 'High-density foam 45D', finish: 'Matte lacquer / Leather wax', hardware: 'Solid brass', base: 'Brushed brass cone legs', foam: '45D seat' },
+            dining: { width: '240 cm (8-seater)', depth: '100 cm', height: '76 cm', seatH: '—', weight: '85 kg', load: '500 kg', frame: 'Brushed stainless steel', filling: 'N/A', finish: 'Natural marble seal', hardware: 'Stainless steel', base: 'Pedestal / trestle', foam: 'N/A' },
+            wardrobes: { width: '240 cm', depth: '58 cm', height: '210 cm', seatH: '—', weight: '120 kg', load: 'N/A', frame: 'Solid Mango Wood', filling: 'N/A', finish: 'Hand-carved matte', hardware: 'Iron / brass pulls', base: 'Flat panel base', foam: 'N/A' },
+            'coffee-tables': { width: '120 cm', depth: '70 cm', height: '40 cm', seatH: '—', weight: '28 kg', load: '80 kg', frame: 'Brushed brass / Steel', filling: 'N/A', finish: 'Polished marble seal', hardware: 'Brushed gold', base: 'Gold metal frame', foam: 'N/A' },
+            cabinets: { width: '200 cm', depth: '38 cm', height: '50 cm', seatH: '—', weight: '40 kg', load: '120 kg', frame: 'Engineered MDF', filling: 'N/A', finish: 'Walnut veneer matte', hardware: 'Soft-close hinges', base: 'Floating wall mount', foam: 'N/A' },
+        };
+
+        // ============================================================
+        // REVIEWS DATA
+        // ============================================================
+        const reviewsData = [
+            { name: 'Priya Sharma', city: 'Mumbai', rating: 5, date: 'March 2025', title: 'Absolutely Stunning!', text: 'I was blown away when this arrived. The quality is even better than the photos suggest. The craftsmanship is exceptional — every detail speaks luxury. My living room looks straight out of a design magazine now!', helpful: 34 },
+            { name: 'Rahul Mehta', city: 'Delhi', rating: 5, date: 'February 2025', title: 'Worth Every Rupee', text: 'Initially hesitated at the price, but after receiving it, I have zero regrets. The material is premium, the finish is flawless, and the assembly team was professional and quick. Highly recommend LuxeCasa!', helpful: 28 },
+            { name: 'Ananya Iyer', city: 'Bangalore', rating: 4, date: 'January 2025', title: 'Beautiful but Delivery Took Time', text: 'The product itself is gorgeous and exactly as described. Lost one star only because delivery took 10 days instead of the promised 7. But the quality made up for the wait completely.', helpful: 19 },
+            { name: 'Vikram Singh', city: 'Pune', rating: 5, date: 'December 2024', title: 'Premium Experience End to End', text: 'From ordering to delivery to assembly — LuxeCasa delivered on every promise. The furniture is solid, luxurious, and makes every guest ask where I bought it. Outstanding brand!', helpful: 41 },
+            { name: 'Meera Nair', city: 'Chennai', rating: 5, date: 'November 2024', title: 'My Dream Furniture!', text: 'I had been looking for something like this for years. The texture, the colour, the way it sits in the room — perfection. Customer support was also very responsive when I had a query. 5 stars without hesitation!', helpful: 23 },
+        ];
+
+        // ============================================================
+        // STATE
+        // ============================================================
+        let cart = JSON.parse(localStorage.getItem('luxecasa_cart') || '[]');
+        let wishlist = JSON.parse(localStorage.getItem('luxecasa_wishlist') || '[]');
+        //currentProduct = allProducts;
+        // Assign currentProduct from EJS data
+        let currentProduct = JSON.parse('<%- JSON.stringify(product) %>');
+        let detailQty = 1;
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        function init() {
+            // The server (EJS) already rendered the main product and related products!
+            // We only need to trigger the global UI elements now.
+
+            if (typeof updateCartUI === 'function') updateCartUI();
+            if (typeof checkSession === 'function') checkSession();
+            if (typeof initReveal === 'function') initReveal();
+            populateSpecs();
+        }
+
+        // Run init when the page loads
+        document.addEventListener('DOMContentLoaded', init);
+
+        // ============================================================
+        // QUANTITY
+        // ============================================================
+        function changeDetailQty(delta) {
+            detailQty = Math.max(1, Math.min(10, detailQty + delta));
+            document.getElementById('pdQty').value = detailQty;
+        }
+
+        // ============================================================
+        // CART
+        // ============================================================
+        function addToCart(id, name, price, img) {
+            const existing = cart.find(i => i.id === id);
+            if (existing) existing.qty += detailQty;
+            else cart.push({ id, name, price, qty: detailQty, img: img || '' });
+            saveCart();
+            updateCartUI();
+            showToast(`✓ ${name} added to cart!`);
+            toggleCart();
+        }
+
+        function removeFromCart(id) { cart = cart.filter(i => i.id !== id); saveCart(); updateCartUI(); }
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (item) { item.qty += delta; if (item.qty <= 0) removeFromCart(id); else { saveCart(); updateCartUI(); } }
+        }
+        function saveCart() { localStorage.setItem('luxecasa_cart', JSON.stringify(cart)); }
+
+        function updateCartUI() {
+            const total = cart.reduce((s, i) => s + i.qty, 0);
+            const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+            const gst = Math.round(subtotal * 0.18);
+            const grand = subtotal + gst;
+            document.getElementById('cartBadge').textContent = total;
+            document.getElementById('cartCount').textContent = `(${total} item${total !== 1 ? 's' : ''})`;
+            const listEl = document.getElementById('cartItemsList');
+            const footerEl = document.getElementById('cartFooter');
+            if (cart.length === 0) {
+                listEl.innerHTML = `<div style="text-align:center;padding:60px 20px;color:var(--text-muted)"><i class="fas fa-shopping-bag" style="font-size:3rem;color:var(--cream2);margin-bottom:15px;display:block"></i><p>Your cart is empty</p></div>`;
+                footerEl.style.display = 'none';
+            } else {
+                listEl.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <div class="cart-item-img"><img src="${item.img}" alt="${item.name}" onerror="this.src='/image/photo-1555041469-a586c61ea9bc.2.jpeg'"></div>
+            <div class="cart-item-info">
+                <h4 class="cart-item-name">${item.name}</h4>
+                <p class="cart-item-price">₹${item.price.toLocaleString('en-IN')}</p>
+                <div class="cart-item-qty">
+                    <button class="qty-btn" onclick="changeQty(${item.id},-1)">−</button>
+                    <span class="qty-num">${item.qty}</span>
+                    <button class="qty-btn" onclick="changeQty(${item.id},1)">+</button>
+                </div>
+                <button class="cart-item-remove" onclick="removeFromCart(${item.id})">Remove</button>
+            </div>
+        </div>`).join('');
+                document.getElementById('cartSubtotal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+                document.getElementById('cartGST').textContent = `₹${gst.toLocaleString('en-IN')}`;
+                document.getElementById('cartTotal').textContent = `₹${grand.toLocaleString('en-IN')}`;
+                footerEl.style.display = 'block';
+            }
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('open');
+            document.getElementById('cartOverlay').classList.toggle('show');
+        }
+
+        // ============================================================
+        // WISHLIST
+        // ============================================================
+        function toggleDetailWishlist() {
+            if (!currentProduct) return;
+            const id = currentProduct.id;
+            const btn = document.getElementById('pdWishlistBtn');
+            const idx = wishlist.indexOf(id);
+            if (idx === -1) {
+                wishlist.push(id);
+                btn.classList.add('wishlist-active');
+                showToast('❤ Added to wishlist');
+            } else {
+                wishlist.splice(idx, 1);
+                btn.classList.remove('wishlist-active');
+                showToast('Removed from wishlist');
+            }
+            localStorage.setItem('luxecasa_wishlist', JSON.stringify(wishlist));
+        }
+
+        function toggleWishlist(id, btn) {
+            const idx = wishlist.indexOf(id);
+            if (idx === -1) { wishlist.push(id); btn.classList.add('wishlist-active'); showToast('❤ Added to wishlist'); }
+            else { wishlist.splice(idx, 1); btn.classList.remove('wishlist-active'); showToast('Removed from wishlist'); }
+            localStorage.setItem('luxecasa_wishlist', JSON.stringify(wishlist));
+        }
+
+        // ============================================================
+        // TABS
+        // ============================================================
+        function switchTab(name, btn) {
+            document.querySelectorAll('.pd-tab-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.pd-tab-panel').forEach(p => p.classList.remove('active'));
+            btn.classList.add('active');
+            document.getElementById('tab-' + name).classList.add('active');
+        }
+
+        // ============================================================
+        // PINCODE
+        // ============================================================
+        function checkPincode() {
+            const val = document.getElementById('pincodeInput').value.trim();
+            const res = document.getElementById('pincodeResult');
+            if (val.length !== 6 || isNaN(val)) { showToast('⚠ Please enter a valid 6-digit pincode'); return; }
+            res.style.display = 'flex';
+            showToast(`📦 Delivery available to ${val}!`);
+        }
+
+        // ============================================================
+        // STICKY BAR on scroll
+        // ============================================================
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            const bar = document.getElementById('stickyBar');
+            const backTop = document.getElementById('backTop');
+            if (window.scrollY > 80) { nav.classList.add('scrolled'); backTop.classList.add('show'); }
+            else { nav.classList.remove('scrolled'); backTop.classList.remove('show'); }
+
+            // Show sticky bar after scrolling past the CTA buttons
+            const ctaRow = document.querySelector('.pd-cta-row');
+            if (ctaRow) {
+                const rect = ctaRow.getBoundingClientRect();
+                if (rect.bottom < 0) bar.classList.add('show');
+                else bar.classList.remove('show');
+            }
+        });
+
+        // ============================================================
+        // NAVBAR
+        // ============================================================
+        function toggleSearch() {
+            const q = prompt('Search for furniture...');
+            if (q) window.location.href = `products?search=${encodeURIComponent(q)}`;
+        }
+
+        function toggleMobileMenu() {
+            const links = document.getElementById('navLinks');
+            if (links.style.display === 'flex') {
+                links.style.display = 'none';
+            } else {
+                links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:80px;left:0;right:0;background:#fff;padding:20px;box-shadow:0 20px 40px rgba(0,0,0,0.1);z-index:999;gap:15px;';
+            }
+        }
+
+        // ============================================================
+        // TOAST
+        // ============================================================
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerHTML = msg;
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ============================================================
+        // REVEAL ANIMATION
+        // ============================================================
+        function initReveal() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) entry.target.classList.add('visible');
+                });
+            }, { threshold: 0.1 });
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        }
+
+        // ============================================================
+        // SESSION
+        // ============================================================
+        function checkSession() {
+            const user = JSON.parse(localStorage.getItem('luxecasa_user') || 'null');
+            const btn = document.getElementById('navLoginBtn');
+            if (user && btn) {
+                btn.innerHTML = `<i class="fas fa-user-circle"></i> ${user.full_name?.split(' ')[0] || 'Account'}`;
+                btn.href = 'profile.html';
+            }
+        }
+        // Fill Specs Table based on product category
+        function populateSpecs() {
+            if (!currentProduct) return;
+            const cat = currentProduct.cat; // e.g., 'sofas'
+            const specs = catSpecs[cat];
+            if (!specs) return; // just in case
+
+            document.getElementById('specWidth').textContent = specs.width;
+            document.getElementById('specDepth').textContent = specs.depth;
+            document.getElementById('specHeight').textContent = specs.height;
+            document.getElementById('specSeatH').textContent = specs.seatH;
+            document.getElementById('specWeight').textContent = specs.weight;
+            document.getElementById('specLoad').textContent = specs.load;
+            document.getElementById('specFrame').textContent = specs.frame;
+            document.getElementById('specFilling').textContent = specs.filling;
+            document.getElementById('specFinish').textContent = specs.finish;
+            document.getElementById('specHardware').textContent = specs.hardware;
+            document.getElementById('specBase').textContent = specs.base;
+            document.getElementById('specFoam').textContent = specs.foam;
+        }
+
+        // call it after setting currentProduct
+
+        // ============================================================
+        // RUN
+        // ============================================================
+        init();
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeCasa Admin</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        :root {
+            --bg: #0e0e0f;
+            --surface: #161618;
+            --card: #1c1c1f;
+            --border: #2a2a2e;
+            --gold: #c8a96e;
+            --gold-dim: #a88750;
+            --text: #e8e8e6;
+            --muted: #7a7a78;
+            --danger: #e05252;
+            --success: #5eb87a;
+            --warn: #e0a652;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        /* ── LAYOUT ── */
+        .shell { display: flex; min-height: 100vh; }
+
+        /* ── SIDEBAR ── */
+        .sidebar {
+            width: 230px;
+            background: var(--surface);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 0; left: 0;
+            height: 100vh;
+            z-index: 100;
+        }
+        .sidebar-logo {
+            padding: 28px 24px 20px;
+            border-bottom: 1px solid var(--border);
+        }
+        .sidebar-logo span {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            letter-spacing: .5px;
+        }
+        .sidebar-logo small {
+            display: block;
+            font-size: .68rem;
+            color: var(--muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+        .nav { padding: 16px 0; flex: 1; overflow-y: auto; }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 11px 24px;
+            font-size: .875rem;
+            color: var(--muted);
+            cursor: pointer;
+            transition: all .18s;
+            border-left: 3px solid transparent;
+        }
+        .nav-item:hover { color: var(--text); background: rgba(200,169,110,.06); }
+        .nav-item.active {
+            color: var(--gold);
+            background: rgba(200,169,110,.10);
+            border-left-color: var(--gold);
+        }
+        .nav-item svg { flex-shrink: 0; }
+        .sidebar-foot {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+            font-size: .75rem;
+            color: var(--muted);
+        }
+
+        /* ── MAIN ── */
+        .main { margin-left: 230px; flex: 1; padding: 36px 40px; }
+
+        /* ── TOPBAR ── */
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 36px;
+        }
+        .topbar h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.65rem;
+            color: var(--text);
+        }
+        .topbar-right { display: flex; align-items: center; gap: 14px; }
+        .admin-badge {
+            background: rgba(200,169,110,.15);
+            color: var(--gold);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: .78rem;
+            font-weight: 500;
+            letter-spacing: .5px;
+        }
+
+        /* ── SECTIONS ── */
+        .section { display: none; }
+        .section.active { display: block; }
+
+        /* ── STAT GRID ── */
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 18px;
+            margin-bottom: 32px;
+        }
+        .stat-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 22px 24px;
+        }
+        .stat-label {
+            font-size: .72rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--muted);
+            margin-bottom: 10px;
+        }
+        .stat-val {
+            font-size: 1.85rem;
+            font-weight: 600;
+            color: var(--text);
+            line-height: 1;
+        }
+        .stat-val.gold { color: var(--gold); }
+        .stat-sub {
+            font-size: .78rem;
+            color: var(--muted);
+            margin-top: 6px;
+        }
+
+        /* ── TABLE ── */
+        .table-wrap {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+        .table-head {
+            padding: 18px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .table-head h3 {
+            font-size: .95rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        .badge-count {
+            background: rgba(200,169,110,.15);
+            color: var(--gold);
+            border-radius: 20px;
+            padding: 3px 10px;
+            font-size: .75rem;
+        }
+        table { width: 100%; border-collapse: collapse; }
+        th {
+            text-align: left;
+            padding: 12px 20px;
+            font-size: .7rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--muted);
+            border-bottom: 1px solid var(--border);
+            background: rgba(255,255,255,.02);
+        }
+        td {
+            padding: 13px 20px;
+            font-size: .85rem;
+            color: var(--text);
+            border-bottom: 1px solid rgba(255,255,255,.04);
+        }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(255,255,255,.02); }
+
+        /* ── STATUS PILLS ── */
+        .pill {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: .73rem;
+            font-weight: 500;
+        }
+        .pill-pending { background: rgba(224,166,82,.15); color: var(--warn); }
+        .pill-delivered { background: rgba(94,184,122,.15); color: var(--success); }
+        .pill-cancelled { background: rgba(224,82,82,.15); color: var(--danger); }
+        .pill-processing { background: rgba(100,150,255,.15); color: #82a8f5; }
+
+        /* ── FORM CARD ── */
+        .form-card {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px 32px;
+            max-width: 680px;
+            margin-bottom: 32px;
+        }
+        .form-card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 22px;
+            color: var(--text);
+        }
+        .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-grid.one { grid-template-columns: 1fr; }
+        .field { display: flex; flex-direction: column; gap: 7px; }
+        .field.span2 { grid-column: span 2; }
+        label { font-size: .75rem; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; }
+        input, select, textarea {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            font-family: 'DM Sans', sans-serif;
+            font-size: .875rem;
+            padding: 10px 14px;
+            transition: border-color .18s;
+            outline: none;
+            width: 100%;
+        }
+        input:focus, select:focus, textarea:focus { border-color: var(--gold-dim); }
+        textarea { resize: vertical; min-height: 80px; }
+        select option { background: var(--card); }
+
+        .file-label {
+            background: var(--surface);
+            border: 1px dashed var(--border);
+            border-radius: 8px;
+            padding: 18px;
+            text-align: center;
+            cursor: pointer;
+            color: var(--muted);
+            font-size: .84rem;
+            transition: border-color .18s;
+        }
+        .file-label:hover { border-color: var(--gold-dim); color: var(--text); }
+        #fileInput, #offerFileInput { display: none; }
+
+        #imagePreview {
+            margin-top: 10px;
+            max-height: 140px;
+            border-radius: 8px;
+            display: none;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        /* ── BUTTONS ── */
+        .btn {
+            padding: 10px 24px;
+            border-radius: 8px;
+            border: none;
+            font-family: 'DM Sans', sans-serif;
+            font-size: .875rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all .18s;
+        }
+        .btn-gold {
+            background: var(--gold);
+            color: #1a1208;
+        }
+        .btn-gold:hover { background: #d4b87a; }
+        .btn-danger {
+            background: rgba(224,82,82,.15);
+            color: var(--danger);
+            border: 1px solid rgba(224,82,82,.25);
+            padding: 5px 12px;
+            font-size: .78rem;
+        }
+        .btn-danger:hover { background: rgba(224,82,82,.3); }
+        .btn-sm {
+            padding: 5px 12px;
+            font-size: .78rem;
+        }
+
+        /* ── TOAST ── */
+        #toast {
+            position: fixed;
+            bottom: 28px;
+            right: 28px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            color: var(--text);
+            padding: 14px 22px;
+            border-radius: 10px;
+            font-size: .875rem;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: all .3s;
+            z-index: 999;
+            max-width: 320px;
+        }
+        #toast.show { opacity: 1; transform: translateY(0); }
+        #toast.success { border-left: 3px solid var(--success); }
+        #toast.error { border-left: 3px solid var(--danger); }
+
+        /* ── PRODUCT IMAGE THUMB ── */
+        .thumb {
+            width: 42px;
+            height: 42px;
+            border-radius: 6px;
+            object-fit: cover;
+            background: var(--border);
+        }
+
+        /* ── OFFERS TABLE ── */
+        .unlimited-badge {
+            background: rgba(94,184,122,.12);
+            color: var(--success);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: .73rem;
+        }
+        .limited-badge {
+            background: rgba(224,166,82,.12);
+            color: var(--warn);
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: .73rem;
+        }
+
+        /* ── PROGRESS BAR ── */
+        .progress-wrap { display: flex; align-items: center; gap: 10px; }
+        .progress-bar {
+            height: 6px;
+            background: var(--border);
+            border-radius: 3px;
+            flex: 1;
+            overflow: hidden;
+        }
+        .progress-fill {
+            height: 100%;
+            background: var(--gold);
+            border-radius: 3px;
+        }
+
+        /* ── SALE STATS ── */
+        .product-row td:first-child { display: flex; align-items: center; gap: 12px; }
+
+        /* ── RESPONSIVE ── */
+        @media(max-width: 900px) {
+            .sidebar { width: 60px; }
+            .sidebar-logo span, .sidebar-logo small, .nav-item span { display: none; }
+            .main { margin-left: 60px; padding: 20px 16px; }
+        }
+    </style>
+</head>
+<body>
+<div class="shell">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <span>LuxeCasa</span>
+            <small>Admin Panel</small>
+        </div>
+        <nav class="nav">
+            <div class="nav-item active" onclick="go('overview')">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+                <span>Overview</span>
+            </div>
+            <div class="nav-item" onclick="go('users')">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                <span>Users</span>
+            </div>
+            <div class="nav-item" onclick="go('orders')">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+                <span>Orders</span>
+            </div>
+            <div class="nav-item" onclick="go('products')">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 3H8L2 7h20z"/></svg>
+                <span>Add Product</span>
+            </div>
+            <div class="nav-item" onclick="go('offers')">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+                <span>Offers</span>
+            </div>
+            <div class="nav-item" onclick="go('enquiries')">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                <span>Enquiries</span>
+            </div>
+            <div class="nav-item" onclick="go('sales')">
+                <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                <span>Sales Stats</span>
+            </div>
+        </nav>
+        <div class="sidebar-foot">admin@gmail.com</div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+        <div class="topbar">
+            <h1 id="pageTitle">Overview</h1>
+            <div class="topbar-right">
+                <span class="admin-badge">Admin</span>
+                <button class="btn btn-gold btn-sm" onclick="logout()">Logout</button>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════ OVERVIEW ═══════════════════════════════ -->
+        <div id="sec-overview" class="section active">
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Users</div>
+                    <div class="stat-val gold"><%= stats.totalUsers %></div>
+                    <div class="stat-sub">Registered accounts</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Orders</div>
+                    <div class="stat-val"><%= stats.totalOrders %></div>
+                    <div class="stat-sub">All time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Pending Orders</div>
+                    <div class="stat-val"><%= stats.pendingOrders %></div>
+                    <div class="stat-sub">Awaiting action</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Revenue</div>
+                    <div class="stat-val gold">₹<%= Number(stats.totalRevenue || 0).toLocaleString('en-IN') %></div>
+                    <div class="stat-sub">Final amount collected</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Products</div>
+                    <div class="stat-val"><%= stats.totalProducts %></div>
+                    <div class="stat-sub">In catalog</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Active Offers</div>
+                    <div class="stat-val"><%= stats.activeOffers %></div>
+                    <div class="stat-sub">Live promo codes</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Enquiries</div>
+                    <div class="stat-val"><%= stats.totalEnquiries %></div>
+                    <div class="stat-sub">Contact messages</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Newsletter</div>
+                    <div class="stat-val"><%= stats.newsletterCount %></div>
+                    <div class="stat-sub">Subscribers</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════ USERS ═══════════════════════════════ -->
+        <div id="sec-users" class="section">
+            <div class="table-wrap">
+                <div class="table-head">
+                    <h3>Registered Users</h3>
+                    <span class="badge-count"><%= users.length %> users</span>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Joined</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach((u, i) => { %>
+                        <tr>
+                            <td><%= i + 1 %></td>
+                            <td><%= u.name %></td>
+                            <td><%= u.email %></td>
+                            <td><%= new Date(u.created_at).toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'}) %></td>
+                        </tr>
+                        <% }) %>
+                        <% if (users.length === 0) { %>
+                        <tr><td colspan="4" style="text-align:center;color:var(--muted);padding:32px">No users registered yet.</td></tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════ ORDERS ═══════════════════════════════ -->
+        <div id="sec-orders" class="section">
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Orders</div>
+                    <div class="stat-val"><%= orders.length %></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Pending</div>
+                    <div class="stat-val"><%= orders.filter(o => o.status === 'Pending').length %></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Revenue</div>
+                    <div class="stat-val gold">₹<%= orders.reduce((s,o)=>s+Number(o.final_amount||0),0).toLocaleString('en-IN') %></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Total Discount Given</div>
+                    <div class="stat-val">₹<%= orders.reduce((s,o)=>s+Number(o.discount_amount||0),0).toLocaleString('en-IN') %></div>
+                </div>
+            </div>
+            <div class="table-wrap">
+                <div class="table-head"><h3>All Orders</h3></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Order ID</th>
+                            <th>User ID</th>
+                            <th>Subtotal</th>
+                            <th>Discount</th>
+                            <th>Final Amount</th>
+                            <th>Promo</th>
+                            <th>Payment</th>
+                            <th>Status</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% orders.forEach(o => { %>
+                        <tr>
+                            <td>#<%= o.id %></td>
+                            <td><%= o.user_id %></td>
+                            <td>₹<%= Number(o.total_amount).toLocaleString('en-IN') %></td>
+                            <td>₹<%= Number(o.discount_amount).toLocaleString('en-IN') %></td>
+                            <td>₹<%= Number(o.final_amount).toLocaleString('en-IN') %></td>
+                            <td><%= o.offer_code || '—' %></td>
+                            <td><%= o.payment_method %></td>
+                            <td>
+                                <span class="pill pill-<%= o.status.toLowerCase() %>"><%= o.status %></span>
+                            </td>
+                            <td><%= new Date(o.created_at).toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'}) %></td>
+                        </tr>
+                        <% }) %>
+                        <% if (orders.length === 0) { %>
+                        <tr><td colspan="9" style="text-align:center;color:var(--muted);padding:32px">No orders yet.</td></tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════ ADD PRODUCT ═══════════════════════════════ -->
+        <div id="sec-products" class="section">
+            <div class="form-card">
+                <h3>Add New Product</h3>
+                <div class="form-grid">
+                    <div class="field span2">
+                        <label>Product Name</label>
+                        <input type="text" id="p-name" placeholder="e.g. Royal Velvet Sofa">
+                    </div>
+                    <div class="field">
+                        <label>Category</label>
+                        <select id="p-cat">
+                            <option value="sofas">Sofas</option>
+                            <option value="beds">Beds</option>
+                            <option value="chairs">Chairs</option>
+                            <option value="dining">Dining</option>
+                            <option value="wardrobes">Wardrobes</option>
+                            <option value="coffee-tables">Coffee Tables</option>
+                            <option value="cabinets">Cabinets</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Badge</label>
+                        <select id="p-badge">
+                            <option value="">None</option>
+                            <option value="bestseller">Bestseller</option>
+                            <option value="new">New</option>
+                            <option value="hot">Hot</option>
+                            <option value="sale">Sale</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Price (₹)</label>
+                        <input type="number" id="p-price" placeholder="e.g. 49999">
+                    </div>
+                    <div class="field">
+                        <label>Old Price (₹)</label>
+                        <input type="number" id="p-oldprice" placeholder="e.g. 69999">
+                    </div>
+                    <div class="field">
+                        <label>Rating (1–5)</label>
+                        <input type="number" id="p-rating" min="1" max="5" value="5">
+                    </div>
+                    <div class="field">
+                        <label>Reviews Count</label>
+                        <input type="number" id="p-reviews" value="0">
+                    </div>
+                    <div class="field span2">
+                        <label>Description</label>
+                        <textarea id="p-desc" placeholder="Short product description..."></textarea>
+                    </div>
+                    <div class="field span2">
+                        <label>Product Image</label>
+                        <label class="file-label" for="fileInput">
+                            📎 Click to upload image (JPG / PNG / WEBP)
+                        </label>
+                        <input type="file" id="fileInput" accept="image/*">
+                        <img id="imagePreview" alt="Preview">
+                    </div>
+                </div>
+                <div style="margin-top:22px">
+                    <button class="btn btn-gold" onclick="addProduct()">Add Product</button>
+                </div>
+            </div>
+
+            <!-- Products Table -->
+            <div class="table-wrap">
+                <div class="table-head">
+                    <h3>All Products</h3>
+                    <span class="badge-count"><%= catalogProducts.length %> products</span>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Category</th>
+                            <th>Price</th>
+                            <th>Old Price</th>
+                            <th>Badge</th>
+                            <th>Type</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                        <% catalogProducts.forEach(p => { %>
+                        <tr id="product-row-<%= p.id %>">
+                            <td><%= p.id %></td>
+                            <td>
+                                <% if (p.productImage) { %>
+                                    <img src="<%= p.productImage %>" class="thumb" onerror="this.style.display='none'">
+                                <% } else { %>
+                                    <span style="color:var(--muted);font-size:.75rem">No img</span>
+                                <% } %>
+                            </td>
+                            <td style="max-width:180px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><%= p.name %></td>
+                            <td><%= p.cat %></td>
+                            <td>₹<%= Number(p.price).toLocaleString('en-IN') %></td>
+                            <td><%= p.oldPrice ? '₹' + Number(p.oldPrice).toLocaleString('en-IN') : '—' %></td>
+                            <td><%= p.badge || '—' %></td>
+                            <td>
+                                <% if (p.isSystemProduct) { %>
+                                    <span class="unlimited-badge">System</span>
+                                <% } else { %>
+                                    <span class="limited-badge">Custom</span>
+                                <% } %>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="deleteProduct(<%= p.id %>, '<%= p.isSystemProduct %>')">Delete</button>
+                            </td>
+                        </tr>
+                        <% }) %>
+                        <% if (catalogProducts.length === 0) { %>
+                        <tr><td colspan="9" style="text-align:center;color:var(--muted);padding:32px">No products yet.</td></tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════ OFFERS ═══════════════════════════════ -->
+        <div id="sec-offers" class="section">
+            <div class="form-card">
+                <h3>Create New Offer</h3>
+                <div class="form-grid">
+                    <div class="field span2">
+                        <label>Offer Title</label>
+                        <input type="text" id="o-title" placeholder="e.g. Summer Sale 20% Off">
+                    </div>
+                    <div class="field">
+                        <label>Discount Code</label>
+                        <input type="text" id="o-code" placeholder="e.g. SUMMER20" style="text-transform:uppercase">
+                    </div>
+                    <div class="field">
+                        <label>Discount %</label>
+                        <input type="number" id="o-percent" min="1" max="100" placeholder="e.g. 20">
+                    </div>
+                    <div class="field">
+                        <label>Usage Type</label>
+                        <select id="o-usetype" onchange="toggleMaxUses()">
+                            <option value="unlimited">Unlimited</option>
+                            <option value="limited">Limited</option>
+                        </select>
+                    </div>
+                    <div class="field" id="o-maxwrap" style="display:none">
+                        <label>Max Uses</label>
+                        <input type="number" id="o-max" min="1" placeholder="e.g. 100">
+                    </div>
+                </div>
+                <div style="margin-top:22px">
+                    <button class="btn btn-gold" onclick="addOffer()">Create Offer</button>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <div class="table-head">
+                    <h3>Current Offers</h3>
+                    <span class="badge-count"><%= offers.length %> offers</span>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Code</th>
+                            <th>Discount</th>
+                            <th>Uses</th>
+                            <th>Limit</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="offersTableBody">
+                        <% offers.forEach(o => { %>
+                        <tr id="offer-row-<%= o.id %>">
+                            <td><%= o.title %></td>
+                            <td><strong><%= o.discount_code %></strong></td>
+                            <td><%= o.discount_percent %>%</td>
+                            <td><%= o.current_uses %></td>
+                            <td>
+                                <% if (o.max_uses === null) { %>
+                                    <span class="unlimited-badge">Unlimited</span>
+                                <% } else { %>
+                                    <span class="limited-badge"><%= o.max_uses %></span>
+                                <% } %>
+                            </td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="deleteOffer(<%= o.id %>)">Delete</button>
+                            </td>
+                        </tr>
+                        <% }) %>
+                        <% if (offers.length === 0) { %>
+                        <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:32px">No offers yet.</td></tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════ ENQUIRIES ═══════════════════════════════ -->
+        <div id="sec-enquiries" class="section">
+            <div class="table-wrap">
+                <div class="table-head">
+                    <h3>Customer Enquiries</h3>
+                    <span class="badge-count"><%= enquiries.length %> messages</span>
+                </div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Message</th>
+                            <th>Date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="enquiriesTableBody">
+                        <% enquiries.forEach((e, i) => { %>
+                        <tr id="enq-row-<%= e.id %>">
+                            <td><%= i + 1 %></td>
+                            <td><%= e.name %></td>
+                            <td><%= e.email %></td>
+                            <td style="max-width:280px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis"><%= e.message %></td>
+                            <td><%= new Date(e.created_at).toLocaleDateString('en-IN', {day:'2-digit',month:'short',year:'numeric'}) %></td>
+                            <td>
+                                <button class="btn btn-danger btn-sm" onclick="deleteEnquiry(<%= e.id %>)">Delete</button>
+                            </td>
+                        </tr>
+                        <% }) %>
+                        <% if (enquiries.length === 0) { %>
+                        <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:32px">No enquiries yet.</td></tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ═══════════════════════════════ SALES STATS ═══════════════════════════════ -->
+        <div id="sec-sales" class="section">
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-label">Total Items Sold</div>
+                    <div class="stat-val gold"><%= salesStats.totalItemsSold %></div>
+                    <div class="stat-sub">Units across all orders</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Unique Products Ordered</div>
+                    <div class="stat-val"><%= salesStats.uniqueProducts %></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Gross Revenue</div>
+                    <div class="stat-val gold">₹<%= Number(salesStats.grossRevenue || 0).toLocaleString('en-IN') %></div>
+                    <div class="stat-sub">Before discounts</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-label">Net Revenue</div>
+                    <div class="stat-val gold">₹<%= Number(salesStats.netRevenue || 0).toLocaleString('en-IN') %></div>
+                    <div class="stat-sub">After discounts</div>
+                </div>
+            </div>
+
+            <div class="table-wrap">
+                <div class="table-head"><h3>Product-wise Sales</h3></div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Product</th>
+                            <th>Category</th>
+                            <th>Units Sold</th>
+                            <th>Revenue</th>
+                            <th>Share</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% const totalQty = salesStats.productSales.reduce((s,p)=>s+Number(p.total_qty),0); %>
+                        <% salesStats.productSales.forEach((p, i) => { %>
+                        <% const pct = totalQty > 0 ? Math.round(Number(p.total_qty)/totalQty*100) : 0; %>
+                        <tr>
+                            <td><%= i + 1 %></td>
+                            <td><%= p.product_name %></td>
+                            <td><%= p.cat || '—' %></td>
+                            <td><%= p.total_qty %></td>
+                            <td>₹<%= Number(p.total_revenue).toLocaleString('en-IN') %></td>
+                            <td>
+                                <div class="progress-wrap">
+                                    <div class="progress-bar">
+                                        <div class="progress-fill" style="width:<%= pct %>%"></div>
+                                    </div>
+                                    <span style="font-size:.75rem;color:var(--muted);width:32px"><%= pct %>%</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <% }) %>
+                        <% if (salesStats.productSales.length === 0) { %>
+                        <tr><td colspan="6" style="text-align:center;color:var(--muted);padding:32px">No sales data yet.</td></tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </main>
+</div>
+
+<div id="toast"></div>
+
+<script>
+    // ── NAV ──
+    const titles = {
+        overview: 'Overview',
+        users: 'Users',
+        orders: 'Orders',
+        products: 'Add Product',
+        offers: 'Offers',
+        enquiries: 'Enquiries',
+        sales: 'Sales Statistics'
+    };
+    function go(sec) {
+        document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        document.getElementById('sec-' + sec).classList.add('active');
+        document.getElementById('pageTitle').textContent = titles[sec] || sec;
+        event.currentTarget.classList.add('active');
+    }
+
+    // ── TOAST ──
+    function toast(msg, type = 'success') {
+        const t = document.getElementById('toast');
+        t.textContent = msg;
+        t.className = 'show ' + type;
+        setTimeout(() => t.className = '', 3000);
+    }
+
+    // ── FILE PREVIEW ──
+    document.getElementById('fileInput').addEventListener('change', function () {
+        const file = this.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = e => {
+            const img = document.getElementById('imagePreview');
+            img.src = e.target.result;
+            img.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+    });
+
+    // ── ADD PRODUCT ──
+    async function addProduct() {
+        const name = document.getElementById('p-name').value.trim();
+        const cat = document.getElementById('p-cat').value;
+        const price = document.getElementById('p-price').value;
+        const oldPrice = document.getElementById('p-oldprice').value;
+        const rating = document.getElementById('p-rating').value;
+        const reviews = document.getElementById('p-reviews').value;
+        const badge = document.getElementById('p-badge').value;
+        const desc = document.getElementById('p-desc').value.trim();
+        const file = document.getElementById('fileInput').files[0];
+
+        if (!name || !price) return toast('Name and Price are required.', 'error');
+
+        let imageUrl = '';
+        if (file) {
+            const fd = new FormData();
+            fd.append('productImage', file);
+            const upRes = await fetch('/api/admin/upload', { method: 'POST', body: fd });
+            const upData = await upRes.json();
+            if (!upData.success) return toast('Image upload failed.', 'error');
+            imageUrl = upData.imageUrl;
+        }
+
+        const res = await fetch('/api/admin/add-product', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, cat, price, oldPrice, rating, reviews, badge, description: desc, productImage: imageUrl })
+        });
+        const data = await res.json();
+        if (data.success) {
+            toast('Product added successfully!');
+            ['p-name','p-price','p-oldprice','p-desc'].forEach(id => document.getElementById(id).value = '');
+            document.getElementById('p-rating').value = '5';
+            document.getElementById('p-reviews').value = '0';
+            document.getElementById('fileInput').value = '';
+            document.getElementById('imagePreview').style.display = 'none';
+        } else {
+            toast(data.message || 'Error adding product.', 'error');
+        }
+    }
+
+    // ── OFFER TOGGLE ──
+    function toggleMaxUses() {
+        const type = document.getElementById('o-usetype').value;
+        document.getElementById('o-maxwrap').style.display = type === 'limited' ? 'flex' : 'none';
+    }
+
+    // ── ADD OFFER ──
+    async function addOffer() {
+        const title = document.getElementById('o-title').value.trim();
+        const code = document.getElementById('o-code').value.trim().toUpperCase();
+        const percent = document.getElementById('o-percent').value;
+        const useType = document.getElementById('o-usetype').value;
+        const maxUses = useType === 'limited' ? document.getElementById('o-max').value : null;
+
+        if (!title || !code || !percent) return toast('Title, Code and Discount % are required.', 'error');
+        if (useType === 'limited' && !maxUses) return toast('Please enter max uses for limited offer.', 'error');
+
+        const res = await fetch('/api/admin/add-offer', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ title, discount_code: code, discount_percent: percent, max_uses: maxUses })
+        });
+        const data = await res.json();
+        if (data.success) {
+            toast('Offer created!');
+            // Add row to table dynamically
+            const tbody = document.getElementById('offersTableBody');
+            const row = document.createElement('tr');
+            row.id = 'offer-row-' + data.id;
+            row.innerHTML = `
+                <td>${title}</td>
+                <td><strong>${code}</strong></td>
+                <td>${percent}%</td>
+                <td>0</td>
+                <td>${maxUses ? `<span class="limited-badge">${maxUses}</span>` : '<span class="unlimited-badge">Unlimited</span>'}</td>
+                <td><button class="btn btn-danger btn-sm" onclick="deleteOffer(${data.id})">Delete</button></td>
+            `;
+            tbody.appendChild(row);
+            ['o-title','o-code','o-percent'].forEach(id => document.getElementById(id).value = '');
+        } else {
+            toast(data.message || 'Error creating offer.', 'error');
+        }
+    }
+
+    // ── DELETE OFFER ──
+    async function deleteOffer(id) {
+        if (!confirm('Delete this offer?')) return;
+        const res = await fetch('/api/admin/delete-offer/' + id, { method: 'DELETE' });
+        const data = await res.json();
+        if (data.success) {
+            document.getElementById('offer-row-' + id).remove();
+            toast('Offer deleted.');
+        } else {
+            toast('Failed to delete.', 'error');
+        }
+    }
+
+    // ── DELETE ENQUIRY ──
+    async function deleteEnquiry(id) {
+        if (!confirm('Delete this enquiry?')) return;
+        const res = await fetch('/api/admin/delete-enquiry/' + id, { method: 'DELETE' });
+        const data = await res.json();
+        if (data.success) {
+            document.getElementById('enq-row-' + id).remove();
+            toast('Enquiry deleted.');
+        } else {
+            toast('Failed to delete.', 'error');
+        }
+    }
+
+    // ── DELETE PRODUCT ──
+    async function deleteProduct(id, isSystem) {
+        if (isSystem == 1 || isSystem === '1') {
+            return toast('System products delete nahi ho sakte.', 'error');
+        }
+        if (!confirm('Are you sure you want to delete this product?')) return;
+        const res = await fetch('/api/admin/delete-product/' + id, { method: 'DELETE' });
+        const data = await res.json();
+        if (data.success) {
+            document.getElementById('product-row-' + id).remove();
+            toast('Product deleted successfully!');
+        } else {
+            toast(data.message || 'Delete failed.', 'error');
+        }
+    }
+
+    // ── LOGOUT ──
+    async function logout() {
+        await fetch('/api/auth/logout', { method: 'POST' });
+        window.location.href = '/login';
+    }
+</script>
+</body>
+</html>

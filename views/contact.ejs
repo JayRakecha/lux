@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeCasa – Contact Us | Get in Touch with India's Finest Furniture Brand</title>
+    <meta name="description"
+        content="Contact LuxeCasa for enquiries, showroom visits, custom orders and support. Reach us via phone, email or WhatsApp. Free consultation available.">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/<%= pageCss %>">
+
+</head>
+
+<body>
+
+    <!-- ===== TOP BAR ===== -->
+    <div class="top-bar">
+        <span class="top-bar-scroll">
+            🚚 <span class="gold">FREE DELIVERY</span> on orders above ₹10,000 &nbsp;&nbsp;|&nbsp;&nbsp;
+            ✨ <span class="gold">UP TO 40% OFF</span> on Premium Collections &nbsp;&nbsp;|&nbsp;&nbsp;
+            🛠️ <span class="gold">FREE ASSEMBLY</span> on Bedroom &amp; Dining Sets &nbsp;&nbsp;|&nbsp;&nbsp;
+            ⭐ <span class="gold">5-YEAR WARRANTY</span> on All Products &nbsp;&nbsp;|&nbsp;&nbsp;
+            📞 Call us: <span class="gold">+91 98765 43210</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav id="mainNav">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon"><i class="fas fa-couch" style="color:#C8A96E"></i></div>
+            <h1>LUXE<span>CASA</span></h1>
+        </a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li class="nav-dropdown">
+                <a href="products">Products <i class="fas fa-chevron-down"
+                        style="font-size:0.65rem;margin-left:4px"></i></a>
+                <div class="dropdown-menu">
+                    <a href="products?cat=sofas" class="dropdown-item"><span class="cat-icon">🛋️</span><span
+                            class="cat-name">Sofas</span></a>
+                    <a href="products?cat=beds" class="dropdown-item"><span class="cat-icon">🛏️</span><span
+                            class="cat-name">Beds</span></a>
+                    <a href="products?cat=chairs" class="dropdown-item"><span class="cat-icon">🪑</span><span
+                            class="cat-name">Chairs</span></a>
+                    <a href="products?cat=dining" class="dropdown-item"><span class="cat-icon">🍽️</span><span
+                            class="cat-name">Dining</span></a>
+                    <a href="products?cat=wardrobes" class="dropdown-item"><span class="cat-icon">🚪</span><span
+                            class="cat-name">Wardrobes</span></a>
+                    <a href="products?cat=coffee-tables" class="dropdown-item"><span class="cat-icon">☕</span><span
+                            class="cat-name">Coffee Tables</span></a>
+                    <a href="products?cat=cabinets" class="dropdown-item"><span class="cat-icon">🗄️</span><span
+                            class="cat-name">Cabinets</span></a>
+                </div>
+            </li>
+            <li><a href="about">About</a></li>
+            <li><a href="contact.html" class="active">Contact</a></li>
+            <li><a href="offers.html">Offers</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button class="nav-icon-btn" onclick="toggleSearch()" title="Search"><i class="fas fa-search"></i></button>
+            <a href="wishlist.html" class="nav-icon-btn" title="Wishlist"><i class="fas fa-heart"></i></a>
+            <button class="nav-icon-btn" onclick="toggleCart()" title="Cart">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+            <a href="login.html" class="btn-nav-login" id="navLoginBtn"><i class="fas fa-user"></i> Sign In</a>
+            <div class="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
+        </div>
+    </nav>
+
+    <!-- ===== PAGE HERO ===== -->
+    <div class="page-hero">
+        <div class="page-hero-content">
+            <div class="breadcrumb">
+                <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                <span>/</span>
+                <span class="current">Contact Us</span>
+            </div>
+            <h1>Get in <em>Touch</em></h1>
+            <p>We're here to help you create your perfect home. Reach out for product enquiries, custom orders, showroom
+                visits or any support you need — our team is always just a call or message away.</p>
+            <div class="hero-stats">
+                <div class="hero-stat-item"><span class="hero-stat-num">24h</span><span class="hero-stat-lbl">Response
+                        Time</span></div>
+                <div class="hero-stat-item"><span class="hero-stat-num">7</span><span class="hero-stat-lbl">Days
+                        Support</span></div>
+                <div class="hero-stat-item"><span class="hero-stat-num">3</span><span
+                        class="hero-stat-lbl">Showrooms</span></div>
+                <div class="hero-stat-item"><span class="hero-stat-num">25+</span><span class="hero-stat-lbl">Cities
+                        Served</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CONTACT INFO STRIP ===== -->
+    <div class="contact-strip">
+        <div class="contact-strip-grid">
+            <div class="strip-item clickable" onclick="window.open('tel:+919876543210')">
+                <div class="strip-icon"><i class="fas fa-phone"></i></div>
+                <div class="strip-text">
+                    <h4>Call Us</h4>
+                    <a href="tel:+919876543210">+91 98765 43210</a>
+                    <p>Mon – Sat: 10 AM – 8 PM</p>
+                </div>
+            </div>
+            <div class="strip-item clickable" onclick="window.open('mailto:info@luxecasa.com')">
+                <div class="strip-icon"><i class="fas fa-envelope"></i></div>
+                <div class="strip-text">
+                    <h4>Email Us</h4>
+                    <a href="mailto:info@luxecasa.com">info@luxecasa.com</a>
+                    <p>We reply within 24 hours</p>
+                </div>
+            </div>
+            <!--            <div class="strip-item clickable" onclick="window.open('https://wa.me/919876543210','_blank')">
+                <div class="strip-icon"><i class="fab fa-whatsapp"></i></div>
+                <div class="strip-text">
+                    <h4>WhatsApp</h4>
+                    <a href="https://wa.me/919876543210" target="_blank">+91 98765 43210</a>
+                    <p>Quick responses, 7 days a week</p>
+                </div>
+            </div>-->
+            <div class="strip-item">
+                <div class="strip-icon"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="strip-text">
+                    <h4>Visit Our Flagship</h4>
+                    <p>42, Design District</p>
+                    <p>Connaught Place, New Delhi</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CONTACT MAIN SECTION ===== -->
+    <section class="contact-main-section">
+        <div class="contact-main-grid">
+
+            <!-- Contact Form -->
+            <div class="contact-form-wrap reveal-left">
+                <div class="form-header">
+                    <span class="section-tag">Send a Message</span>
+                    <h2>How Can We <em>Help You?</em></h2>
+                    <p>Fill in the form below and our team will get back to you within 24 hours — guaranteed.</p>
+                </div>
+                <div class="form-group">
+                    <label>Full Name <span>*</span></label>
+                    <input type="text" class="form-control" id="contactName" placeholder="Your full name">
+                </div>
+                <!--
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Phone Number <span>*</span></label>
+                        <input type="tel" class="form-control" id="contactPhone" placeholder="+91 XXXXX XXXXX">
+                    </div>
+                </div>-->
+
+                <div class="form-group">
+                    <label>Email Address <span>*</span></label>
+                    <input type="email" class="form-control" id="contactEmail" placeholder="your@email.com">
+                </div>
+                <!--
+                <div class="form-group">
+                    <label>Subject / Enquiry Type</label>
+                    <select class="form-control" id="contactSubject">
+                        <option value="" disabled selected>Select a subject...</option>
+                        <option value="product">Product Enquiry</option>
+                        <option value="custom">Custom / Bespoke Order</option>
+                        <option value="showroom">Showroom Visit Booking</option>
+                        <option value="order">Track My Order</option>
+                        <option value="warranty">Warranty & After-Sales</option>
+                        <option value="returns">Returns & Exchange</option>
+                        <option value="interior">Interior Design Consultation</option>
+                        <option value="bulk">Bulk / Corporate Order</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+-->
+                <div class="form-group">
+                    <label>Your Message <span>*</span></label>
+                    <textarea class="form-control" id="contactMessage"
+                        placeholder="Tell us how we can help you — feel free to share any product preferences, dimensions, or special requirements..."></textarea>
+                </div>
+
+                <button class="btn-submit" onclick="submitContactForm()">
+                    Send Message <i class="fas fa-paper-plane"></i>
+                </button>
+                <p class="form-note">
+                    <i class="fas fa-lock"></i> Your information is secure and will never be shared with third parties.
+                </p>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="contact-details-wrap reveal-right">
+                <span class="section-tag">Our Details</span>
+                <h2>Always Here <em>For You</em></h2>
+                <p>Whether you have a question about a product, need help with a custom order or simply want to visit
+                    our showroom — we'd love to hear from you.</p>
+
+                <div class="detail-cards-list">
+                    <div class="detail-card">
+                        <div class="detail-card-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="detail-card-body">
+                            <h4>Flagship Store Address</h4>
+                            <p>42, Design District, Connaught Place</p>
+                            <p>New Delhi – 110001, India</p>
+                        </div>
+                    </div>
+                    <!--<div class="detail-card">
+                        <div class="detail-card-icon"><i class="fas fa-phone"></i></div>
+                        <div class="detail-card-body">
+                            <h4>Phone & WhatsApp</h4>
+                            <a href="tel:+919876543210">+91 98765 43210</a>
+                            <a href="https://wa.me/919876543210" target="_blank"><i class="fab fa-whatsapp"
+                                    style="color:var(--gold);margin-right:5px"></i>Chat on WhatsApp</a>
+                        </div>
+                    </div>-->
+                    <div class="detail-card">
+                        <div class="detail-card-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="detail-card-body">
+                            <h4>Email Addresses</h4>
+                            <a href="mailto:info@luxecasa.com">info@luxecasa.com</a>
+                            <a href="mailto:support@luxecasa.com">support@luxecasa.com</a>
+                        </div>
+                    </div>
+                    <div class="detail-card">
+                        <div class="detail-card-icon"><i class="fas fa-clock"></i></div>
+                        <div class="detail-card-body">
+                            <h4>Working Hours</h4>
+                            <p>Monday – Saturday: 10:00 AM – 8:00 PM</p>
+                            <p>Sunday: 11:00 AM – 6:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-social-block">
+                    <h4>Follow Us on Social Media</h4>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                        <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+
+                <!-- Map Embed -->
+                <div class="map-wrap">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3501.993289!2d77.2090!3d28.6315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390cfd5b347eb62d%3A0x52c2b7494e204dce!2sConnaught%20Place%2C%20New%20Delhi!5e0!3m2!1sen!2sin!4v1680000000000"
+                        allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+                        title="LuxeCasa Flagship Store Location">
+                    </iframe>
+                    <div class="map-overlay-label">
+                        <i class="fas fa-map-marker-alt"></i> LuxeCasa Flagship — Connaught Place, Delhi
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== SHOWROOMS SECTION ===== -->
+    <section class="showrooms-section">
+        <div class="section-header reveal">
+            <span class="section-tag">Visit Us In Person</span>
+            <h2 class="section-title">Our <em>Showrooms</em></h2>
+            <div class="divider-ornament"><i class="fas fa-diamond"></i></div>
+            <p class="section-desc">Experience the luxury of LuxeCasa furniture in person. Our expert consultants are
+                ready to help you find the perfect pieces for your home.</p>
+        </div>
+        <div class="showrooms-grid">
+
+            <!-- Showroom 1: Delhi -->
+            <div class="showroom-card reveal" style="animation-delay:0.1s">
+                <div class="showroom-img">
+                    <img src="/image/photo-1631679706909-1844bbd07221.jpeg"
+                        alt="LuxeCasa Delhi Showroom">
+                    <span class="showroom-tag">Flagship Store</span>
+                </div>
+                <div class="showroom-body">
+                    <h3>New Delhi — Connaught Place</h3>
+                    <p class="showroom-address"><i class="fas fa-map-marker-alt"></i> 42, Design District, Connaught
+                        Place, New Delhi – 110001</p>
+                    <div class="showroom-meta">
+                        <div class="showroom-meta-item"><i class="fas fa-clock"></i> <span>Mon–Sat <strong>10 AM–8
+                                    PM</strong> &nbsp;|&nbsp; Sun <strong>11 AM–6 PM</strong></span></div>
+                        <div class="showroom-meta-item"><i class="fas fa-phone"></i> <strong>+91 98765 43210</strong>
+                        </div>
+                        <div class="showroom-meta-item"><i class="fas fa-expand-arrows-alt"></i> <span>12,000 sq. ft.
+                                display floor</span></div>
+                    </div>
+                    <a href="https://maps.google.com/?q=Connaught+Place+New+Delhi" target="_blank"
+                        class="btn-showroom-dir">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+
+            <!-- Showroom 2: Mumbai -->
+            <div class="showroom-card reveal" style="animation-delay:0.2s">
+                <div class="showroom-img">
+                    <img src="/image/photo-1616594039964-ae9021a400a0.jpeg"
+                        alt="LuxeCasa Mumbai Showroom">
+                    <span class="showroom-tag">Experience Centre</span>
+                </div>
+                <div class="showroom-body">
+                    <h3>Mumbai — Bandra West</h3>
+                    <p class="showroom-address"><i class="fas fa-map-marker-alt"></i> 18, Carter Road, Bandra West,
+                        Mumbai – 400050</p>
+                    <div class="showroom-meta">
+                        <div class="showroom-meta-item"><i class="fas fa-clock"></i> <span>Mon–Sat <strong>10 AM–8
+                                    PM</strong> &nbsp;|&nbsp; Sun <strong>11 AM–6 PM</strong></span></div>
+                        <div class="showroom-meta-item"><i class="fas fa-phone"></i> <strong>+91 98765 43211</strong>
+                        </div>
+                        <div class="showroom-meta-item"><i class="fas fa-expand-arrows-alt"></i> <span>9,500 sq. ft.
+                                display floor</span></div>
+                    </div>
+                    <a href="https://maps.google.com/?q=Bandra+West+Mumbai" target="_blank" class="btn-showroom-dir">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+
+            <!-- Showroom 3: Bangalore -->
+            <div class="showroom-card reveal" style="animation-delay:0.3s">
+                <div class="showroom-img">
+                    <img src="/image/photo-1617806118233-18e1de247200.1.jpeg"
+                        alt="LuxeCasa Bangalore Showroom">
+                    <span class="showroom-tag">Design Studio</span>
+                </div>
+                <div class="showroom-body">
+                    <h3>Bangalore — Indiranagar</h3>
+                    <p class="showroom-address"><i class="fas fa-map-marker-alt"></i> 5, 100 Feet Road, Indiranagar,
+                        Bangalore – 560038</p>
+                    <div class="showroom-meta">
+                        <div class="showroom-meta-item"><i class="fas fa-clock"></i> <span>Mon–Sat <strong>10 AM–8
+                                    PM</strong> &nbsp;|&nbsp; Sun <strong>11 AM–6 PM</strong></span></div>
+                        <div class="showroom-meta-item"><i class="fas fa-phone"></i> <strong>+91 98765 43212</strong>
+                        </div>
+                        <div class="showroom-meta-item"><i class="fas fa-expand-arrows-alt"></i> <span>8,000 sq. ft.
+                                display floor</span></div>
+                    </div>
+                    <a href="https://maps.google.com/?q=Indiranagar+Bangalore" target="_blank" class="btn-showroom-dir">
+                        <i class="fas fa-directions"></i> Get Directions
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== FAQ SECTION ===== -->
+    <section class="faq-section">
+        <div class="section-header reveal">
+            <span class="section-tag">Quick Answers</span>
+            <h2 class="section-title">Frequently Asked <em>Questions</em></h2>
+            <div class="divider-ornament"><i class="fas fa-diamond"></i></div>
+            <p class="section-desc">Can't find what you're looking for? Browse our most common questions or contact us
+                directly.</p>
+        </div>
+
+        <div class="faq-list reveal">
+
+            <div class="faq-item open">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="faq-q-text">How long does delivery take and which cities do you deliver to?</span>
+                    <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        We deliver to 25+ cities across India, including Delhi NCR, Mumbai, Bangalore, Chennai,
+                        Hyderabad, Pune, Kolkata, and more. Standard delivery takes 7–14 working days. Free delivery is
+                        available on all orders above ₹10,000. For metro cities, we often deliver within 5–7 working
+                        days. Assembly is included free with all bedroom and dining sets.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="faq-q-text">Can I customise furniture in terms of size, colour or fabric?</span>
+                    <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Absolutely! We offer full customisation on most of our products. You can choose from a wide
+                        range of fabrics, leathers, wood finishes, and colours. Custom dimensions are also available.
+                        Please contact our design team via phone, WhatsApp or the form above — customisation orders
+                        typically take 3–5 additional weeks.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="faq-q-text">What is your return and exchange policy?</span>
+                    <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        We offer a 30-day hassle-free return and exchange policy on all standard products. If you are
+                        not satisfied with your purchase for any reason, simply contact our support team within 30 days
+                        of delivery and we will arrange a pickup and full refund. Please note that customised orders are
+                        non-refundable unless there is a manufacturing defect.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="faq-q-text">How does the 5-year warranty work?</span>
+                    <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        All LuxeCasa products come with a comprehensive 5-year warranty covering structural and
+                        craftsmanship defects. If any defect is found within the warranty period, we will repair or
+                        replace the piece at no cost to you. The warranty does not cover normal wear and tear,
+                        accidental damage or improper use. To raise a warranty claim, simply email us at
+                        support@luxecasa.com with your order number and photos.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="faq-q-text">Do you offer bulk or corporate orders for offices, hotels or
+                        restaurants?</span>
+                    <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Yes, we cater to bulk and corporate orders and offer special pricing for large quantities.
+                        Whether you are furnishing an office, hotel, restaurant, or residential project, our B2B team is
+                        ready to assist with custom solutions, exclusive discounts and dedicated project management.
+                        Please reach out to us at info@luxecasa.com or call +91 98765 43210 to discuss your
+                        requirements.
+                    </div>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFAQ(this)">
+                    <span class="faq-q-text">Can I book a free interior design consultation?</span>
+                    <div class="faq-icon"><i class="fas fa-plus"></i></div>
+                </button>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        Yes! We offer free 60-minute interior design consultations at all three of our showrooms. Our
+                        design experts will help you select the right furniture, understand space planning and match
+                        colours and styles to your home. You can book a consultation by calling us, messaging us on
+                        WhatsApp, or submitting the contact form above — select "Interior Design Consultation" as your
+                        subject.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="faq-cta-row reveal">
+            <a href="faq.html" class="btn-faq-more">
+                <i class="fas fa-question-circle"></i> View All FAQs
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== CTA SECTION ===== -->
+    <div class="cta-section">
+        <div class="cta-content reveal">
+            <span class="section-tag">Ready to Transform Your Home?</span>
+            <h2 class="cta-title">Discover the Art of <em>Luxury Living</em></h2>
+            <p class="cta-desc">Browse our curated collection of 40+ premium furniture pieces — each one handcrafted to
+                bring enduring beauty to your home. Free delivery. Free assembly. 5-Year warranty.</p>
+            <div class="cta-buttons">
+                <a href="products" class="btn-cta-primary"><i class="fas fa-couch"></i> Shop All Products</a>
+                <a href="about" class="btn-cta-secondary"><i class="fas fa-book-open"></i> Our Story</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="newsletter-section">
+        <h2>Subscribe & <span>Save 10%</span></h2>
+        <p>Join 50,000+ design lovers. Get exclusive deals, new arrivals and interior inspiration delivered to your
+            inbox.</p>
+        <form id="newsletterForm" class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+            <input type="email" id="newsletterEmail" placeholder="Enter your email address..." required>
+            <button type="submit">Subscribe Now</button>
+        </form>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>LUXE<span>CASA</span></h3>
+                <span class="tagline">WHERE LUXURY MEETS COMFORT</span>
+                <p>India's most trusted premium furniture brand, crafting beautiful spaces for over 15 years. Every
+                    piece tells a story of quality, craftsmanship and timeless design.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+                    <li><a href="products"><i class="fas fa-angle-right"></i> All Products</a></li>
+                    <li><a href="about"><i class="fas fa-angle-right"></i> About Us</a></li>
+                    <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                    <li><a href="offers.html"><i class="fas fa-angle-right"></i> Special Offers</a></li>
+                    <li><a href="faq.html"><i class="fas fa-angle-right"></i> FAQ</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="products?cat=sofas"><i class="fas fa-angle-right"></i> Sofas &amp; Sectionals</a>
+                    </li>
+                    <li><a href="products?cat=beds"><i class="fas fa-angle-right"></i> Beds &amp; Bedroom</a></li>
+                    <li><a href="products?cat=dining"><i class="fas fa-angle-right"></i> Dining Tables</a></li>
+                    <li><a href="products?cat=chairs"><i class="fas fa-angle-right"></i> Chairs</a></li>
+                    <li><a href="products?cat=wardrobes"><i class="fas fa-angle-right"></i> Wardrobes</a></li>
+                    <li><a href="products?cat=cabinets"><i class="fas fa-angle-right"></i> Cabinets</a></li>
+                </ul>
+            </div>
+            <div class="footer-col footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-map-marker-alt"></i> 42, Design District, Connaught Place, New Delhi – 110001</p>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> info@luxecasa.com</p>
+                <p><i class="fas fa-clock"></i> Mon–Sat: 10 AM – 8 PM</p>
+                <p><i class="fab fa-whatsapp"></i> WhatsApp: +91 98765 43210</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 <span>LuxeCasa Furniture</span>. All rights reserved. Designed with ❤️ in India.</p>
+            <div style="display:flex;gap:20px">
+                <a href="privacy.html" style="color:rgba(245,240,232,0.3);font-size:0.8rem;text-decoration:none">Privacy
+                    Policy</a>
+                <a href="terms.html" style="color:rgba(245,240,232,0.3);font-size:0.8rem;text-decoration:none">Terms of
+                    Service</a>
+                <a href="refund.html" style="color:rgba(245,240,232,0.3);font-size:0.8rem;text-decoration:none">Refund
+                    Policy</a>
+            </div>
+            <div class="footer-payment">
+                <span class="payment-icon">VISA</span>
+                <span class="payment-icon">MASTERCARD</span>
+                <span class="payment-icon">UPI</span>
+                <span class="payment-icon">RAZORPAY</span>
+                <span class="payment-icon">COD</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ===== CART SIDEBAR ===== -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart <span style="font-size:0.85rem;color:var(--text-muted)" id="cartCount">(0 items)</span></h3>
+            <button class="cart-close-btn" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items-list" id="cartItemsList">
+            <div style="text-align:center;padding:60px 20px;color:var(--text-muted)">
+                <i class="fas fa-shopping-bag"
+                    style="font-size:3rem;color:var(--cream2);margin-bottom:15px;display:block"></i>
+                <p>Your cart is empty</p>
+                <a href="products" style="color:var(--gold);font-size:0.85rem">Start Shopping →</a>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display:none">
+            <div class="cart-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+            <div class="cart-row"><span>Delivery</span><span style="color:#52C07A">FREE</span></div>
+            <div class="cart-row"><span>GST (18%)</span><span id="cartGST">₹0</span></div>
+            <div class="cart-total-row"><span>Total</span><span id="cartTotal" style="color:var(--gold)">₹0</span></div>
+            <a href="checkout.html" class="btn-checkout">Proceed to Checkout <i class="fas fa-arrow-right"></i></a>
+            <button class="btn-continue-shop" onclick="toggleCart()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ============================================================
+        // CART — identical pattern to about & products
+        // ============================================================
+        let cart = JSON.parse(localStorage.getItem('luxecasa_cart') || '[]');
+
+        function addToCart(id, name, price, img) {
+            const existing = cart.find(i => i.id === id);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ id, name, price, img: img || '', qty: 1 });
+            }
+            localStorage.setItem('luxecasa_cart', JSON.stringify(cart));
+            updateCartUI();
+            showToast('🛒 Added to cart: ' + name);
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (!item) return;
+            item.qty += delta;
+            if (item.qty <= 0) cart = cart.filter(i => i.id !== id);
+            localStorage.setItem('luxecasa_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(i => i.id !== id);
+            localStorage.setItem('luxecasa_cart', JSON.stringify(cart));
+            updateCartUI();
+            showToast('Item removed from cart');
+        }
+
+        function updateCartUI() {
+            const total = cart.reduce((s, i) => s + i.qty, 0);
+            document.getElementById('cartBadge').textContent = total;
+            document.getElementById('cartCount').textContent = `(${total} item${total !== 1 ? 's' : ''})`;
+
+            const listEl = document.getElementById('cartItemsList');
+            const footerEl = document.getElementById('cartFooter');
+
+            if (cart.length === 0) {
+                listEl.innerHTML = `<div style="text-align:center;padding:60px 20px;color:var(--text-muted)">
+            <i class="fas fa-shopping-bag" style="font-size:3rem;color:var(--cream2);margin-bottom:15px;display:block"></i>
+            <p>Your cart is empty</p>
+            <a href="products" style="color:var(--gold);font-size:0.85rem">Start Shopping →</a>
+        </div>`;
+                footerEl.style.display = 'none';
+            } else {
+                listEl.innerHTML = cart.map(item => `
+            <div class="cart-item">
+                <div class="cart-item-img">
+                    <img src="${item.img || '/image/photo-1555041469-a586c61ea9bc.2.jpeg'}" alt="${item.name}" onerror="this.src='/image/photo-1555041469-a586c61ea9bc.2.jpeg'">
+                </div>
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-price">₹${item.price.toLocaleString('en-IN')}</div>
+                    <div class="cart-item-qty">
+                        <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+                        <span class="qty-num">${item.qty}</span>
+                        <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                    </div>
+                    <button class="cart-item-remove" onclick="removeFromCart(${item.id})">✕ Remove</button>
+                </div>
+            </div>`).join('');
+
+                const subtotal = cart.reduce((s, i) => s + i.price * i.qty, 0);
+                const gst = Math.round(subtotal * 0.18);
+                const grandTotal = subtotal + gst;
+
+                document.getElementById('cartSubtotal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+                document.getElementById('cartGST').textContent = `₹${gst.toLocaleString('en-IN')}`;
+                document.getElementById('cartTotal').textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
+                footerEl.style.display = 'block';
+            }
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('open');
+            document.getElementById('cartOverlay').classList.toggle('show');
+        }
+
+        // ============================================================
+        // CONTACT FORM SUBMISSION
+        // ============================================================
+        async function submitContactForm() {
+            const name = document.getElementById('contactName').value.trim();
+            const email = document.getElementById('contactEmail').value.trim();
+            const message = document.getElementById('contactMessage').value.trim();
+
+            if (!name) {
+                showToast('⚠ Please enter your full name.');
+                document.getElementById('contactName').focus();
+                return;
+            }
+            if (!email || !/\S+@\S+\.\S+/.test(email)) {
+                showToast('⚠ Please enter a valid email address.');
+                document.getElementById('contactEmail').focus();
+                return;
+            }
+            if (!message) {
+                showToast('⚠ Please enter your message.');
+                document.getElementById('contactMessage').focus();
+                return;
+            }
+
+            try {
+                // Send data to the backend
+                const response = await fetch('/api/contact', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, email, message })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    showToast('✅ Message sent! We will get back to you soon.');
+                    // Reset form fields
+                    document.getElementById('contactName').value = '';
+                    document.getElementById('contactEmail').value = '';
+                    document.getElementById('contactMessage').value = '';
+                } else {
+                    showToast('⚠ Error: ' + (data.error || 'Could not send message.'));
+                }
+            } catch (error) {
+                console.error("Error submitting form:", error);
+                showToast('⚠ Server error. Please try again later.');
+            }
+        }
+
+        // ============================================================
+        // FAQ ACCORDION
+        // ============================================================
+        function toggleFAQ(btn) {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+
+            // Close all open items first
+            document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+
+            // Open clicked item if it was closed
+            if (!isOpen) {
+                item.classList.add('open');
+            }
+        }
+
+        // ============================================================
+        // NAVBAR SCROLL BEHAVIOUR — identical to about
+        // ============================================================
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            const backTop = document.getElementById('backTop');
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+                backTop.classList.add('show');
+            } else {
+                nav.classList.remove('scrolled');
+                backTop.classList.remove('show');
+            }
+        });
+
+        function toggleSearch() {
+            const q = prompt('Search for furniture...');
+            if (q) window.location.href = `products?search=${encodeURIComponent(q)}`;
+        }
+
+        function toggleMobileMenu() {
+            const links = document.querySelector('.nav-links');
+            if (links.style.display === 'flex') {
+                links.style.display = 'none';
+            } else {
+                links.style.cssText = 'display:flex;flex-direction:column;position:absolute;top:80px;left:0;right:0;background:#fff;padding:20px;box-shadow:0 20px 40px rgba(0,0,0,0.1);z-index:999;gap:15px;';
+            }
+        }
+
+        // ============================================================
+        // REVEAL ANIMATION — identical to about
+        // ============================================================
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+        // ============================================================
+        // NEWSLETTER (Database Connected)
+        // ============================================================
+        async function subscribeNewsletter(e) {
+            e.preventDefault(); // Stop page from reloading
+
+            const emailInput = document.getElementById('newsletterEmail');
+            const email = emailInput.value.trim();
+
+            try {
+                // Send data to our Node.js server
+                const response = await fetch('/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email })
+                });
+
+                const data = await response.json();
+
+                // Show the result in the Toast popup
+                showToast(data.message);
+
+                // Clear the input only if it was successful
+                if (data.success) {
+                    emailInput.value = '';
+                }
+            } catch (err) {
+                showToast('⚠ Error connecting to server.');
+            }
+        }
+
+        // ============================================================
+        // TOAST NOTIFICATION — identical to about
+        // ============================================================
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerHTML = msg;
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => toast.classList.remove('show'), 3500);
+        }
+
+        // ============================================================
+        // SESSION CHECK — identical to about & index.html
+        // ============================================================
+        function checkSession() {
+            const user = JSON.parse(localStorage.getItem('luxecasa_user') || 'null');
+            const btn = document.getElementById('navLoginBtn');
+            if (user && btn) {
+                btn.innerHTML = `<i class="fas fa-user-circle"></i> ${user.full_name?.split(' ')[0] || 'Account'}`;
+                btn.href = 'profile.html';
+            }
+        }
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        updateCartUI();
+        checkSession();
+    </script>
+</body>
+
+</html>

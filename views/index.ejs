@@ -1,0 +1,1254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LuxeCasa – Premium Furniture Store | Where Luxury Meets Comfort</title>
+    <meta name="description"
+        content="Discover India's finest furniture collection. Sofas, beds, dining tables, chairs and more. Free delivery above ₹10,000.">
+    <link rel="stylesheet" href="css/fonts.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+    <link rel="stylesheet" href="/css/<%= pageCss %>">
+
+</head>
+
+<body>
+
+    <!-- ===== TOP BAR ===== -->
+    <div class="top-bar">
+        <span class="top-bar-scroll">
+            🚚 <span class="gold">FREE DELIVERY</span> on orders above ₹10,000 &nbsp;&nbsp;|&nbsp;&nbsp;
+            ✨ <span class="gold">UP TO 40% OFF</span> on Premium Collections &nbsp;&nbsp;|&nbsp;&nbsp;
+            🛠️ <span class="gold">FREE ASSEMBLY</span> on Bedroom & Dining Sets &nbsp;&nbsp;|&nbsp;&nbsp;
+            ⭐ <span class="gold">5-YEAR WARRANTY</span> on All Products &nbsp;&nbsp;|&nbsp;&nbsp;
+            📞 Call us: <span class="gold">+91 98765 43210</span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </span>
+    </div>
+
+    <!-- ===== NAVBAR ===== -->
+    <nav id="mainNav">
+        <a href="index.html" class="nav-logo">
+            <div class="logo-icon"><i class="fas fa-couch" style="color:#C8A96E"></i></div>
+            <h1>LUXE<span>CASA</span></h1>
+        </a>
+
+        <ul class="nav-links">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li class="nav-dropdown">
+                <a href="products">Products <i class="fas fa-chevron-down"
+                        style="font-size:0.65rem;margin-left:4px"></i></a>
+                <div class="dropdown-menu">
+                    <a href="products?cat=sofas" class="dropdown-item"><span class="cat-icon">🛋️</span><span
+                            class="cat-name">Sofas</span></a>
+                    <a href="products?cat=beds" class="dropdown-item"><span class="cat-icon">🛏️</span><span
+                            class="cat-name">Beds</span></a>
+                    <a href="products?cat=chairs" class="dropdown-item"><span class="cat-icon">🪑</span><span
+                            class="cat-name">Chairs</span></a>
+                    <a href="products?cat=dining" class="dropdown-item"><span class="cat-icon">🍽️</span><span
+                            class="cat-name">Dining</span></a>
+                    <a href="products?cat=wardrobes" class="dropdown-item"><span class="cat-icon">🚪</span><span
+                            class="cat-name">Wardrobes</span></a>
+                    <a href="products?cat=coffee-tables" class="dropdown-item"><span class="cat-icon">☕</span><span
+                            class="cat-name">Coffee Tables</span></a>
+                    <a href="products?cat=cabinets" class="dropdown-item"><span class="cat-icon">🗄️</span><span
+                            class="cat-name">Cabinets</span></a>
+                </div>
+            </li>
+            <li><a href="about">About</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="offers.html">Offers</a></li>
+            <li><a href="faq.html">FAQ</a></li>
+        </ul>
+
+        <div class="nav-actions">
+            <button class="nav-icon-btn" onclick="toggleSearch()" title="Search">
+                <i class="fas fa-search"></i>
+            </button>
+            <a href="wishlist.html" class="nav-icon-btn" title="Wishlist">
+                <i class="fas fa-heart"></i>
+            </a>
+            <button class="nav-icon-btn" onclick="toggleCart()" title="Cart">
+                <i class="fas fa-shopping-bag"></i>
+                <span class="cart-badge" id="cartBadge">0</span>
+            </button>
+            <a href="login.html" class="btn-nav-login" id="navLoginBtn">
+                <i class="fas fa-user"></i> Sign In
+            </a>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ===== HERO SLIDER ===== -->
+    <section class="hero-slider" id="heroSlider">
+
+        <!-- Slide 1 -->
+        <div class="slide active">
+            <div class="slide-bg"
+                style="background: linear-gradient(135deg, #1a120a 0%, #2d1f10 50%, #0d0d0d 100%); background-image: url('image/photo-1555041469-a586c61ea9bc.jpeg'); background-blend-mode: overlay;">
+            </div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">✦ New Collection 2025</span>
+                <h1 class="slide-title">Redefine Your<br><span>Living Space</span></h1>
+                <p class="slide-desc">Discover our handcrafted luxury sofas that blend comfort with timeless Italian
+                    design — crafted for those who appreciate the finer things in life.</p>
+                <div class="slide-price">₹89,999 <span>₹1,24,999</span></div>
+                <div class="slide-btns">
+                    <a href="products?cat=sofas" class="btn-slide-primary"><i class="fas fa-arrow-right"></i> Shop
+                        Sofas</a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="slide">
+            <div class="slide-bg"
+                style="background: linear-gradient(135deg, #0a1220 0%, #10203a 50%, #0d0d0d 100%); background-image: url('image/photo-1505693314120-0d443867891c.jpeg'); background-blend-mode: overlay;">
+            </div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">✦ Bestseller Collection</span>
+                <h1 class="slide-title">Bedroom<br><span>Perfection</span></h1>
+                <p class="slide-desc">Transform your bedroom into a private sanctuary with our king-size beds featuring
+                    premium walnut wood and memory foam mattresses.</p>
+                <div class="slide-price">₹1,24,999 <span>₹1,79,999</span></div>
+                <div class="slide-btns">
+                    <a href="products?cat=beds" class="btn-slide-primary"><i class="fas fa-arrow-right"></i> Shop
+                        Beds</a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="slide">
+            <div class="slide-bg"
+                style="background: linear-gradient(135deg, #100a20 0%, #1e1240 50%, #0d0d0d 100%); background-image: url('image/photo-1602872030490-4a484a7b3ba6.jpeg'); background-blend-mode: overlay;">
+            </div>
+            <div class="slide-overlay"></div>
+            <div class="slide-content">
+                <span class="slide-tag">✦ Designer Dining</span>
+                <h1 class="slide-title">Dine in<br><span>Grand Style</span></h1>
+                <p class="slide-desc">Elevate every meal with our extendable marble-top dining tables — where family
+                    moments become unforgettable experiences.</p>
+                <div class="slide-price">₹67,999 <span>₹95,000</span></div>
+                <div class="slide-btns">
+                    <a href="products?cat=dining" class="btn-slide-primary"><i class="fas fa-arrow-right"></i> Shop
+                        Dining</a>
+
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Slider Controls -->
+        <div class="slider-nav">
+            <div class="slider-dots" id="sliderDots">
+                <div class="slider-dot active" onclick="goToSlide(0)"></div>
+                <div class="slider-dot" onclick="goToSlide(1)"></div>
+                <div class="slider-dot" onclick="goToSlide(2)"></div>
+            </div>
+        </div>
+
+        <div class="slider-arrows">
+            <button class="slider-arrow" onclick="prevSlide()"><i class="fas fa-chevron-up"></i></button>
+            <button class="slider-arrow" onclick="nextSlide()"><i class="fas fa-chevron-down"></i></button>
+        </div>
+
+        <div class="slide-counter">
+            <span class="current" id="slideCurrentNum">01</span> / 03
+        </div>
+    </section>
+
+    <!-- ===== FEATURES BAR ===== -->
+    <div class="features-bar">
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-truck"></i></div>
+            <div class="feature-text">
+                <h4>Free Delivery</h4>
+                <p>On orders above ₹10,000</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-tools"></i></div>
+            <div class="feature-text">
+                <h4>Free Assembly</h4>
+                <p>Professional installation</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-undo-alt"></i></div>
+            <div class="feature-text">
+                <h4>30-Day Returns</h4>
+                <p>Hassle-free return policy</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon"><i class="fas fa-award"></i></div>
+            <div class="feature-text">
+                <h4>5-Year Warranty</h4>
+                <p>Quality guaranteed</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CATEGORIES SECTION ===== -->
+    <section class="categories-section">
+        <div class="section-header reveal">
+            <span class="section-tag">Browse by Category</span>
+            <h2 class="section-title">Find Your Perfect <em>Space</em></h2>
+            <div class="divider-ornament"><i class="fas fa-diamond"></i></div>
+            <p class="section-desc">From cozy living rooms to serene bedrooms — explore every corner of luxury
+                furniture.</p>
+        </div>
+
+        <div class="categories-grid">
+            <a href="products" class="category-card reveal" style="animation-delay:0.1s">
+                <span class="cat-icon"><i class="fas fa-couch" style="color:#C8A96E"></i></span>
+                <h3>All Products</h3>
+                <p>Total 40+ products</p>
+            </a>
+            <a href="products?cat=sofas" class="category-card reveal" style="animation-delay:0.1s">
+                <span class="cat-icon">🛋️</span>
+                <h3>Sofas & Sectionals</h3>
+                <p>8 styles</p>
+            </a>
+            <a href="products?cat=beds" class="category-card reveal" style="animation-delay:0.15s">
+                <span class="cat-icon">🛏️</span>
+                <h3>Beds & Bedroom</h3>
+                <p>4 styles</p>
+            </a>
+            <a href="products?cat=dining" class="category-card reveal" style="animation-delay:0.2s">
+                <span class="cat-icon">🍽️</span>
+                <h3>Dining Tables</h3>
+                <p>7 styles</p>
+            </a>
+            <a href="products?cat=chairs" class="category-card reveal" style="animation-delay:0.25s">
+                <span class="cat-icon">🪑</span>
+                <h3>Chairs</h3>
+                <p>7 styles</p>
+            </a>
+            <a href="products?cat=wardrobes" class="category-card reveal" style="animation-delay:0.3s">
+                <span class="cat-icon">🚪</span>
+                <h3>Wardrobes</h3>
+                <p>6 styles</p>
+            </a>
+            <a href="products?cat=cabinets" class="category-card reveal" style="animation-delay:0.35s">
+                <span class="cat-icon">🗄️</span>
+                <h3>Cabinets</h3>
+                <p>4 styles</p>
+            </a>
+            <a href="products?cat=Coffee Tables" class="category-card reveal" style="animation-delay:0.35s">
+                <span class="cat-icon">☕</span>
+                <h3>Coffee Tables</h3>
+                <p>4 styles</p>
+            </a>
+        </div>
+    </section>
+
+    <!-- ===== SCROLL SHOWCASE (4 Products with slide animation) ===== -->
+    <section class="scroll-showcase">
+        <div class="section-header reveal">
+            <span class="section-tag" style="color:var(--gold)">Hand-Picked for You</span>
+            <h2 class="section-title" style="color:#fff">Featured <em style="color:var(--gold)">Collections</em></h2>
+            <div class="divider-ornament"><i class="fas fa-diamond" style="color:var(--gold)"></i></div>
+            <p class="section-desc">Swipe through our most-loved pieces — each one a masterpiece of craft and design.
+            </p>
+        </div>
+
+        <div class="scroll-track-wrapper">
+            <button class="track-nav-btn prev" id="trackPrev" onclick="scrollTrack(-1)"><i
+                    class="fas fa-chevron-left"></i></button>
+            <button class="track-nav-btn next" id="trackNext" onclick="scrollTrack(1)"><i
+                    class="fas fa-chevron-right"></i></button>
+
+            <div class="scroll-track" id="scrollTrack">
+
+                <!-- Card 1 -->
+                <div class="scroll-card" onclick="window.location.href='product-detail.html?id=1'" id="scroll-card1">
+                    <div class="scroll-card-img">
+                        <img src="/image/photo-1555041469-a586c61ea9bc.jpeg" alt="Majestic Sofa">
+                        <span class="scroll-card-badge">🔥 Hot Deal</span>
+                        <div class="scroll-card-wishlist" onclick="event.stopPropagation(); toggleWishlistCard(this)"><i
+                                class="fas fa-heart"></i></div>
+                    </div>
+                    <div class="scroll-card-body">
+                        <p class="scroll-card-cat">Sofas & Sectionals</p>
+                        <h3 class="scroll-card-title">Majestic 3-Seater Velvet Sofa</h3>
+                        <p class="scroll-card-desc">Premium midnight velvet upholstery with solid teak wood frame.
+                            Feather-soft cushioning that lasts a lifetime.</p>
+                        <div class="scroll-card-rating">
+                            <div class="stars">★★★★★</div>
+                            <span class="rating-count">(247 reviews)</span>
+                        </div>
+                        <div class="scroll-card-footer">
+                            <div class="price-block">
+                                <span class="current-price">₹89,999</span>
+                                <span class="old-price">₹1,24,999</span>
+                                <span class="discount">28% OFF • Save ₹35,000</span>
+                            </div>
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart(1,'Majestic Velvet Sofa',89999)">
+                                <i class="fas fa-bag-shopping"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="scroll-card" onclick="window.location.href='product-detail.html?id=2'" id="scroll-card2">
+                    <div class="scroll-card-img">
+                        <img src="/image/photo-1505693314120-0d443867891c.jpeg" alt="Royal Bed">
+                        <span class="scroll-card-badge">⭐ Bestseller</span>
+                        <div class="scroll-card-wishlist" onclick="event.stopPropagation(); toggleWishlistCard(this)"><i
+                                class="fas fa-heart"></i></div>
+                    </div>
+                    <div class="scroll-card-body">
+                        <p class="scroll-card-cat">Beds & Bedroom</p>
+                        <h3 class="scroll-card-title">Royal Emperor King-Size Bed</h3>
+                        <p class="scroll-card-desc">Handcrafted from premium sheesham wood with an upholstered
+                            headboard. Includes orthopedic mattress support.</p>
+                        <div class="scroll-card-rating">
+                            <div class="stars">★★★★★</div>
+                            <span class="rating-count">(389 reviews)</span>
+                        </div>
+                        <div class="scroll-card-footer">
+                            <div class="price-block">
+                                <span class="current-price">₹1,24,999</span>
+                                <span class="old-price">₹1,79,999</span>
+                                <span class="discount">31% OFF • Save ₹55,000</span>
+                            </div>
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart(2,'Royal Emperor Bed',124999)">
+                                <i class="fas fa-bag-shopping"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="scroll-card" onclick="window.location.href='product-detail.html?id=3'" id="scroll-card3">
+                    <div class="scroll-card-img">
+                        <img src="image/photo-1583845112239-97ef1341b271.1.jpeg" alt="Marble Dining Table">
+                        <span class="scroll-card-badge">✨ New</span>
+                        <div class="scroll-card-wishlist" onclick="event.stopPropagation(); toggleWishlistCard(this)"><i
+                                class="fas fa-heart"></i></div>
+                    </div>
+                    <div class="scroll-card-body">
+                        <p class="scroll-card-cat">Dining Tables</p>
+                        <h3 class="scroll-card-title">Calacatta Marble Dining Table 8-Seater</h3>
+                        <p class="scroll-card-desc">Italian Calacatta marble top with brushed stainless steel base.
+                            Seats 8 comfortably with space to spare.</p>
+                        <div class="scroll-card-rating">
+                            <div class="stars">★★★★☆</div>
+                            <span class="rating-count">(156 reviews)</span>
+                        </div>
+                        <div class="scroll-card-footer">
+                            <div class="price-block">
+                                <span class="current-price">₹1,89,999</span>
+                                <span class="old-price">₹2,49,999</span>
+                                <span class="discount">24% OFF • Save ₹60,000</span>
+                            </div>
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart(3,'Marble Dining Table',189999)">
+                                <i class="fas fa-bag-shopping"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="scroll-card" onclick="window.location.href='product-detail.html?id=4'" id="scroll-card4">
+                    <div class="scroll-card-img">
+                        <img src="/image/photo-1506439773649-6e0eb8cfb237.4.jpeg" alt="Accent Chair">
+                        <span class="scroll-card-badge">💎 Premium</span>
+                        <div class="scroll-card-wishlist" onclick="event.stopPropagation(); toggleWishlistCard(this)"><i
+                                class="fas fa-heart"></i></div>
+                    </div>
+                    <div class="scroll-card-body">
+                        <p class="scroll-card-cat">Chairs</p>
+                        <h3 class="scroll-card-title">Luxe Wingback Accent Chair</h3>
+                        <p class="scroll-card-desc">Mid-century modern design in caramel leather with solid brass legs.
+                            A statement piece for any room.</p>
+                        <div class="scroll-card-rating">
+                            <div class="stars">★★★★★</div>
+                            <span class="rating-count">(203 reviews)</span>
+                        </div>
+                        <div class="scroll-card-footer">
+                            <div class="price-block">
+                                <span class="current-price">₹44,999</span>
+                                <span class="old-price">₹62,999</span>
+                                <span class="discount">29% OFF • Save ₹18,000</span>
+                            </div>
+                            <button class="btn-add-cart"
+                                onclick="event.stopPropagation(); addToCart(4,'Luxe Wingback Chair',44999)">
+                                <i class="fas fa-bag-shopping"></i> Add
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== JARALLAX CATEGORY SHOWCASE ===== -->
+    <section class="jarallax-section" id="jarallaxSection">
+
+        <div class="jarallax-section-header reveal">
+            <span class="section-tag">✦ Shop by Space</span>
+            <h2 class="section-title">Curate Your <em>Dream Interior</em></h2>
+            <div class="divider-ornament"><i class="fas fa-diamond" style="color:var(--gold)"></i></div>
+            <p class="section-desc">Four worlds of luxury furniture — scroll through each space and find the collection
+                that speaks to your soul.</p>
+        </div>
+
+        <div class="jarallax-grid">
+            <!-- ── Panel 1 · Living Room ── -->
+            <div class="jarallax-panel" data-jara="0" onclick="window.location.href='products?cat=sofas'">
+                <img class="jara-img" src="/image/photo-1631679706909-1844bbd07221.jpeg" alt="Luxury Living Room"
+                    loading="lazy">
+                <div class="jara-overlay"></div>
+                <div class="jara-progress"></div>
+                <span class="jara-badge">01</span>
+                <div class="jara-corner-tl"></div>
+                <div class="jara-corner-br"></div>
+                <div class="jara-content">
+                    <span class="jara-chip"><i class="fas fa-couch"></i> Living Room</span>
+                    <span class="jara-number">Collection 01</span>
+                    <h3 class="jara-title">The Art of<br><em>Living Well</em></h3>
+                    <div class="jara-line"></div>
+                    <p class="jara-desc">Handcrafted sofas, sectionals and accent chairs — designed to make every moment
+                        at home feel truly extraordinary.</p>
+                    <a href="products?cat=sofas" class="jara-link" onclick="event.stopPropagation()">
+                        Explore Collection
+                        <span class="jara-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ── Panel 2 · Bedroom ── -->
+            <div class="jarallax-panel" data-jara="1" onclick="window.location.href='products?cat=beds'">
+                <img class="jara-img" src="/image/photo-1616594039964-ae9021a400a0.jpeg" alt="Luxury Bedroom"
+                    loading="lazy">
+                <div class="jara-overlay"></div>
+                <div class="jara-progress"></div>
+                <span class="jara-badge">02</span>
+                <div class="jara-corner-tl"></div>
+                <div class="jara-corner-br"></div>
+                <div class="jara-content">
+                    <span class="jara-chip"><i class="fas fa-bed"></i> Bedroom</span>
+                    <span class="jara-number">Collection 02</span>
+                    <h3 class="jara-title">Sleep in<br><em>Pure Luxury</em></h3>
+                    <div class="jara-line"></div>
+                    <p class="jara-desc">King-size beds with plush headboards, premium wardrobes and bedside tables —
+                        your bedroom, reimagined as a private sanctuary.</p>
+                    <a href="products?cat=beds" class="jara-link" onclick="event.stopPropagation()">
+                        Explore Collection
+                        <span class="jara-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ── Panel 3 · Dining ── -->
+            <div class="jarallax-panel" data-jara="2" onclick="window.location.href='products?cat=dining'">
+                <img class="jara-img" src="/image/photo-1617806118233-18e1de247200.1.jpeg" alt="Luxury Dining Room"
+                    loading="lazy">
+                <div class="jara-overlay"></div>
+                <div class="jara-progress"></div>
+                <span class="jara-badge">03</span>
+                <div class="jara-corner-tl"></div>
+                <div class="jara-corner-br"></div>
+                <div class="jara-content">
+                    <span class="jara-chip"><i class="fas fa-utensils"></i> Dining</span>
+                    <span class="jara-number">Collection 03</span>
+                    <h3 class="jara-title">Dine Like<br><em>Royalty</em></h3>
+                    <div class="jara-line"></div>
+                    <p class="jara-desc">Italian marble-top tables, designer chairs and sideboards — where every meal
+                        becomes an occasion worth remembering.</p>
+                    <a href="products?cat=dining" class="jara-link" onclick="event.stopPropagation()">
+                        Explore Collection
+                        <span class="jara-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- ── Panel 4 · Study & Office ── -->
+            <div class="jarallax-panel" data-jara="3" onclick="window.location.href='products?cat=chairs'">
+                <img class="jara-img" src="/image/photo-1517502884422-41eaead166d4.1.jpg" alt="Luxury Home Office"
+                    loading="lazy">
+                <div class="jara-overlay"></div>
+                <div class="jara-progress"></div>
+                <span class="jara-badge">04</span>
+                <div class="jara-corner-tl"></div>
+                <div class="jara-corner-br"></div>
+                <div class="jara-content">
+                    <span class="jara-chip"><i class="fas fa-briefcase"></i> Study & Office</span>
+                    <span class="jara-number">Collection 04</span>
+                    <h3 class="jara-title">Work in<br><em>Elegance</em></h3>
+                    <div class="jara-line"></div>
+                    <p class="jara-desc">Executive desks, ergonomic luxury chairs and bookshelves — a workspace that
+                        matches your ambition and your aesthetic.</p>
+                    <a href="products?cat=chairs" class="jara-link" onclick="event.stopPropagation()">
+                        Explore Collection
+                        <span class="jara-arrow"><i class="fas fa-arrow-right"></i></span>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ===== FEATURED PRODUCTS GRID ===== -->
+    <section class="products-section" id="featuredProducts">
+        <div class="section-header reveal">
+            <span class="section-tag">Our Bestsellers</span>
+            <h2 class="section-title">Most Loved <em>Furniture</em></h2>
+            <div class="divider-ornament"><i class="fas fa-diamond"></i></div>
+        </div>
+
+        <div class="product-filter-bar">
+            <button class="filter-btn active" onclick="filterProducts('all', this)">All Products</button>
+            <button class="filter-btn" onclick="filterProducts('sofas', this)">Sofas</button>
+            <button class="filter-btn" onclick="filterProducts('beds', this)">Beds</button>
+            <button class="filter-btn" onclick="filterProducts('dining', this)">Dining</button>
+            <button class="filter-btn" onclick="filterProducts('chairs', this)">Chairs</button>
+            <button class="filter-btn" onclick="filterProducts('cabinets', this)">Cabinets</button>
+        </div>
+
+        <div class="products-grid" id="productsGrid">
+            <!-- Products injected by JS -->
+        </div>
+
+        <div class="load-more-wrap">
+            <button class="btn-load-more" onclick="window.location.href='products'">
+                View All 40 Products <i class="fas fa-arrow-right" style="margin-left:8px"></i>
+            </button>
+        </div>
+    </section>
+
+    <!-- ===== PROMO BANNER ===== -->
+    <section class="promo-banner">
+        <div class="promo-text reveal-left">
+            <span class="promo-tag">Limited Time Offer</span>
+            <h2>Monsoon Sale<br><span>Up to 40% Off</span></h2>
+            <p>This season, upgrade your home with premium furniture at the best prices of the year. Offer valid while
+                stocks last.</p>
+            <div class="countdown">
+                <div class="countdown-item">
+                    <span class="countdown-num" id="cdDays">12</span>
+                    <span class="countdown-label">Days</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-num" id="cdHours">08</span>
+                    <span class="countdown-label">Hours</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-num" id="cdMins">45</span>
+                    <span class="countdown-label">Mins</span>
+                </div>
+                <div class="countdown-item">
+                    <span class="countdown-num" id="cdSecs">30</span>
+                    <span class="countdown-label">Secs</span>
+                </div>
+            </div>
+            <a href="offers.html" class="btn-promo">Shop the Sale <i class="fas fa-arrow-right"></i></a>
+        </div>
+
+        <div class="promo-visual reveal-right">
+            <div class="promo-img-card">
+                <img src="/image/photo-1555041469-a586c61ea9bc.jpeg" alt="Featured Sofa">
+                <div class="promo-img-overlay">
+                    <h4>Living Room Collection</h4>
+                    <p>From ₹24,999</p>
+                </div>
+            </div>
+            <div class="promo-img-card">
+                <img src="/image/photo-1505693314120-0d443867891c.jpeg" alt="Bedroom">
+                <div class="promo-img-overlay">
+                    <h4>Bedroom Sets</h4>
+                    <p>From ₹44,999</p>
+                </div>
+            </div>
+            <div class="promo-img-card">
+                <img src="/image/photo-1602872030490-4a484a7b3ba6.jpeg" alt="Dining">
+                <div class="promo-img-overlay">
+                    <h4>Dining Tables</h4>
+                    <p>From ₹19,999</p>
+                </div>
+            </div>
+            <div class="promo-img-card">
+                <img src="/image/photo-1631048498692-af6262577031.1.jpg" alt="Cabinet">
+                <div class="promo-img-overlay">
+                    <h4>Cabinet</h4>
+                    <p>From ₹39,999</p>
+                </div>
+    </section>
+
+    <!-- ===== TESTIMONIALS ===== -->
+    <section class="testimonials-section">
+        <div class="section-header reveal">
+            <span class="section-tag">What Our Customers Say</span>
+            <h2 class="section-title">Stories of <em>Happy Homes</em></h2>
+            <div class="divider-ornament"><i class="fas fa-diamond"></i></div>
+        </div>
+
+        <div class="testimonials-grid">
+            <div class="testimonial-card reveal">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">Ordered the Royal Emperor Bed and the Majestic Sofa together. The quality is
+                    absolutely stunning — better than anything I've seen in luxury showrooms at triple the price.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">RS</div>
+                    <div>
+                        <p class="author-name">Rahul Sharma</p>
+                        <p class="author-title">Interior Designer, Mumbai</p>
+                        <p class="author-verified">✓ Verified Purchase</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card reveal" style="animation-delay:0.2s">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">The assembly team was professional, punctual and set up everything
+                    perfectly. My living room looks like it's straight out of a magazine. LuxeCasa is truly premium.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">PV</div>
+                    <div>
+                        <p class="author-name">Priya Verma</p>
+                        <p class="author-title">Homemaker, Delhi</p>
+                        <p class="author-verified">✓ Verified Purchase</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="testimonial-card reveal" style="animation-delay:0.4s">
+                <div class="testimonial-stars">★★★★★</div>
+                <p class="testimonial-text">Bought the marble dining table for our restaurant. Customers keep asking
+                    where we got it. LuxeCasa doesn't just sell furniture — they sell experiences.</p>
+                <div class="testimonial-author">
+                    <div class="author-avatar">AK</div>
+                    <div>
+                        <p class="author-name">Arjun Kapoor</p>
+                        <p class="author-title">Restaurant Owner, Bangalore</p>
+                        <p class="author-verified">✓ Verified Purchase</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== NEWSLETTER ===== -->
+    <section class="newsletter-section">
+        <h2>Subscribe & <span>Save 10%</span></h2>
+        <p>Join 50,000+ design lovers. Get exclusive deals, new arrivals and interior inspiration delivered to your
+            inbox.</p>
+        <form id="newsletterForm" class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+            <input type="email" id="newsletterEmail" placeholder="Enter your email address..." required>
+            <button type="submit">Subscribe Now</button>
+        </form>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <h3>LUXE<span>CASA</span></h3>
+                <p class="tagline">WHERE LUXURY MEETS COMFORT</p>
+                <p>India's most trusted premium furniture brand, crafting beautiful spaces for over 15 years. Every
+                    piece tells a story of quality, craftsmanship and timeless design.</p>
+                <div class="social-links">
+                    <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-youtube"></i></a>
+                    <a href="#" class="social-link"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html"><i class="fas fa-angle-right"></i> Home</a></li>
+                    <li><a href="products"><i class="fas fa-angle-right"></i> All Products</a></li>
+                    <li><a href="about"><i class="fas fa-angle-right"></i> About Us</a></li>
+                    <li><a href="contact.html"><i class="fas fa-angle-right"></i> Contact</a></li>
+                    <li><a href="offers.html"><i class="fas fa-angle-right"></i> Special Offers</a></li>
+                    <li><a href="faq.html"><i class="fas fa-angle-right"></i> FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Categories</h4>
+                <ul class="footer-links">
+                    <li><a href="products?cat=sofas"><i class="fas fa-angle-right"></i> Sofas & Sectionals</a></li>
+                    <li><a href="products?cat=beds"><i class="fas fa-angle-right"></i> Beds & Bedroom</a></li>
+                    <li><a href="products?cat=dining"><i class="fas fa-angle-right"></i> Dining Tables</a></li>
+                    <li><a href="products?cat=chairs"><i class="fas fa-angle-right"></i> Chairs</a></li>
+                    <li><a href="products?cat=wardrobes"><i class="fas fa-angle-right"></i> Wardrobes</a></li>
+                    <li><a href="products?cat=cabinets"><i class="fas fa-angle-right"></i> Cabinets</a></li>
+
+                </ul>
+            </div>
+
+            <div class="footer-col footer-contact">
+                <h4>Contact Us</h4>
+                <p><i class="fas fa-map-marker-alt"></i> 42, Design District, Connaught Place, New Delhi – 110001</p>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> info@luxecasa.com</p>
+                <p><i class="fas fa-clock"></i> Mon–Sat: 10 AM – 8 PM</p>
+                <p><i class="fab fa-whatsapp"></i> WhatsApp: +91 98765 43210</p>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2025 <span>LuxeCasa Furniture</span>. All rights reserved. Designed with ❤️ in India.</p>
+            <div style="display:flex;gap:20px">
+                <a href="privacy.html" style="color:rgba(245,240,232,0.3);font-size:0.8rem;text-decoration:none">Privacy
+                    Policy</a>
+                <a href="terms.html" style="color:rgba(245,240,232,0.3);font-size:0.8rem;text-decoration:none">Terms of
+                    Service</a>
+                <a href="refund.html" style="color:rgba(245,240,232,0.3);font-size:0.8rem;text-decoration:none">Refund
+                    Policy</a>
+            </div>
+            <div class="footer-payment">
+                <span class="payment-icon">COD Only</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===== BACK TO TOP ===== -->
+    <button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- ===== CART SIDEBAR ===== -->
+    <div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Your Cart <span style="font-size:0.9rem;color:var(--text-muted)" id="cartCount">(0 items)</span></h3>
+            <button class="cart-close" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItemsList">
+            <div style="text-align:center;padding:60px 20px;color:var(--text-muted)">
+                <i class="fas fa-shopping-bag"
+                    style="font-size:3rem;color:var(--cream2);margin-bottom:15px;display:block"></i>
+                <p>Your cart is empty</p>
+                <a href="products" style="color:var(--gold);font-size:0.85rem">Start Shopping →</a>
+            </div>
+        </div>
+        <div class="cart-footer" id="cartFooter" style="display:none">
+            <div class="cart-total-row"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+            <div class="cart-total-row"><span>Delivery</span><span style="color:#52C07A">FREE</span></div>
+            <div class="cart-total-row"><span>GST (18%)</span><span id="cartGST">₹0</span></div>
+            <div class="cart-total-row final"><span>Total</span><span id="cartTotal">₹0</span></div>
+            <a href="checkout.html" class="btn-checkout">Proceed to Checkout <i class="fas fa-arrow-right"></i></a>
+            <button class="btn-continue-shop" onclick="toggleCart()">Continue Shopping</button>
+        </div>
+    </div>
+
+    <!-- ===== TOAST ===== -->
+    <div class="toast" id="toast"></div>
+
+    <!-- ===== JAVASCRIPT ===== -->
+    <script>
+        // ============================================================
+        // GLOBAL STATE
+        // ============================================================
+        let cart = JSON.parse(localStorage.getItem('luxecasa_cart') || '[]');
+        let currentSlide = 0;
+        let slideInterval;
+        let trackOffset = 0;
+
+        // ============================================================
+        // HERO SLIDER
+        // ============================================================
+        const slides = document.querySelectorAll('.slide');
+        const dots = document.querySelectorAll('.slider-dot');
+
+        function goToSlide(n) {
+            slides[currentSlide].classList.remove('active');
+            dots[currentSlide].classList.remove('active');
+            currentSlide = (n + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+            dots[currentSlide].classList.add('active');
+            document.getElementById('slideCurrentNum').textContent = String(currentSlide + 1).padStart(2, '0');
+        }
+
+        function nextSlide() {
+            goToSlide(currentSlide + 1);
+            resetAutoSlide();
+        }
+
+        function prevSlide() {
+            goToSlide(currentSlide - 1);
+            resetAutoSlide();
+        }
+
+        function resetAutoSlide() {
+            clearInterval(slideInterval);
+            slideInterval = setInterval(nextSlide, 6000);
+        }
+
+        slideInterval = setInterval(nextSlide, 6000);
+
+        // Keyboard navigation
+        document.addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') nextSlide();
+            if (e.key === 'ArrowLeft') prevSlide();
+        });
+
+        // Touch swipe
+        let touchStartX = 0;
+        document.getElementById('heroSlider').addEventListener('touchstart', e => {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        document.getElementById('heroSlider').addEventListener('touchend', e => {
+            const diff = touchStartX - e.changedTouches[0].screenX;
+            if (Math.abs(diff) > 50) {
+                diff > 0 ? nextSlide() : prevSlide();
+            }
+        });
+
+        // ============================================================
+        // SCROLL TRACK (Featured 4 Products)
+        // ============================================================
+        //function scrollTrack(dir) {
+        //    const track = document.getElementById('scrollTrack');
+        //    const cardWidth = document.getElementById('scroll-card1').offsetWidth;
+        //    const maxOffset = -(track.children.length - 1) * cardWidth;
+        //    trackOffset += dir * -cardWidth;
+        //    trackOffset = Math.min(0, Math.max(maxOffset, trackOffset));
+        //    track.style.transform = `translateX(${trackOffset}px)`;
+        //}
+        let currentOffset = 0;
+
+        function scrollTrack(dir) {
+            const wrapper = document.querySelector(".scroll-track-wrapper");
+            const track = document.getElementById("scrollTrack");
+            const card = track.children[0];
+
+            const cardWidth = card.offsetWidth;
+            const maxOffset = Math.max(0, track.scrollWidth - wrapper.clientWidth) + 30;
+
+            if (dir === 1) {
+                if (currentOffset >= maxOffset) {
+                    currentOffset = 0;
+                } else {
+                    currentOffset = Math.min(currentOffset + cardWidth, maxOffset);
+                }
+            } else if (dir === -1) {
+                if (currentOffset <= 0) {
+                    currentOffset = maxOffset;
+                } else {
+                    currentOffset = Math.max(currentOffset - cardWidth, 0);
+                }
+            }
+
+            track.style.transform = `translateX(-${currentOffset}px)`;
+        }
+        // ============================================================
+        // PRODUCTS DATA
+        // ============================================================
+        const productsData = JSON.parse('<%- JSON.stringify(products) %>');
+        // ============================================================
+        // PRODUCTS DATA (Loaded dynamically from MySQL via Node.js)
+        // ============================================================
+        function renderProducts(category = 'all') {
+            const grid = document.getElementById('productsGrid');
+
+            const filtered = category === 'all'
+                ? productsData
+                : productsData.filter(p => p.cat === category);
+
+            const limited = filtered.slice(0, 8);
+
+            grid.innerHTML = limited.map(p => {
+                const badgeMap = {
+                    sale: '<span class="badge badge-sale">Sale</span>',
+                    new: '<span class="badge badge-new">New</span>',
+                    hot: '<span class="badge badge-hot">Hot</span>',
+                    bestseller: '<span class="badge badge-bestseller">Bestseller</span>'
+                };
+
+                const stars = '★'.repeat(p.rating) + '☆'.repeat(5 - p.rating);
+                const discount = Math.round((1 - p.price / p.oldPrice) * 100);
+
+                return `
+        <div class="product-card" onclick="window.location.href='product-detail.html?id=${p.id}'">
+            <div class="product-img-wrap">
+                <img src="${p.productImage}" alt="${p.name}" loading="lazy">
+                <div class="product-badges">${badgeMap[p.badge] || ''}</div>
+                <div class="product-actions">
+                    <button class="action-btn" onclick="event.stopPropagation(); toggleWishlist(${p.id}, this)" title="Wishlist"><i class="fas fa-heart"></i></button>
+                    <button class="action-btn" onclick="event.stopPropagation(); window.location.href='product-detail.html?id=${p.id}'" title="Quick View"><i class="fas fa-eye"></i></button>
+                    <button class="action-btn" onclick="event.stopPropagation(); addToCart(${p.id},'${p.name}',${p.price})" title="Add to Cart"><i class="fas fa-bag-shopping"></i></button>
+                </div>
+            </div>
+            <div class="product-body">
+                <p class="product-cat">${p.cat.replace('-', ' ')}</p>
+                <h3 class="product-name">${p.name}</h3>
+                <p class="product-short-desc">${p.description}</p>
+                <div class="product-meta">
+                    <div class="product-rating">
+                        <span style="color:var(--gold)">${stars}</span>
+                        <span style="font-size:0.75rem;color:var(--text-muted)">(${p.reviews})</span>
+                    </div>
+                </div>
+                <div class="product-footer">
+                    <div class="product-price">
+                        <span class="price-main">₹${p.price.toLocaleString('en-IN')}</span>
+                        <span class="price-old">₹${p.oldPrice.toLocaleString('en-IN')}</span>
+                        <span class="price-off">${discount}% OFF</span>
+                    </div>
+                    <button class="btn-cart" onclick="event.stopPropagation(); addToCart(${p.id},'${p.name}',${p.price})">
+                        <i class="fas fa-bag-shopping"></i> Add
+                    </button>
+                </div>
+            </div>
+        </div>`;
+            }).join('');
+
+            setTimeout(() => {
+                document.querySelectorAll('.product-card').forEach((el, i) => {
+                    setTimeout(() => el.classList.add('visible'), i * 80);
+                });
+            }, 100);
+        }
+        function filterProducts(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            renderProducts(cat);
+        }
+
+        // ============================================================
+        // CART SYSTEM
+        // ============================================================
+        function addToCart(id, name, price) {
+            const existing = cart.find(item => item.id === id);
+            if (existing) {
+                existing.qty++;
+            } else {
+                cart.push({ id, name, price, qty: 1, img: productsData.find(p => p.id === id)?.productImage || '' });
+            }
+            saveCart();
+            updateCartUI();
+            showToast(`✓ ${name} added to cart!`);
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveCart();
+            updateCartUI();
+        }
+
+        function changeQty(id, delta) {
+            const item = cart.find(i => i.id === id);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) removeFromCart(id);
+                else { saveCart(); updateCartUI(); }
+            }
+        }
+
+        function saveCart() {
+            localStorage.setItem('luxecasa_cart', JSON.stringify(cart));
+        }
+
+        function updateCartUI() {
+            const total = cart.reduce((sum, i) => sum + i.qty, 0);
+            const subtotal = cart.reduce((sum, i) => sum + i.price * i.qty, 0);
+            const gst = Math.round(subtotal * 0.18);
+            const grandTotal = subtotal + gst;
+
+            document.getElementById('cartBadge').textContent = total;
+            document.getElementById('cartCount').textContent = `(${total} item${total !== 1 ? 's' : ''})`;
+
+            const listEl = document.getElementById('cartItemsList');
+            const footerEl = document.getElementById('cartFooter');
+
+            if (cart.length === 0) {
+                listEl.innerHTML = `<div style="text-align:center;padding:60px 20px;color:var(--text-muted)">
+            <i class="fas fa-shopping-bag" style="font-size:3rem;color:var(--cream2);margin-bottom:15px;display:block"></i>
+            <p>Your cart is empty</p>
+            <a href="products" style="color:var(--gold);font-size:0.85rem">Start Shopping →</a>
+        </div>`;
+                footerEl.style.display = 'none';
+            } else {
+                listEl.innerHTML = cart.map(item => `
+        <div class="cart-item">
+            <div class="cart-item-img">
+                <img src="${item.productImage}" alt="${item.name}" ">
+            </div>
+            <div class="cart-item-info">
+                <h4 class="cart-item-name">${item.name}</h4>
+                <p class="cart-item-price">₹${(item.price).toLocaleString('en-IN')}</p>
+                <div class="cart-item-qty">
+                    <button class="qty-btn" onclick="changeQty(${item.id}, -1)">−</button>
+                    <span class="qty-num">${item.qty}</span>
+                    <button class="qty-btn" onclick="changeQty(${item.id}, 1)">+</button>
+                </div>
+                <button class="cart-item-remove" onclick="removeFromCart(${item.id})">Remove</button>
+            </div>
+        </div>`).join('');
+
+                document.getElementById('cartSubtotal').textContent = `₹${subtotal.toLocaleString('en-IN')}`;
+                document.getElementById('cartGST').textContent = `₹${gst.toLocaleString('en-IN')}`;
+                document.getElementById('cartTotal').textContent = `₹${grandTotal.toLocaleString('en-IN')}`;
+                footerEl.style.display = 'block';
+            }
+        }
+
+        function toggleCart() {
+            document.getElementById('cartSidebar').classList.toggle('open');
+            document.getElementById('cartOverlay').classList.toggle('show');
+        }
+
+        // ============================================================
+        // WISHLIST
+        // ============================================================
+        let wishlist = JSON.parse(localStorage.getItem('luxecasa_wishlist') || '[]');
+
+        function toggleWishlist(id, btn) {
+            const idx = wishlist.indexOf(id);
+            if (idx === -1) {
+                wishlist.push(id);
+                btn.classList.add('wishlist-active');
+                showToast('❤ Added to wishlist');
+            } else {
+                wishlist.splice(idx, 1);
+                btn.classList.remove('wishlist-active');
+                showToast('Removed from wishlist');
+            }
+            localStorage.setItem('luxecasa_wishlist', JSON.stringify(wishlist));
+        }
+
+        function toggleWishlistCard(btn) {
+            btn.classList.toggle('active');
+            const isActive = btn.classList.contains('active');
+            showToast(isActive ? '❤ Added to wishlist' : 'Removed from wishlist');
+        }
+
+        // ============================================================
+        // NAVBAR
+        // ============================================================
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('mainNav');
+            const backTop = document.getElementById('backTop');
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+                backTop.classList.add('show');
+            } else {
+                nav.classList.remove('scrolled');
+                backTop.classList.remove('show');
+            }
+        });
+
+        function toggleSearch() {
+            const q = prompt('Search for furniture...');
+            if (q) window.location.href = `products?search=${encodeURIComponent(q)}`;
+        }
+
+        function toggleMobileMenu() {
+            const links = document.querySelector('.nav-links');
+            links.style.display = links.style.display === 'flex' ? 'none' : 'flex';
+            links.style.flexDirection = 'column';
+            links.style.position = 'absolute';
+            links.style.top = '80px';
+            links.style.left = '0';
+            links.style.right = '0';
+            links.style.background = '#fff';
+            links.style.padding = '20px';
+            links.style.boxShadow = '0 20px 40px rgba(0,0,0,0.1)';
+            links.style.zIndex = '999';
+        }
+
+        // ============================================================
+        // JARALLAX PARALLAX ENGINE — vertical full-width panels
+        // ============================================================
+        (function initJarallaxEngine() {
+
+            const panels = document.querySelectorAll('.jarallax-panel');
+            if (!panels.length) return;
+
+            /*
+             * PARALLAX_SPEED: how many px the bg moves per px the user scrolls.
+             * 0.30 = subtle premium feel. Increase to 0.50 for stronger depth.
+             */
+            const PARALLAX_SPEED = 0.45;
+
+            function updateParallax() {
+                const winH = window.innerHeight;
+
+                panels.forEach(panel => {
+                    const img = panel.querySelector('.jara-img');
+                    const prog = panel.querySelector('.jara-progress');
+                    if (!img) return;
+
+                    const rect = panel.getBoundingClientRect();
+
+                    // Skip panels fully outside the viewport (perf optimisation)
+                    if (rect.bottom < -200 || rect.top > winH + 200) return;
+
+                    /*
+                     * panelProgress: 0 when panel bottom just enters viewport bottom,
+                     *                1 when panel top just exits viewport top.
+                     * Used to drive both parallax offset and the side progress bar.
+                     */
+                    const panelProgress = 1 - (rect.bottom / (winH + rect.height));
+                    const clampedProgress = Math.max(0, Math.min(1, panelProgress));
+
+                    /*
+                     * translateY offset:
+                     *   - When panel is below viewport: img is shifted DOWN  (+)
+                     *   - When panel is above viewport: img is shifted UP    (-)
+                     * The image is 140% tall so there is room to move 40% / 2 = 20%
+                     * in each direction without ever showing a gap.
+                     */
+                    const panelH = rect.height;
+                    const maxOffset = panelH * 0.20;                    // 20% of panel height
+                    const centreRel = rect.top + panelH / 2 - winH / 2; // px from viewport centre
+                    const offset = centreRel * PARALLAX_SPEED;
+                    const clamped = Math.max(-maxOffset, Math.min(maxOffset, offset));
+
+                    // Apply — keep hover scale if present, just change translateY
+                    const isHovered = panel.matches(':hover');
+                    const scale = isHovered ? 1.06 : 1.0;
+                    img.style.transform = `translateY(${clamped}px) scale(${scale})`;
+
+                    // Side progress bar
+                    if (prog) {
+                        prog.style.height = (clampedProgress * 100).toFixed(1) + '%';
+                    }
+                });
+            }
+
+            // Preserve hover scale alongside parallax translateY
+            panels.forEach(panel => {
+                const img = panel.querySelector('.jara-img');
+                if (!img) return;
+                panel.addEventListener('mouseenter', updateParallax, { passive: true });
+                panel.addEventListener('mouseleave', updateParallax, { passive: true });
+            });
+
+            let rafId;
+            function onScroll() {
+                if (rafId) cancelAnimationFrame(rafId);
+                rafId = requestAnimationFrame(updateParallax);
+            }
+
+            window.addEventListener('scroll', onScroll, { passive: true });
+            window.addEventListener('resize', updateParallax, { passive: true });
+
+            // Initial paint
+            updateParallax();
+        })();
+
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(el => observer.observe(el));
+
+        // ============================================================
+        // COUNTDOWN TIMER
+        // ============================================================
+        function updateCountdown() {
+            const endDate = new Date();
+            endDate.setDate(endDate.getDate() + 12);
+            endDate.setHours(8, 45, 30);
+
+            function tick() {
+                const now = new Date();
+                const diff = endDate - now;
+                if (diff <= 0) return;
+
+                const d = Math.floor(diff / 86400000);
+                const h = Math.floor((diff % 86400000) / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                const s = Math.floor((diff % 60000) / 1000);
+
+                const fmt = n => String(n).padStart(2, '0');
+                document.getElementById('cdDays').textContent = fmt(d);
+                document.getElementById('cdHours').textContent = fmt(h);
+                document.getElementById('cdMins').textContent = fmt(m);
+                document.getElementById('cdSecs').textContent = fmt(s);
+            }
+
+            tick();
+            setInterval(tick, 1000);
+        }
+
+        updateCountdown();
+
+        // NEWSLETTER (Database Connected)
+        async function subscribeNewsletter(e) {
+            e.preventDefault(); // Stop page from reloading
+
+            const emailInput = document.getElementById('newsletterEmail');
+            const email = emailInput.value.trim();
+
+            try {
+                // Send data to our Node.js server
+                const response = await fetch('/subscribe', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email: email })
+                });
+
+                const data = await response.json();
+
+                // Show the result in the Toast popup
+                showToast(data.message);
+
+                // Clear the input only if it was successful
+                if (data.success) {
+                    emailInput.value = '';
+                }
+            } catch (err) {
+                showToast('⚠ Error connecting to server.');
+            }
+        }
+        // ============================================================
+        // TOAST NOTIFICATION
+        // ============================================================
+        let toastTimeout;
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerHTML = msg;
+            toast.classList.add('show');
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => toast.classList.remove('show'), 3000);
+        }
+
+        // ============================================================
+        // USER SESSION CHECK
+        // ============================================================
+        function checkSession() {
+            const user = JSON.parse(localStorage.getItem('luxecasa_user'));
+            const btn = document.getElementById('navLoginBtn');
+            if (user && btn) {
+                btn.innerHTML = `<i class="fas fa-user-circle"></i> ${user.full_name}`;
+                btn.href = 'profile.html';
+            }
+        }
+
+        // ============================================================
+        // INIT
+        // ============================================================
+        renderProducts();
+        updateCartUI();
+        checkSession();
+    </script>
+</body>
+
+</html>
