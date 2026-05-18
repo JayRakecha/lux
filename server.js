@@ -25,10 +25,13 @@ const db = mysql.createConnection({
 
 
 // Test the connection on startup
-db.getConnection()
-    .then(() => console.log('✅ Connected to MySQL Database successfully!'))
-    .catch(err => console.error('❌ Database connection failed:', err.message));
-
+db.connect(err => {
+    if (err) {
+        console.error('❌ Database connection failed:', err);
+    } else {
+        console.log('✅ Connected to MySQL Database successfully!');
+    }
+});
 
 // ============================================================
 // EXPRESS CONFIGURATION
