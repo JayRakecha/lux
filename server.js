@@ -1,4 +1,13 @@
 const express = require('express');
+const nodemailer = require('nodemailer');
+
+const transporter = nodemailer.createTransport({
+  service: 'gmail',
+  auth: {
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+});
 const path = require('path');
 const session = require('express-session');
 const mysql = require('mysql2/promise'); // Note the '/promise'
@@ -402,9 +411,26 @@ app.post('/api/checkout', async (req, res) => {
             );
         }
         
-        await connection.commit(); 
-        res.json({ success: true, message: 'Order placed successfully!' });
+        await connection.commit();
 
+// Email Notification
+const cartItems = cart.map(item => 
+    `${item.name} x${item.qty} - ₹${item.price}`
+).join('\n');
+
+const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: process.env.EMAIL_USER,
+    subject: `🛍️ New Order #${orderId} - LuxeCasa`,
+    text: `New order received!\n\nOrder ID: ${orderId}\nAddress: ${address}\nTotal: ₹${totalAmount}\n\nItems:\n${cartItems}`
+};
+
+transporter.sendMail(mailOptions, (err, info) => {
+    if (err) console.error('Email error:', err);
+    else console.log('✅ Order email sent!');
+});
+
+res.json({ success: true, message: 'Order placed successfully!' });
     } catch (err) {
         await connection.rollback(); 
         console.error("Checkout Error DETAILS:", err);
