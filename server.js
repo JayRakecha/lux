@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 // ============================================================
 // We create a "pool" instead of a single connection. 
 // A pool manages multiple connections automatically, making it crash-proof.
-const db = mysql.createConnection({
+const db = mysql.createPool({
   host: process.env.MYSQLHOST || 'localhost',
   user: process.env.MYSQLUSER || 'root',  // Assuming your local MySQL user is root
   password: process.env.MYSQLPASSWORD || 'JayRakecha@2005',  // Assuming no password. Change if you set one on Linux Mint!
@@ -25,13 +25,12 @@ const db = mysql.createConnection({
 
 
 // Test the connection on startup
-db.connect(err => {
-    if (err) {
-        console.error('❌ Database connection failed:', err);
-    } else {
+db.getConnection()
+    .then(conn => {
         console.log('✅ Connected to MySQL Database successfully!');
-    }
-});
+        conn.release();
+    })
+    .catch(err => console.error('❌ Database connection failed:', err));
 
 // ============================================================
 // EXPRESS CONFIGURATION
