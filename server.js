@@ -19,7 +19,7 @@ const db = mysql.createPool({
   port: process.env.MYSQLPORT || 3306,
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
   ssl: process.env.MYSQLHOST ? { rejectUnauthorized: false } : false
 });
  
