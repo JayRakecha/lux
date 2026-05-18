@@ -415,7 +415,7 @@ const cartItems = cart.map(item =>
 
 resend.emails.send({
     from: 'onboarding@resend.dev',
-    to: 'Jayrakecha12@gmail.com',
+    to: 'jayrakecha12@gmail.com',
     subject: `🛍️ New Order #${orderId} - LuxeCasa`,
     text: `New order received!\n\nOrder ID: ${orderId}\nAddress: ${address}\nTotal: ₹${totalAmount}\n\nItems:\n${cartItems}`
 }).then(data => console.log('✅ Order email sent!', data))
