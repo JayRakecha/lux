@@ -1,15 +1,8 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 
-const transporter = nodemailer.createTransport({
-  host: 'smtp.gmail.com',
-  port: 587,
-  secure: false,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS
-  }
-});
+const { Resend } = require('resend');
+const resend = new Resend(process.env.RESEND_API_KEY);
 const path = require('path');
 const session = require('express-session');
 const mysql = require('mysql2/promise'); // Note the '/promise'
@@ -420,17 +413,13 @@ const cartItems = cart.map(item =>
     `${item.name} x${item.qty} - ₹${item.price}`
 ).join('\n');
 
-const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER,
+resend.emails.send({
+    from: 'onboarding@resend.dev',
+    to: 'Jayrakecha12@gmail.com',
     subject: `🛍️ New Order #${orderId} - LuxeCasa`,
     text: `New order received!\n\nOrder ID: ${orderId}\nAddress: ${address}\nTotal: ₹${totalAmount}\n\nItems:\n${cartItems}`
-};
-
-transporter.sendMail(mailOptions, (err, info) => {
-    if (err) console.error('Email error:', err);
-    else console.log('✅ Order email sent!');
-});
+}).then(data => console.log('✅ Order email sent!', data))
+  .catch(err => console.error('Email error:', err));
 
 res.json({ success: true, message: 'Order placed successfully!' });
     } catch (err) {
